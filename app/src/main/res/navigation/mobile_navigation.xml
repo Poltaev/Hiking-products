@@ -3,34 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/this_hike">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.myapplication.ui.home.HomeFragment"
+        android:id="@+id/this_hike"
+        android:name="com.example.myapplication.ui.this_hike.ThisHikeFragment"
         android:label="@string/this_hike"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_this_hike" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.myapplication.ui.gallery.GalleryFragment"
+        android:id="@+id/food_list"
+        android:name="com.example.myapplication.ui.food_list.FoodListFragment"
         android:label="@string/all_products"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_food_list" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.myapplication.ui.slideshow.SlideshowFragment"
+        android:id="@+id/list_of_participants"
+        android:name="com.example.myapplication.ui.slideshow.ListOfParticipantsFragment"
         android:label="@string/list_of_people"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_list_of_participants" />
     <fragment
         android:id="@+id/add_hike"
         android:name="com.example.myapplication.ui.add_hike.AddHikeFragment"
-        android:label="fragment_add_hike"
+        android:label="@string/add_hike"
         tools:layout="@layout/fragment_add_hike" />
     <fragment
         android:id="@+id/hiking_archive"
         android:name="com.example.myapplication.ui.hike_archive.HikeArchiveFragment"
-        android:label="fragment_hike_archive"
+        android:label="@string/hiking_archive"
         tools:layout="@layout/fragment_hike_archive" />
 
 </navigation>

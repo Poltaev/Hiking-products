@@ -1,13 +1,13 @@
-package com.example.myapplication.ui.slideshow
+package com.example.myapplication.ui.food_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class FoodListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = "This is food list fragment"
     }
     val text: LiveData<String> = _text
 }
