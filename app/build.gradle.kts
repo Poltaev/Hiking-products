@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -53,4 +54,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // зависимости баз данных
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.activity)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.rxjava2)
+    // ресайкл вью (прокручиваемый список)
+    implementation(libs.androidx.recyclerview)
+    // навигация
+    implementation(libs.androidx.navigation.compose)
+    // Glide для картинок
+    implementation(libs.glide)
+    //фрагмент менеджер транзакции
+    implementation(libs.androidx.fragment.ktx)
 }

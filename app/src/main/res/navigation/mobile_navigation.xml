@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/list_of_participants"
-        android:name="com.example.myapplication.ui.slideshow.ListOfParticipantsFragment"
+        android:name="com.example.myapplication.ui.list_of_participants.ListOfParticipantsFragment"
         android:label="@string/list_of_people"
         tools:layout="@layout/fragment_list_of_participants" />
     <fragment

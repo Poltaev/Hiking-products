@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.slideshow
+package com.example.myapplication.ui.list_of_participants
 
 import android.os.Bundle
 import android.view.LayoutInflater
