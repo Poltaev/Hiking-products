@@ -2,24 +2,24 @@ package com.example.myapplication.dataBase
 
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Ignore
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductsDao {
     @Query("SELECT * FROM Products")
-    fun getAllProducts () {}
+     fun getAllProducts(): Flow<List<Products>>
 
-    fun getOneProducts () {}
+//     fun getOneProducts(products: Products)
 
     @Insert
-    fun insertOneProducts () {}
+    suspend fun insertOneProducts(products: Products)
 
     @Delete
-    fun deleteOneProducts () {}
+    suspend fun deleteOneProducts(products: Products)
 
     @Update
-    fun updateOneProducts () {}
+    suspend fun updateOneProducts(products: Products)
 }
