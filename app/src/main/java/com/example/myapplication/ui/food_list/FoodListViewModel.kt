@@ -6,8 +6,4 @@ import androidx.lifecycle.ViewModel
 
 class FoodListViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is food list fragment"
-    }
-    val text: LiveData<String> = _text
 }

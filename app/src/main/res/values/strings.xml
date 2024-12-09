@@ -10,6 +10,6 @@
     <string name="this_hike">Текущий поход</string>
     <string name="all_products">Список продуктов</string>
     <string name="list_of_people">Список людей</string>
-    <string name="add_hike">Создать поход</string>
+    <string name="equipment_list">Список снаряжения</string>
     <string name="hiking_archive">Архив походов</string>
 </resources>

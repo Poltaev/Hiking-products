@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.hike_archive
+package com.example.myapplication.ui.add_hike
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -7,23 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.R
+import com.example.myapplication.databinding.FragmentEquipmentListBinding
 import com.example.myapplication.databinding.FragmentFoodListBinding
-import com.example.myapplication.databinding.FragmentHikeArchiveBinding
 
-class HikeArchiveFragment : Fragment() {
 
-    private var _binding: FragmentHikeArchiveBinding? = null
+class EquipmentListFragment : Fragment() {
+
+    private var _binding: FragmentEquipmentListBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: HikeArchiveViewModel by viewModels()
+    private val viewModel: EquipmentListViewModel by viewModels()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHikeArchiveBinding.inflate(inflater, container, false)
+        _binding = FragmentEquipmentListBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -36,5 +37,6 @@ class HikeArchiveFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
     }
 }

@@ -17,9 +17,9 @@
             android:icon="@drawable/baseline_cruelty_free_24"
             android:title="@string/list_of_people" />
         <item
-            android:id="@+id/add_hike"
-            android:icon="@drawable/baseline_control_point_24"
-            android:title="@string/add_hike" />
+            android:id="@+id/equipment_list"
+            android:icon="@drawable/baseline_carpenter_24"
+            android:title="@string/equipment_list" />
         <item
             android:id="@+id/hiking_archive"
             android:icon="@drawable/baseline_perm_media_24"

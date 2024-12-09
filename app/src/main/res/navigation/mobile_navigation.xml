@@ -23,10 +23,10 @@
         android:label="@string/list_of_people"
         tools:layout="@layout/fragment_list_of_participants" />
     <fragment
-        android:id="@+id/add_hike"
-        android:name="com.example.myapplication.ui.add_hike.AddHikeFragment"
-        android:label="@string/add_hike"
-        tools:layout="@layout/fragment_add_hike" />
+        android:id="@+id/equipment_list"
+        android:name="com.example.myapplication.ui.add_hike.EquipmentListFragment"
+        android:label="@string/equipment_list"
+        tools:layout="@layout/fragment_equipment_list" />
     <fragment
         android:id="@+id/hiking_archive"
         android:name="com.example.myapplication.ui.hike_archive.HikeArchiveFragment"

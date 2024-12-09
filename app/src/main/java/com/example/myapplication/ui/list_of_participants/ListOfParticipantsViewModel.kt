@@ -6,8 +6,4 @@ import androidx.lifecycle.ViewModel
 
 class ListOfParticipantsViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is list of participants"
-    }
-    val text: LiveData<String> = _text
 }
