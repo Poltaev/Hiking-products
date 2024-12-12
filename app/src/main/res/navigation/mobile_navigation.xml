@@ -9,28 +9,138 @@
         android:id="@+id/this_hike"
         android:name="com.example.myapplication.ui.this_hike.ThisHikeFragment"
         android:label="@string/this_hike"
-        tools:layout="@layout/fragment_this_hike" />
+        tools:layout="@layout/fragment_this_hike" >
+        <action
+            android:id="@+id/action_this_hike_to_creatingANewCampaignFragment"
+            app:destination="@id/creatingANewCampaignFragment" />
+        <action
+            android:id="@+id/action_this_hike_to_listOfPurchasedProductsFragment"
+            app:destination="@id/listOfPurchasedProductsFragment" />
+        <action
+            android:id="@+id/action_this_hike_to_viewingPeopleFragment"
+            app:destination="@id/viewingPeopleFragment" />
+        <action
+            android:id="@+id/action_this_hike_to_viewTheMenuFragment"
+            app:destination="@id/viewTheMenuFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/food_list"
         android:name="com.example.myapplication.ui.food_list.FoodListFragment"
         android:label="@string/all_products"
-        tools:layout="@layout/fragment_food_list" />
+        tools:layout="@layout/fragment_food_list" >
+        <action
+            android:id="@+id/action_food_list_to_addingAProductFragment"
+            app:destination="@id/addingAProductFragment" />
+        <action
+            android:id="@+id/action_food_list_to_viewingTheProductFragment"
+            app:destination="@id/viewingTheProductFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/list_of_participants"
         android:name="com.example.myapplication.ui.list_of_participants.ListOfParticipantsFragment"
         android:label="@string/list_of_people"
-        tools:layout="@layout/fragment_list_of_participants" />
+        tools:layout="@layout/fragment_list_of_participants" >
+        <action
+            android:id="@+id/action_list_of_participants_to_addingAParticipantFragment"
+            app:destination="@id/addingAParticipantFragment" />
+        <action
+            android:id="@+id/action_list_of_participants_to_viewingAParticipantFragment"
+            app:destination="@id/viewingAParticipantFragment" />
+    </fragment>
     <fragment
         android:id="@+id/equipment_list"
         android:name="com.example.myapplication.ui.add_hike.EquipmentListFragment"
         android:label="@string/equipment_list"
-        tools:layout="@layout/fragment_equipment_list" />
+        tools:layout="@layout/fragment_equipment_list" >
+        <action
+            android:id="@+id/action_equipment_list_to_addingEquipmentFragment"
+            app:destination="@id/addingEquipmentFragment" />
+        <action
+            android:id="@+id/action_equipment_list_to_viewingEquipmentFragment"
+            app:destination="@id/viewingEquipmentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/hiking_archive"
         android:name="com.example.myapplication.ui.hike_archive.HikeArchiveFragment"
         android:label="@string/hiking_archive"
-        tools:layout="@layout/fragment_hike_archive" />
+        tools:layout="@layout/fragment_hike_archive" >
+        <action
+            android:id="@+id/action_hiking_archive_to_viewingAHikeFragment"
+            app:destination="@id/viewingAHikeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/creatingANewCampaignFragment"
+        android:name="com.example.myapplication.ui.creating_a_new_camping.CreatingANewCampaignFragment"
+        android:label="fragment_creating_a_new_campaign"
+        tools:layout="@layout/fragment_creating_a_new_campaign" />
+    <fragment
+        android:id="@+id/listOfPurchasedProductsFragment"
+        android:name="com.example.myapplication.ui.list_of_purchased_products.ListOfPurchasedProductsFragment"
+        android:label="fragment_list_of_purchased_products"
+        tools:layout="@layout/fragment_list_of_purchased_products" />
+    <fragment
+        android:id="@+id/viewingPeopleFragment"
+        android:name="com.example.myapplication.ui.viewing_people.ViewingPeopleFragment"
+        android:label="fragment_viewing_people"
+        tools:layout="@layout/fragment_viewing_people" />
+    <fragment
+        android:id="@+id/viewTheMenuFragment"
+        android:name="com.example.myapplication.ui.view_the_menu.ViewTheMenuFragment"
+        android:label="fragment_view_the_menu"
+        tools:layout="@layout/fragment_view_the_menu" />
+    <fragment
+        android:id="@+id/addingAProductFragment"
+        android:name="com.example.myapplication.ui.adding_a_product.AddingAProductFragment"
+        android:label="fragment_adding_a_product"
+        tools:layout="@layout/fragment_adding_a_product" />
+    <fragment
+        android:id="@+id/viewingTheProductFragment"
+        android:name="com.example.myapplication.ui.viewing_the_product.ViewingTheProductFragment"
+        android:label="fragment_viewing_the_product"
+        tools:layout="@layout/fragment_viewing_the_product" />
+    <fragment
+        android:id="@+id/addingAParticipantFragment"
+        android:name="com.example.myapplication.ui.adding_a_participant.AddingAParticipantFragment"
+        android:label="fragment_adding_a_participant"
+        tools:layout="@layout/fragment_adding_a_participant" />
+    <fragment
+        android:id="@+id/viewingAParticipantFragment"
+        android:name="com.example.myapplication.ui.viewing_a_participant.ViewingAParticipantFragment"
+        android:label="fragment_viewing_a_participant"
+        tools:layout="@layout/fragment_viewing_a_participant" />
+    <fragment
+        android:id="@+id/addingEquipmentFragment"
+        android:name="com.example.myapplication.ui.adding_equipment.AddingEquipmentFragment"
+        android:label="fragment_adding_equipment"
+        tools:layout="@layout/fragment_adding_equipment" />
+    <fragment
+        android:id="@+id/viewingEquipmentFragment"
+        android:name="com.example.myapplication.ui.viewing_equipment.ViewingEquipmentFragment"
+        android:label="fragment_viewing_equipment"
+        tools:layout="@layout/fragment_viewing_equipment" />
+    <fragment
+        android:id="@+id/viewingAHikeFragment"
+        android:name="com.example.myapplication.ui.viewing_a_hike.ViewingAHikeFragment"
+        android:label="fragment_viewing_a_hike"
+        tools:layout="@layout/fragment_viewing_a_hike" >
+        <action
+            android:id="@+id/action_viewingAHikeFragment_to_viewingPeopleFromTheArchiveFragment"
+            app:destination="@id/viewingPeopleFromTheArchiveFragment" />
+        <action
+            android:id="@+id/action_viewingAHikeFragment_to_viewingTheMenuInTheArchiveFragment"
+            app:destination="@id/viewingTheMenuInTheArchiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewingPeopleFromTheArchiveFragment"
+        android:name="com.example.myapplication.ui.viewing_people_from_the_archive.ViewingPeopleFromTheArchiveFragment"
+        android:label="fragment_viewing_people_from_the_archive"
+        tools:layout="@layout/fragment_viewing_people_from_the_archive" />
+    <fragment
+        android:id="@+id/viewingTheMenuInTheArchiveFragment"
+        android:name="com.example.myapplication.ui.viewing_the_menu_in_the_archive.ViewingTheMenuInTheArchiveFragment"
+        android:label="fragment_viewing_the_menu_in_the_archive"
+        tools:layout="@layout/fragment_viewing_the_menu_in_the_archive" />
 
 </navigation>
