@@ -4,9 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Hike")
-data class Hike(
-    @PrimaryKey
+@Entity(tableName = "CurrentHike")
+data class CurrentHike(
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id : Int,
     @ColumnInfo(name = "full_days")

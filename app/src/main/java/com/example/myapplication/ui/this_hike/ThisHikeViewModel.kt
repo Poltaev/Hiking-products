@@ -2,14 +2,23 @@ package com.example.myapplication.ui.this_hike
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.dataBase.Equipment
+import com.example.myapplication.dataBase.HikeDao
 import com.example.myapplication.dataBase.Products
-import com.example.myapplication.dataBase.ProductsDao
+
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class ThisHikeViewModel(private val productDao: ProductsDao) : ViewModel() {
-    val allProducts = this.productDao.getAllProducts()
+class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
+    val allProducts = this.hikeDao.getAllProductsFlow()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000L),
+            initialValue = emptyList()
+
+        )
+    val allEquipment = this.hikeDao.getAllEquipmentFlow()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000L),
@@ -18,7 +27,7 @@ class ThisHikeViewModel(private val productDao: ProductsDao) : ViewModel() {
         )
     fun addProducts() {
         viewModelScope.launch {
-            productDao.insertOneProducts(
+            hikeDao.insertOneProducts(
                 Products(
                     id = 1,
                     name = "name",
@@ -29,6 +38,18 @@ class ThisHikeViewModel(private val productDao: ProductsDao) : ViewModel() {
                     fullPurchase = false,
                     colorOfBackground = "red",
                     weWillUseItInTheCurrentCampaign = false
+                )
+            )
+        }
+    }
+    fun addEquipment() {
+        viewModelScope.launch {
+            hikeDao.insertOneEquipment(
+                Equipment(
+                    id = 1,
+                    name = "name",
+                    photo = "photo",
+                    weight = 1.2
                 )
             )
         }

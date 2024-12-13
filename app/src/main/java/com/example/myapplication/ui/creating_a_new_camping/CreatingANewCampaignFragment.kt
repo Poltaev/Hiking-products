@@ -6,26 +6,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.dataBase.App
+import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
+import com.example.myapplication.databinding.FragmentAddingEquipmentBinding
+import com.example.myapplication.databinding.FragmentCreatingANewCampaignBinding
+import com.example.myapplication.ui.this_hike.ThisHikeViewModel
 
 class CreatingANewCampaignFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CreatingANewCampaignFragment()
+    private var _binding: FragmentCreatingANewCampaignBinding? = null
+
+    private val binding get() = _binding!!
+
+    private val viewModel: CreatingANewCampaignViewModel by viewModels{
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
+                return CreatingANewCampaignViewModel(hikeDao) as T
+            }
+        }
     }
-
-    private val viewModel: CreatingANewCampaignViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_creating_a_new_campaign, container, false)
+        _binding = FragmentCreatingANewCampaignBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -6,12 +6,13 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [
         Products::class,
-        Hike::class,
-        Conjugation::class,
-        Participants::class
+        CurrentHike::class,
+        Equipment::class,
+        Participants::class,
+        ArchiveHike::class
     ],
     version = 1
 )
 abstract class AppDataBase : RoomDatabase() {
-    abstract fun userDao(): ProductsDao
+    abstract fun hikeDao(): HikeDao
 }

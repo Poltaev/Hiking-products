@@ -21,11 +21,11 @@ class ThisHikeFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: ThisHikeViewModel by viewModels{
-        object : ViewModelProvider.Factory{
-            override fun <T: ViewModel> create(modelClass: Class<T>): T {
-                val productsDao = (requireContext().applicationContext as App).db.userDao()
-                return ThisHikeViewModel(productsDao) as T
+    private val viewModel: ThisHikeViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
+                return ThisHikeViewModel(hikeDao) as T
             }
         }
     }
@@ -42,14 +42,20 @@ class ThisHikeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.addEquipment()
         viewModel.addProducts()
         lifecycleScope.launch {
-            viewModel.allProducts.collect{ product ->
+            viewModel.allProducts.collect { product ->
                 binding.textView.text = product.joinToString(separator = "\r\n")
-
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.allEquipment.collect { equipment ->
+                binding.textView1.text = equipment.joinToString(separator = "\r\n")
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
