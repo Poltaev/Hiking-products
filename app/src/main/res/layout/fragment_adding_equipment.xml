@@ -25,14 +25,14 @@
         android:backgroundTint="@color/white"
         android:src="@drawable/ic_back_brawable_foreground"
         app:layout_constraintStart_toEndOf="@+id/buttonDeleteEquipment"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddAndBackParticipant" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddEquipment" />
 
     <Button
-        android:id="@+id/buttonAddAndBackParticipant"
+        android:id="@+id/buttonAddEquipment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="388dp"
-        android:text="Создать/изменить участника"
+        android:text="Сохранить снаряжение"
         android:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -47,7 +47,7 @@
         android:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddAndBackParticipant" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddEquipment" />
 
     <Button
         android:id="@+id/buttonСhangedPhoto"
@@ -61,6 +61,40 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewPhotoEquipment"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutName"
+        android:layout_width="409dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:helperText="Введите название снаряжения"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoEquipment">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutWeight"
+        android:layout_width="409dp"
+        android:layout_marginTop="150dp"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:helperText="Введите вес снаряжения в граммах"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoEquipment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Вес" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

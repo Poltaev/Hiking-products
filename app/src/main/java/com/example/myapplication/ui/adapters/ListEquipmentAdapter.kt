@@ -43,7 +43,7 @@ class ListEquipmentAdapter(
             item?.let {
                 Glide
                     .with(imageViewEquipment.context)
-                    .load(R.drawable.baseline_fitness_center_24)
+                    .load(R.drawable.tent)
                     .into(imageViewEquipment)
             }
         }

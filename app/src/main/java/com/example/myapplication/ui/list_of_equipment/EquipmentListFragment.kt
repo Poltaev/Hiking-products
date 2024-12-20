@@ -61,15 +61,24 @@ class EquipmentListFragment : Fragment() {
                 )
                 val getEquipmentList = viewModel.getAllEquipmentList()
                 val EquipmentAdapter =
-                    getEquipmentList?.let { ListEquipmentAdapter(it) { onItemClick(it) } }
+                    getEquipmentList.let { ListEquipmentAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewEquipment.adapter = EquipmentAdapter
 
             } else {
                 val getParticipantsList = viewModel.getAllEquipmentList()
                 val ParticipantsAdapterList =
-                    getParticipantsList?.let { ListEquipmentAdapter(it) { onItemClick(it) } }
+                    getParticipantsList.let { ListEquipmentAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewEquipment.adapter = ParticipantsAdapterList
             }
+        }
+        binding.buttonAddEquipment.setOnClickListener {
+            val bundle = Bundle().apply {
+               putInt("equipmentId", 9999)
+            }
+            findNavController().navigate(
+                R.id.action_equipment_list_to_addingEquipmentFragment,
+                bundle
+            )
         }
     }
 

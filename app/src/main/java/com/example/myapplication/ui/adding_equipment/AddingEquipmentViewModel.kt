@@ -2,29 +2,44 @@ package com.example.myapplication.ui.adding_equipment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.HikeDao
+import com.example.myapplication.dataBase.Participants
+import com.example.myapplication.domain.ParticipantsEquipmentUseCase
 import com.example.myapplication.domain.ProductsUseCase
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class AddingEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
-    val allEquipment = this.hikeDao.getAllEquipmentFlow()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
-            initialValue = emptyList()
+
+    suspend fun getAllEquipmentFlow(): Flow<List<Equipment>> {
+        return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentFlow()
+    }
+
+    suspend fun getAllEquipmentList(): List<Equipment> {
+        return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
+    }
+
+    suspend fun deleteEquipment(equipment: Equipment){
+        return ParticipantsEquipmentUseCase(hikeDao).deleteEquipment(equipment)
+    }
+    suspend fun addEquipment(
+        id: Int,
+        name: String,
+        photo: String,
+        weight: Double,
+        equipmentInTheCampaign: Boolean
+
+    ) {
+        ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+            id = id,
+            name = name,
+            photo = photo,
+            weight = weight,
+            equipmentInTheCampaign = equipmentInTheCampaign
 
         )
-    fun addProducts() {
-        viewModelScope.launch {
-            ProductsUseCase(hikeDao).loadProducts(
-                id = 1,
-                name = "name",
-                weightForPerson = 1.0,
-                packageWeight = 1.0,
-                weWillUseItInTheCurrentCampaign = false
-            )
-        }
     }
 }

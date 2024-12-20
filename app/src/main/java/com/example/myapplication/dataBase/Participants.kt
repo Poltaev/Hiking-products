@@ -18,7 +18,7 @@ data class Participants(
     @ColumnInfo(name = "gender")
     val gender : String,
     @ColumnInfo(name = "age")
-    val age : Int,
+    val age : String,
     @ColumnInfo(name = "maximum_portable_weight")
     val maximumPortableWeight : Double,
     @ColumnInfo(name = "weight_of_personal_items")

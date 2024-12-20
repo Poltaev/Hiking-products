@@ -70,7 +70,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         firstName: String,
         lastName: String,
         gender: String,
-        age: Int,
+        age: String,
         maximumPortableWeight: Double,
         weightOfPersonalItems: Double,
         participationInTheCampaign: Boolean
@@ -99,7 +99,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         firstName: String,
         lastName: String,
         gender: String,
-        age: Int,
+        age: String,
         maximumPortableWeight: Double,
         weightOfPersonalItems: Double,
         participationInTheCampaign: Boolean

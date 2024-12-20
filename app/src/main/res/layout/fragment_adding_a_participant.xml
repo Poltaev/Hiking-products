@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.adding_a_participant.AddingAParticipantFragment">
 
     <ImageView
         android:id="@+id/imageViewPhotoParticipant"
         android:layout_width="180dp"
         android:layout_height="182dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/man1" />
 
     <ImageButton
         android:id="@+id/imageButtonBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="456dp"
         android:backgroundTint="@color/white"
         android:src="@drawable/ic_back_brawable_foreground"
-        app:layout_constraintStart_toEndOf="@+id/buttonDeleteParticipant"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddAndBackParticipant" />
+        app:layout_constraintStart_toEndOf="@+id/buttonAddParticipant"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant" />
 
     <Button
-        android:id="@+id/buttonAddAndBackParticipant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="388dp"
-        android:text="Создать/изменить участника"
+        android:id="@+id/buttonAddParticipant"
+        android:layout_width="145dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="456dp"
         android:backgroundTint="@color/teal_200"
+        android:text="Сохранить"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant" />
 
@@ -43,23 +43,125 @@
         android:id="@+id/buttonDeleteParticipant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Удалить участника"
+        android:layout_marginTop="456dp"
         android:backgroundTint="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Удалить"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAddParticipant"
+        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddAndBackParticipant" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant" />
 
     <Button
         android:id="@+id/buttonСhangedPhoto"
         android:layout_width="91dp"
         android:layout_height="100dp"
         android:layout_marginTop="68dp"
-        android:text="Изменить фото"
         android:backgroundTint="@color/teal_200"
+        android:text="Изменить фото"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toEndOf="@+id/imageViewPhotoParticipant"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutFirstName"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Имя" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSecondName"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterSecondName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Фамилия" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutGender"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Пол" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutAge"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="185dp"
+        app:boxBackgroundColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Возраст" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLimitWeight"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="245dp"
+        app:boxBackgroundColor="@color/white"
+        app:helperText="Введите вернхнюю границу возможного веса рюкзака в кг, с точкой (Например: 25.7)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterLimitWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Предельный вес" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputWeightOfPersonalItems"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="335dp"
+        app:boxBackgroundColor="@color/white"
+        app:helperText="Введите вес личных вещей учасника в кг, с точкой (Например: 10.3)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/enterWeightOfPersonalItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Вес личных вещей" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

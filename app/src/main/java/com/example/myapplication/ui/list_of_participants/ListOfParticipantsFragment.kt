@@ -56,10 +56,10 @@ class ListOfParticipantsFragment : Fragment() {
                 viewModel.addParticipants(
                     1,
                     "Photo",
-                    "Добавьте своего первого участника, нажав на кнопку снизу, или на эту плитку участника",
-                    "Иван Иванов",
-                    "Мужчина в полном расцвете сил",
-                    17,
+                    "Для добавления",
+                    "участника",
+                    "нажмите сюда, или на кнопку",
+                    "17",
                     10.0,
                     10.0,
                     false
@@ -67,15 +67,24 @@ class ListOfParticipantsFragment : Fragment() {
                 )
                 val getParticipantsList = viewModel.getAllParticipantsList()
                 val ParticipantsAdapter =
-                    getParticipantsList?.let { ListParticipantsAdapter(it) { onItemClick(it) } }
+                    getParticipantsList.let { ListParticipantsAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewParticipants.adapter = ParticipantsAdapter
 
             } else {
                 val getParticipantsList = viewModel.getAllParticipantsList()
                 val ParticipantsAdapterList =
-                    getParticipantsList?.let { ListParticipantsAdapter(it) { onItemClick(it) } }
+                    getParticipantsList.let { ListParticipantsAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewParticipants.adapter = ParticipantsAdapterList
             }
+        }
+        binding.buttonAddParticipants.setOnClickListener {
+            val bundle = Bundle().apply {
+                putInt("participantsId", 9999)
+            }
+            findNavController().navigate(
+                R.id.action_list_of_participants_to_addingAParticipantFragment,
+                bundle
+            )
         }
     }
 
