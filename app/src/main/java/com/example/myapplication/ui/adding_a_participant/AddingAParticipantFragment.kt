@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
@@ -39,6 +40,11 @@ class AddingAParticipantFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.imageButtonBack.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_addingAParticipantFragment_to_list_of_participants
+            )
+        }
     }
 
     override fun onDestroyView() {

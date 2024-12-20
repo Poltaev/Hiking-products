@@ -57,4 +57,20 @@ interface HikeDao {
     @Update
     suspend fun updateOneParticipant(participant: Participants)
 
+//    // FoodForMeals
+//    @Query("SELECT * FROM FoodForMeals")
+//    fun getAllFoodForMealsFlow(): Flow<List<FoodForMeals>>
+//
+//    @Query("SELECT * FROM FoodForMeals")
+//    fun getAllListFoodForMeals(): List<FoodForMeals>
+//
+//    @Insert
+//    suspend fun insertOneFoodForMeals(foodForMeals: FoodForMeals)
+//
+//    @Delete
+//    suspend fun deleteOneFoodForMeals(foodForMeals: FoodForMeals)
+//
+//    @Update
+//    suspend fun updateOneFoodForMeals(foodForMeals: FoodForMeals)
+
 }

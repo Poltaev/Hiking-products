@@ -56,9 +56,9 @@ class ListOfParticipantsFragment : Fragment() {
                 viewModel.addParticipants(
                     1,
                     "Photo",
-                    "Добавьте своего первого участника похода кнопкой добавить участника похода",
-                    ".",
-                    "Gender",
+                    "Добавьте своего первого участника, нажав на кнопку снизу, или на эту плитку участника",
+                    "Иван Иванов",
+                    "Мужчина в полном расцвете сил",
                     17,
                     10.0,
                     10.0,
@@ -89,7 +89,7 @@ class ListOfParticipantsFragment : Fragment() {
             item.id.let { putInt("participantsId", it) }
         }
         findNavController().navigate(
-            R.id.action_list_of_participants_to_viewingAParticipantFragment,
+            R.id.action_list_of_participants_to_addingAParticipantFragment,
             bundle
         )
     }

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.R
 import com.example.myapplication.dataBase.Participants
 import com.example.myapplication.databinding.ParticipantInformationItemBinding
 
@@ -32,20 +33,20 @@ class ListParticipantsAdapter(
         val item = response?.getOrNull(position)
         with(holder.binding) {
             if (item != null) {
-                textViewNameParticipants.text = item.firstName + item.lastName
+                textViewNameParticipants.text = item.firstName + " " +item.lastName
             }
             if (item != null) {
-                textViewAge.text = item.age.toString() + "лет"
+                textViewAge.text = item.age.toString() + " лет"
             }
             if (item != null) {
-                textViewGender.text = item.age.toString()
+                textViewGender.text = item.gender
             }
-//            item?.let {
-//                Glide
-//                    .with(imageViewParticipants.context)
-//                    .load(it.photo)
-//                    .into(imageViewParticipants)
-//            }
+            item?.let {
+                Glide
+                    .with(imageViewParticipants.context)
+                    .load(R.drawable.man1)
+                    .into(imageViewParticipants)
+            }
         }
 
         holder.binding.root.setOnClickListener {

@@ -14,6 +14,8 @@ data class Equipment(
     @ColumnInfo(name = "photo")
     val photo : String,
     @ColumnInfo(name = "weight")
-    val weight : Double
+    val weight : Double,
+    @ColumnInfo(name = "equipment_in_the_campaign")
+    val equipmentInTheCampaign : Boolean
 
 )

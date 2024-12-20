@@ -3,7 +3,7 @@ package com.example.myapplication.ui.creating_a_new_camping
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.dataBase.HikeDao
-import com.example.myapplication.dataBase.Products
+import com.example.myapplication.domain.ProductsUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -18,18 +18,12 @@ class CreatingANewCampaignViewModel(private val hikeDao: HikeDao) : ViewModel() 
         )
     fun addProducts() {
         viewModelScope.launch {
-            hikeDao.insertOneProducts(
-                Products(
-                    id = 1,
-                    name = "name",
-                    weightForPerson = 1.0,
-                    packageWeight = 1.0,
-                    thePhaseOfEating = "breakfeast",
-                    incompletePurchase = false,
-                    fullPurchase = false,
-                    colorOfBackground = "red",
-                    weWillUseItInTheCurrentCampaign = false
-                )
+            ProductsUseCase(hikeDao).loadProducts(
+                id = 1,
+                name = "name",
+                weightForPerson = 1.0,
+                packageWeight = 1.0,
+                weWillUseItInTheCurrentCampaign = false
             )
         }
     }

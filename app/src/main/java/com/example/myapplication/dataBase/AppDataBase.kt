@@ -10,6 +10,10 @@ import androidx.room.RoomDatabase
         Equipment::class,
         Participants::class,
         ArchiveHike::class
+//        FoodForMeals::class,
+//        CurrentHikeParticipants::class,
+//        CurrentHikeEquipment::class,
+//        FoodForMealsProducts::class
     ],
     version = 1
 )

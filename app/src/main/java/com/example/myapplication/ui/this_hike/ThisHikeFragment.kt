@@ -42,16 +42,10 @@ class ThisHikeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.addEquipment()
         viewModel.addProducts()
         lifecycleScope.launch {
             viewModel.allProducts.collect { product ->
                 binding.textView.text = product.joinToString(separator = "\r\n")
-            }
-        }
-        lifecycleScope.launch {
-            viewModel.allEquipment.collect { equipment ->
-                binding.textView1.text = equipment.joinToString(separator = "\r\n")
             }
         }
     }

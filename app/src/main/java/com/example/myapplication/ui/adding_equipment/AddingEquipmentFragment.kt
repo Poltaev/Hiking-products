@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
@@ -40,6 +41,11 @@ class AddingEquipmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.imageButtonBack.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_addingEquipmentFragment_to_equipment_list
+            )
+        }
     }
 
     override fun onDestroyView() {

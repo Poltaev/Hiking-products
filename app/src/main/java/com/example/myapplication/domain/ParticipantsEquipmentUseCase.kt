@@ -1,75 +1,12 @@
 package com.example.myapplication.domain
 
+import androidx.room.ColumnInfo
 import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.HikeDao
 import com.example.myapplication.dataBase.Participants
-import com.example.myapplication.dataBase.Products
 import kotlinx.coroutines.flow.Flow
 
-class HikeUseCase(private val hikeDao: HikeDao) {
-    // Products
-    suspend fun getAllCollectionProductsFlow(): Flow<List<Products>> {
-        return hikeDao.getAllProductsFlow()
-    }
-
-    suspend fun getAllCollectionProductsList(): List<Products> {
-        return hikeDao.getAllListProducts()
-    }
-
-    suspend fun loadProducts(
-        id: Int,
-        name: String,
-        weightForPerson: Double,
-        packageWeight: Double,
-        thePhaseOfEating: String,
-        incompletePurchase: Boolean,
-        fullPurchase: Boolean,
-        colorOfBackground: String,
-        weWillUseItInTheCurrentCampaign: Boolean
-    ) {
-        val ProductsForLoad = Products(
-            id = id,
-            name = name,
-            weightForPerson = weightForPerson,
-            packageWeight = packageWeight,
-            thePhaseOfEating = thePhaseOfEating,
-            incompletePurchase = incompletePurchase,
-            fullPurchase = fullPurchase,
-            colorOfBackground = colorOfBackground,
-            weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
-        )
-        hikeDao.insertOneProducts(ProductsForLoad)
-    }
-
-    suspend fun deleteProducts(products: Products) {
-        hikeDao.deleteOneProducts(products)
-    }
-
-    suspend fun upDateProducts(
-        id: Int,
-        name: String,
-        weightForPerson: Double,
-        packageWeight: Double,
-        thePhaseOfEating: String,
-        incompletePurchase: Boolean,
-        fullPurchase: Boolean,
-        colorOfBackground: String,
-        weWillUseItInTheCurrentCampaign: Boolean
-    ) {
-        val products = Products(
-            id = id,
-            name = name,
-            weightForPerson = weightForPerson,
-            packageWeight = packageWeight,
-            thePhaseOfEating = thePhaseOfEating,
-            incompletePurchase = incompletePurchase,
-            fullPurchase = fullPurchase,
-            colorOfBackground = colorOfBackground,
-            weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
-        )
-        hikeDao.updateOneProducts(products)
-    }
-
+class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
 // Equipment
 
     suspend fun getAllCollectionEquipmentFlow(): Flow<List<Equipment>> {
@@ -84,13 +21,15 @@ class HikeUseCase(private val hikeDao: HikeDao) {
         id: Int,
         name: String,
         photo: String,
-        weight: Double
+        weight: Double,
+        equipmentInTheCampaign: Boolean
     ) {
         val equipmentForLoad = Equipment(
             id = id,
             name = name,
             photo = photo,
-            weight = weight
+            weight = weight,
+            equipmentInTheCampaign = equipmentInTheCampaign
         )
         hikeDao.insertOneEquipment(equipmentForLoad)
     }
@@ -103,13 +42,15 @@ class HikeUseCase(private val hikeDao: HikeDao) {
         id: Int,
         name: String,
         photo: String,
-        weight: Double
+        weight: Double,
+        equipmentInTheCampaign: Boolean
     ) {
         val equipment = Equipment(
             id = id,
             name = name,
             photo = photo,
-            weight = weight
+            weight = weight,
+            equipmentInTheCampaign = equipmentInTheCampaign
         )
         hikeDao.updateOneEquipment(equipment)
     }

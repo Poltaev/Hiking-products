@@ -6,15 +6,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.adding_a_participant.AddingAParticipantFragment">
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/imageViewPhotoParticipant"
+        android:layout_width="180dp"
+        android:layout_height="182dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/man1" />
+
+    <ImageButton
+        android:id="@+id/imageButtonBack"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_back_brawable_foreground"
+        app:layout_constraintStart_toEndOf="@+id/buttonDeleteParticipant"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddAndBackParticipant" />
+
+    <Button
+        android:id="@+id/buttonAddAndBackParticipant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
-        android:text="This  hike"
+        android:layout_marginTop="388dp"
+        android:text="Создать/изменить участника"
+        android:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant" />
+
+    <Button
+        android:id="@+id/buttonDeleteParticipant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Удалить участника"
+        android:backgroundTint="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddAndBackParticipant" />
+
+    <Button
+        android:id="@+id/buttonСhangedPhoto"
+        android:layout_width="91dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="68dp"
+        android:text="Изменить фото"
+        android:backgroundTint="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPhotoParticipant"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
