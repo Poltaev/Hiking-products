@@ -6,13 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".ui.food_list.FoodListFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewParticipants"
+        android:layout_width="406dp"
+        android:layout_height="580dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonAddFood"
+        android:layout_width="149dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Добавить продукт"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAddList"
+        android:layout_width="149dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Добавить список"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.658"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddFood"
+         />
+
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:text="This food list"
+        android:id="@+id/textViewSetting"
+        android:layout_width="375dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="Для изменения списка продукта нажмите на нужный списоки вы перейдете на экран изменений. При составлении похода программа возьмет продукты из списков и по очереди добавит их в меню похода."
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddFood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewParticipants" />
 </androidx.constraintlayout.widget.ConstraintLayout>

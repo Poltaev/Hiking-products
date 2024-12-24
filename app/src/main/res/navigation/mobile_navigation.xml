@@ -108,6 +108,9 @@
         <action
             android:id="@+id/action_addingAProductFragment_to_food_list"
             app:destination="@id/food_list" />
+        <action
+            android:id="@+id/action_addingAProductFragment_to_viewingTheProductFragment"
+            app:destination="@id/viewingTheProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewingTheProductFragment"
@@ -117,6 +120,9 @@
         <action
             android:id="@+id/action_viewingTheProductFragment_to_food_list"
             app:destination="@id/food_list" />
+        <action
+            android:id="@+id/action_viewingTheProductFragment_to_addingAProductFragment"
+            app:destination="@id/addingAProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/addingAParticipantFragment"
