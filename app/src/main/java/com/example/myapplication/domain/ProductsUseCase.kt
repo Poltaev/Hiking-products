@@ -82,108 +82,108 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
         )
         hikeDao.updateOneListTypeOfProducts(listTypeOfProducts)
     }
-    // StoregeWithList
-    suspend fun getAllListWithProductsFlow(): Flow<List<ListWithProducts>> {
-        return hikeDao.getAllListWithProductsFlow()
-    }
-
-    suspend fun getAllListWithProductsList(): List<ListWithProducts> {
-        return hikeDao.getAllListListWithProducts()
-    }
-
-    suspend fun loadListWithProducts(
-        listtypeOfProduct: ListTypeOfProducts,
-        listWithproduct: List<Products>
-    ) {
-        val listWithProducts = ListWithProducts(
-            listtypeOfProduct = listtypeOfProduct,
-            listWithproduct = listWithproduct
-        )
-        hikeDao.insertOneListWithProducts(listWithProducts)
-    }
-
-    suspend fun deleteListWithProducts(listWithProducts: ListWithProducts) {
-        hikeDao.deleteOneListWithProducts(listWithProducts)
-    }
-
-    suspend fun upDateStoregeWithList(
-        listtypeOfProduct: ListTypeOfProducts,
-        listWithproduct: List<Products>
-    ) {
-        val listWithProducts = ListWithProducts(
-            listtypeOfProduct = listtypeOfProduct,
-            listWithproduct = listWithproduct
-        )
-        hikeDao.updateOneListWithProducts(listWithProducts)
-    }
-    // StoregeWithList
-    suspend fun getAllStoregeWithListFlow(): Flow<List<StoregeWithList>> {
-        return hikeDao.getAllStoregeWithListFlow()
-    }
-
-    suspend fun getAllStoregeWithListList(): List<StoregeWithList> {
-        return hikeDao.getAllListStoregeWithList()
-    }
-
-    suspend fun loadStoregeWithList(
-        productStorage: ProductStorage,
-        listTypeOfProducts: List<ListWithProducts>
-    ) {
-        val storegeWithListForLoad = StoregeWithList(
-            productStorage = productStorage,
-            listTypeOfPrducts = listTypeOfProducts
-        )
-        hikeDao.insertOneStoregeWithList(storegeWithListForLoad)
-    }
-
-    suspend fun deleteStoregeWithList(storegeWithList: StoregeWithList) {
-        hikeDao.deleteOneStoregeWithList(storegeWithList)
-    }
-
-    suspend fun upDateStoregeWithList(
-        productStorage: ProductStorage,
-        listTypeOfProducts: List<ListWithProducts>
-    ) {
-        val storegeWithList = StoregeWithList(
-            productStorage = productStorage,
-            listTypeOfPrducts = listTypeOfProducts
-        )
-        hikeDao.updateOneStoregeWithList(storegeWithList)
-    }
-    // ProductStorage
-    suspend fun getAllProductStorageFlow(): Flow<List<ProductStorage>> {
-        return hikeDao.getAllProductStorageFlow()
-    }
-
-    suspend fun getAllProductStorageList(): List<ProductStorage> {
-        return hikeDao.getAllListProductStorage()
-    }
-
-    suspend fun loadProductStorage(
-        id: Int,
-        name: String
-    ) {
-        val ProductStorageForLoad = ProductStorage(
-            id = id,
-            name = name
-        )
-        hikeDao.insertOneProductStorage(ProductStorageForLoad)
-    }
-
-    suspend fun deleteProductStorage(productStorage: ProductStorage) {
-        hikeDao.deleteOneProductStorage(productStorage)
-    }
-
-    suspend fun upDateProductStorage(
-        id: Int,
-        name: String
-    ) {
-        val productStorage = ProductStorage(
-            id = id,
-            name = name
-        )
-        hikeDao.updateOneProductStorage(productStorage)
-    }
+//      // StoregeWithList
+//    suspend fun getAllListWithProductsFlow(): Flow<List<ListWithProducts>> {
+//        return hikeDao.getAllListWithProductsFlow()
+//    }
+//
+//    suspend fun getAllListWithProductsList(): List<ListWithProducts> {
+//        return hikeDao.getAllListListWithProducts()
+//    }
+//
+//    suspend fun loadListWithProducts(
+//        listtypeOfProduct: ListTypeOfProducts,
+//        listWithproduct: List<Products>
+//    ) {
+//        val listWithProducts = ListWithProducts(
+//            listtypeOfProduct = listtypeOfProduct,
+//            listWithproduct = listWithproduct
+//        )
+//        hikeDao.insertOneListWithProducts(listWithProducts)
+//    }
+//
+//    suspend fun deleteListWithProducts(listWithProducts: ListWithProducts) {
+//        hikeDao.deleteOneListWithProducts(listWithProducts)
+//    }
+//
+//    suspend fun upDateStoregeWithList(
+//        listtypeOfProduct: ListTypeOfProducts,
+//        listWithproduct: List<Products>
+//    ) {
+//        val listWithProducts = ListWithProducts(
+//            listtypeOfProduct = listtypeOfProduct,
+//            listWithproduct = listWithproduct
+//        )
+//        hikeDao.updateOneListWithProducts(listWithProducts)
+//    }
+//    // StoregeWithList
+//    suspend fun getAllStoregeWithListFlow(): Flow<List<StoregeWithList>> {
+//        return hikeDao.getAllStoregeWithListFlow()
+//    }
+//
+//    suspend fun getAllStoregeWithListList(): List<StoregeWithList> {
+//        return hikeDao.getAllListStoregeWithList()
+//    }
+//
+//    suspend fun loadStoregeWithList(
+//        productStorage: ProductStorage,
+//        listTypeOfProducts: List<ListWithProducts>
+//    ) {
+//        val storegeWithListForLoad = StoregeWithList(
+//            productStorage = productStorage,
+//            listTypeOfPrducts = listTypeOfProducts
+//        )
+//        hikeDao.insertOneStoregeWithList(storegeWithListForLoad)
+//    }
+//
+//    suspend fun deleteStoregeWithList(storegeWithList: StoregeWithList) {
+//        hikeDao.deleteOneStoregeWithList(storegeWithList)
+//    }
+//
+//    suspend fun upDateStoregeWithList(
+//        productStorage: ProductStorage,
+//        listTypeOfProducts: List<ListWithProducts>
+//    ) {
+//        val storegeWithList = StoregeWithList(
+//            productStorage = productStorage,
+//            listTypeOfPrducts = listTypeOfProducts
+//        )
+//        hikeDao.updateOneStoregeWithList(storegeWithList)
+//    }
+//    // ProductStorage
+//    suspend fun getAllProductStorageFlow(): Flow<List<ProductStorage>> {
+//        return hikeDao.getAllProductStorageFlow()
+//    }
+//
+//    suspend fun getAllProductStorageList(): List<ProductStorage> {
+//        return hikeDao.getAllListProductStorage()
+//    }
+//
+//    suspend fun loadProductStorage(
+//        id: Int,
+//        name: String
+//    ) {
+//        val ProductStorageForLoad = ProductStorage(
+//            id = id,
+//            name = name
+//        )
+//        hikeDao.insertOneProductStorage(ProductStorageForLoad)
+//    }
+//
+//    suspend fun deleteProductStorage(productStorage: ProductStorage) {
+//        hikeDao.deleteOneProductStorage(productStorage)
+//    }
+//
+//    suspend fun upDateProductStorage(
+//        id: Int,
+//        name: String
+//    ) {
+//        val productStorage = ProductStorage(
+//            id = id,
+//            name = name
+//        )
+//        hikeDao.updateOneProductStorage(productStorage)
+//    }
     // Products
     suspend fun getAllProductsFlow(): Flow<List<Products>> {
         return hikeDao.getAllProductsFlow()

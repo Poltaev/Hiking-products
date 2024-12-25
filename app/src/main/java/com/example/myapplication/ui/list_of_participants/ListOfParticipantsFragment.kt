@@ -19,11 +19,12 @@ import com.example.myapplication.ui.adapters.ListParticipantsAdapter
 import com.example.myapplication.ui.hike_archive.HikeArchiveViewModel
 import com.example.myapplication.ui.this_hike.ThisHikeViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
 class ListOfParticipantsFragment : Fragment() {
-
+    lateinit var job: Job
     private var _binding: FragmentListOfParticipantsBinding? = null
 
     private val binding get() = _binding!!
@@ -44,7 +45,9 @@ class ListOfParticipantsFragment : Fragment() {
     ): View {
         _binding = FragmentListOfParticipantsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         return root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +55,6 @@ class ListOfParticipantsFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
             val getListParticipants = viewModel.getAllParticipantsList()
             if (getListParticipants.size == 0) {
-
                 viewModel.addParticipants(
                     1,
                     "Photo",
@@ -65,16 +67,14 @@ class ListOfParticipantsFragment : Fragment() {
                     false
 
                 )
-                val getParticipantsList = viewModel.getAllParticipantsList()
+            }
+        }
+        job = lifecycleScope.launch {
+            viewModel.getAllParticipantsFlow().collect {
+                val getParticipantsList = it
                 val ParticipantsAdapter =
                     getParticipantsList.let { ListParticipantsAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewParticipants.adapter = ParticipantsAdapter
-
-            } else {
-                val getParticipantsList = viewModel.getAllParticipantsList()
-                val ParticipantsAdapterList =
-                    getParticipantsList.let { ListParticipantsAdapter(it) { onItemClick(it) } }
-                binding.recyclerViewParticipants.adapter = ParticipantsAdapterList
             }
         }
         binding.buttonAddParticipants.setOnClickListener {
@@ -86,6 +86,11 @@ class ListOfParticipantsFragment : Fragment() {
                 bundle
             )
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
     }
 
     override fun onDestroyView() {

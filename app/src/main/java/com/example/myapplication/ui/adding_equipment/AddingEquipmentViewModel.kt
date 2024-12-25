@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 
 class AddingEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
 
-    suspend fun getAllEquipmentFlow(): Flow<List<Equipment>> {
-        return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentFlow()
-    }
+//    suspend fun getAllEquipmentFlow(): Flow<List<Equipment>> {
+//        return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentFlow()
+//    }
 
     suspend fun getAllEquipmentList(): List<Equipment> {
         return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()

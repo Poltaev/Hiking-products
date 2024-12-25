@@ -18,16 +18,17 @@ import com.example.myapplication.databinding.FragmentEquipmentListBinding
 import com.example.myapplication.ui.adapters.ListEquipmentAdapter
 import com.example.myapplication.ui.adapters.ListParticipantsAdapter
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
 class EquipmentListFragment : Fragment() {
-
+    lateinit var job: Job
     private var _binding: FragmentEquipmentListBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: EquipmentListViewModel by viewModels{
+    private val viewModel: EquipmentListViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
@@ -59,21 +60,20 @@ class EquipmentListFragment : Fragment() {
                     false
 
                 )
-                val getEquipmentList = viewModel.getAllEquipmentList()
+
+            }
+        }
+        job =  lifecycleScope.launch {
+            viewModel.getAllEquipmentFlow().collect{
+                val getEquipmentList = it
                 val EquipmentAdapter =
                     getEquipmentList.let { ListEquipmentAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewEquipment.adapter = EquipmentAdapter
-
-            } else {
-                val getParticipantsList = viewModel.getAllEquipmentList()
-                val ParticipantsAdapterList =
-                    getParticipantsList.let { ListEquipmentAdapter(it) { onItemClick(it) } }
-                binding.recyclerViewEquipment.adapter = ParticipantsAdapterList
             }
         }
         binding.buttonAddEquipment.setOnClickListener {
             val bundle = Bundle().apply {
-               putInt("equipmentId", 9999)
+                putInt("equipmentId", 9999)
             }
             findNavController().navigate(
                 R.id.action_equipment_list_to_addingEquipmentFragment,
@@ -82,11 +82,17 @@ class EquipmentListFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
 
     }
+
     private fun onItemClick(item: Equipment) {
         val bundle = Bundle().apply {
             item.id.let { putInt("equipmentId", it) }

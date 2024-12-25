@@ -16,15 +16,4 @@ class HikeArchiveViewModel(private val hikeDao: HikeDao) : ViewModel() {
             initialValue = emptyList()
 
         )
-    fun addProducts() {
-        viewModelScope.launch {
-            ProductsUseCase(hikeDao).loadProducts(
-                id = 1,
-                name = "name",
-                weightForPerson = 1.0,
-                packageWeight = 1.0,
-                weWillUseItInTheCurrentCampaign = false
-            )
-        }
-    }
 }
