@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewEquipment"
-        android:layout_width="396dp"
-        android:layout_height="607dp"
+        android:layout_width="350dp"
+        android:layout_height="593dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"

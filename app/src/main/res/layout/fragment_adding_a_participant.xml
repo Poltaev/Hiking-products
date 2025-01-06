@@ -22,23 +22,22 @@
         android:layout_width="145dp"
         android:layout_height="44dp"
         android:layout_marginEnd="52dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/teal_200"
         android:text="Сохранить"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-         />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/buttonDeleteParticipant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/teal_200"
         android:text="Удалить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonAddParticipant"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -56,7 +55,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutFirstName"
         android:layout_width="328dp"
-        android:layout_height="45dp"
+        android:layout_height="55dp"
         android:layout_marginTop="5dp"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +72,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutSecondName"
         android:layout_width="328dp"
-        android:layout_height="45dp"
+        android:layout_height="55dp"
         android:layout_marginTop="55dp"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +89,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutGender"
         android:layout_width="328dp"
-        android:layout_height="45dp"
+        android:layout_height="55dp"
         android:layout_marginTop="105dp"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +106,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAge"
         android:layout_width="328dp"
-        android:layout_height="45dp"
+        android:layout_height="55dp"
         android:layout_marginTop="155dp"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

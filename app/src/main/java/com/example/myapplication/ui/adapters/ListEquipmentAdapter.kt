@@ -38,7 +38,7 @@ class ListEquipmentAdapter(
                 textViewNameEquipment.text = item.name
             }
             if (item != null) {
-                textViewWeight.text = item.weight.toString()
+                textViewWeight.text = item.weight.toString() + " грамм"
             }
             item?.let {
                 Glide

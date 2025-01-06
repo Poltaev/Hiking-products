@@ -21,10 +21,11 @@
 
     <TextView
         android:id="@+id/textViewNameEquipment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="62dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="44dp"
+        android:gravity="center_vertical"
         android:text="Name Equipment"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageViewEquipment"
