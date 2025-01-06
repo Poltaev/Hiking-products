@@ -16,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
-import com.example.myapplication.databinding.FragmentAddingAProductBinding
 import com.example.myapplication.databinding.FragmentAddingEquipmentBinding
 import com.example.myapplication.ui.this_hike.ThisHikeViewModel
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +26,7 @@ class AddingEquipmentFragment : Fragment() {
     private var id = 1
     private var name = "Name"
     private var photo = "Photo"
-    private var weight = 10.2
+    private var weight = 1022
     private var equipmentInTheCampaign = false
 
     private var _binding: FragmentAddingEquipmentBinding? = null
@@ -67,11 +66,6 @@ class AddingEquipmentFragment : Fragment() {
                 R.drawable.tent
             )
         )
-        binding.imageButtonBack.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_addingEquipmentFragment_to_equipment_list
-            )
-        }
         if (id != 9999) {
             lifecycleScope.launch(Dispatchers.IO) {
                 val listEquipment = viewModel.getAllEquipmentList()
@@ -98,9 +92,9 @@ class AddingEquipmentFragment : Fragment() {
         }
         binding.enterWeight.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                weight = 0.0
+                weight = 0
             } else {
-                weight = text.toString().toDouble()
+                weight = text.toString().toInt()
             }
         }
 

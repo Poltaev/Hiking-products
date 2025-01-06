@@ -12,4 +12,11 @@
     <string name="list_of_people">Список людей</string>
     <string name="equipment_list">Список снаряжения</string>
     <string name="hiking_archive">Архив походов</string>
+    <string-array name="type_of_meal">
+        <item>Завтрак</item>
+        <item>Обед</item>
+        <item>Ужин</item>
+        <item>Перекус</item>
+        <item>Специи</item>
+    </string-array>
 </resources>

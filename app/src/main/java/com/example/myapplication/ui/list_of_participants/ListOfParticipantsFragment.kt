@@ -62,8 +62,8 @@ class ListOfParticipantsFragment : Fragment() {
                     "участника",
                     "нажмите сюда, или на кнопку",
                     "17",
-                    10.0,
-                    10.0,
+                    10000,
+                    10000,
                     false
 
                 )

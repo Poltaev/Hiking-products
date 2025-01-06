@@ -12,9 +12,9 @@ data class Products(
     @ColumnInfo(name = "name")
     val name : String,
     @ColumnInfo(name = "weight_per_person")
-    val weightForPerson : Double,
+    val weightForPerson : Int,
     @ColumnInfo(name = "package_weight")
-    val packageWeight : Double,
+    val packageWeight : Int,
     @ColumnInfo(name = "we_will_use_it_in_the_current_campaign")
     val weWillUseItInTheCurrentCampaign : Boolean
 

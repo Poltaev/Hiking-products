@@ -21,7 +21,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         id: Int,
         name: String,
         photo: String,
-        weight: Double,
+        weight: Int,
         equipmentInTheCampaign: Boolean
     ) {
         val equipmentForLoad = Equipment(
@@ -42,7 +42,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         id: Int,
         name: String,
         photo: String,
-        weight: Double,
+        weight: Int,
         equipmentInTheCampaign: Boolean
     ) {
         val equipment = Equipment(
@@ -71,8 +71,8 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         lastName: String,
         gender: String,
         age: String,
-        maximumPortableWeight: Double,
-        weightOfPersonalItems: Double,
+        maximumPortableWeight: Int,
+        weightOfPersonalItems: Int,
         participationInTheCampaign: Boolean
     ) {
         val participantsForLoad = Participants(
@@ -100,8 +100,8 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         lastName: String,
         gender: String,
         age: String,
-        maximumPortableWeight: Double,
-        weightOfPersonalItems: Double,
+        maximumPortableWeight: Int,
+        weightOfPersonalItems: Int,
         participationInTheCampaign: Boolean
     ) {
         val participants = Participants(

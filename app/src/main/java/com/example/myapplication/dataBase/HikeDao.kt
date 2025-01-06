@@ -31,7 +31,7 @@ interface HikeDao {
     suspend fun deleteOneListProducts(storegeWithList: ListProducts)
 
     @Update
-    suspend fun updateOneListProducts(products: ListProducts)
+    suspend fun updateOneListProducts(storegeWithList: ListProducts)
 
     // ListTypeOfProducts
     @Query("SELECT * FROM List_Type_Of_Products")
@@ -49,55 +49,21 @@ interface HikeDao {
     @Update
     suspend fun updateOneListTypeOfProducts(listTypeOfProducts: ListTypeOfProducts)
 
-//    // ListWithProducts
-//    @Transaction
-//    @Query("SELECT * FROM List_Type_Of_Products")
-//    fun getAllListWithProductsFlow(): Flow<List<ListWithProducts>>
-//
-//    @Query("SELECT * FROM List_Type_Of_Products")
-//    fun getAllListListWithProducts(): List<ListWithProducts>
-//
-//    @Insert
-//    suspend fun insertOneListWithProducts(listWithProducts: ListWithProducts)
-//
-//    @Delete
-//    suspend fun deleteOneListWithProducts(listWithProducts: ListWithProducts)
-//
-//    @Update
-//    suspend fun updateOneListWithProducts(listWithProducts: ListWithProducts)
+    // ProductStorage
+    @Query("SELECT * FROM Product_Storage")
+    fun getAllProductStorageFlow(): Flow<List<ProductStorage>>
 
-//    // StoregeWithList
-//    @Transaction
-//    @Query("SELECT * FROM Product_Storage")
-//    fun getAllStoregeWithListFlow(): Flow<List<StoregeWithList>>
-//
-//    @Query("SELECT * FROM Product_Storage")
-//    fun getAllListStoregeWithList(): List<StoregeWithList>
-//
-//    @Insert
-//    suspend fun insertOneStoregeWithList(storegeWithList: StoregeWithList)
-//
-//    @Delete
-//    suspend fun deleteOneStoregeWithList(storegeWithList: StoregeWithList)
-//
-//    @Update
-//    suspend fun updateOneStoregeWithList(products: StoregeWithList)
+    @Query("SELECT * FROM Product_Storage")
+    fun getAllListProductStorage(): List<ProductStorage>
 
-//    // ProductStorage
-//    @Query("SELECT * FROM Product_Storage")
-//    fun getAllProductStorageFlow(): Flow<List<ProductStorage>>
-//
-//    @Query("SELECT * FROM Product_Storage")
-//    fun getAllListProductStorage(): List<ProductStorage>
-//
-//    @Insert
-//    suspend fun insertOneProductStorage(productStorage: ProductStorage)
-//
-//    @Delete
-//    suspend fun deleteOneProductStorage(productStorage: ProductStorage)
-//
-//    @Update
-//    suspend fun updateOneProductStorage(productStorage: ProductStorage)
+    @Insert
+    suspend fun insertOneProductStorage(productStorage: ProductStorage)
+
+    @Delete
+    suspend fun deleteOneProductStorage(productStorage: ProductStorage)
+
+    @Update
+    suspend fun updateOneProductStorage(productStorage: ProductStorage)
 
     // Products
     @Query("SELECT * FROM Products")

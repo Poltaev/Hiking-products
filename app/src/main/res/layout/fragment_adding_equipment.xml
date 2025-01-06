@@ -10,65 +10,58 @@
         android:id="@+id/imageViewPhotoEquipment"
         android:layout_width="180dp"
         android:layout_height="182dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/baseline_fitness_center_24" />
 
-    <ImageButton
-        android:id="@+id/imageButtonBack"
-        android:layout_width="60dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/ic_back_brawable_foreground"
-        app:layout_constraintStart_toEndOf="@+id/buttonDeleteEquipment"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddEquipment" />
 
     <Button
         android:id="@+id/buttonAddEquipment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="388dp"
-        android:text="Сохранить снаряжение"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/teal_200"
+        android:text="Сохранить снаряжение"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDeleteEquipment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoEquipment" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonDeleteEquipment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Удалить снаяржение"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/teal_200"
+        android:text="Удалить снаяржение"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddEquipment" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonСhangedPhoto"
         android:layout_width="91dp"
         android:layout_height="100dp"
         android:layout_marginTop="68dp"
-        android:text="Изменить фото"
         android:backgroundTint="@color/teal_200"
+        android:text="Изменить фото"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toEndOf="@+id/imageViewPhotoEquipment"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutName"
-        android:layout_width="409dp"
+        android:layout_width="328dp"
+        android:layout_height="83dp"
         android:layout_marginTop="50dp"
-        android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:helperText="Введите название снаряжения"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoEquipment">
 
@@ -81,14 +74,15 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutWeight"
-        android:layout_width="409dp"
+        android:layout_width="328dp"
+        android:layout_height="83dp"
         android:layout_marginTop="150dp"
-        android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:helperText="Введите вес снаряжения в граммах"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoEquipment">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoEquipment"
+        app:suffixText="г">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/enterWeight"

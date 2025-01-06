@@ -30,8 +30,8 @@ class AddingAParticipantFragment : Fragment() {
     private var secondName = "Фамилия"
     private var gender = "Пол"
     private var age = "28"
-    private var limitWeight = 25.7
-    private var weightOfPersonalItems = 10.3
+    private var limitWeight = 25767
+    private var weightOfPersonalItems = 10003
     private var campaignParticipant = false
 
     private var _binding: FragmentAddingAParticipantBinding? = null
@@ -71,11 +71,6 @@ class AddingAParticipantFragment : Fragment() {
                 R.drawable.man1
             )
         )
-        binding.imageButtonBack.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_addingAParticipantFragment_to_list_of_participants
-            )
-        }
         if (id != 9999) {
             lifecycleScope.launch(Dispatchers.IO) {
                 val listParticipant = viewModel.getAllParticipantsList()
@@ -131,16 +126,16 @@ class AddingAParticipantFragment : Fragment() {
         }
         binding.enterLimitWeight.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                limitWeight = 0.0
+                limitWeight = 0
             } else {
-                limitWeight = text.toString().toDouble()
+                limitWeight = text.toString().toInt()
             }
         }
         binding.enterWeightOfPersonalItems.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                weightOfPersonalItems = 0.0
+                weightOfPersonalItems = 0
             } else {
-                weightOfPersonalItems = text.toString().toDouble()
+                weightOfPersonalItems = text.toString().toInt()
             }
         }
         binding.buttonAddParticipant.setOnClickListener {

@@ -26,7 +26,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     id = 1,
                     name = "name",
                     photo = "photo",
-                    weight = 1.2,
+                    weight = 120,
                     equipmentInTheCampaign = false
             )
         }

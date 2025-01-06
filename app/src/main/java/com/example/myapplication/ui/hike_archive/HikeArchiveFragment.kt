@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
-import com.example.myapplication.databinding.FragmentFoodListBinding
 import com.example.myapplication.databinding.FragmentHikeArchiveBinding
 import com.example.myapplication.ui.this_hike.ThisHikeViewModel
 

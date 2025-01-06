@@ -23,8 +23,8 @@ class ListOfParticipantsViewModel(private val hikeDao: HikeDao) : ViewModel() {
         lastName: String,
         gender: String,
         age: String,
-        maximumPortableWeight: Double,
-        weightOfPersonalItems: Double,
+        maximumPortableWeight: Int,
+        weightOfPersonalItems: Int,
         participationInTheCampaign: Boolean
     ) {
         ParticipantsEquipmentUseCase(hikeDao).loadParticipants(

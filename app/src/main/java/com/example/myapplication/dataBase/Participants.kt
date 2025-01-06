@@ -20,9 +20,9 @@ data class Participants(
     @ColumnInfo(name = "age")
     val age : String,
     @ColumnInfo(name = "maximum_portable_weight")
-    val maximumPortableWeight : Double,
+    val maximumPortableWeight : Int,
     @ColumnInfo(name = "weight_of_personal_items")
-    val weightOfPersonalItems : Double,
+    val weightOfPersonalItems : Int,
     @ColumnInfo(name = "participation_in_the_campaign")
     val participationInTheCampaign : Boolean
 )

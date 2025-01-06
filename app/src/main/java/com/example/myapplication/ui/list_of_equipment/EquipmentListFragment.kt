@@ -56,15 +56,15 @@ class EquipmentListFragment : Fragment() {
                     1,
                     "Добавьте своё первое снаряжение, нажав на кнопку снизу, или на эту плитку снаряжения",
                     "Photo",
-                    10.0,
+                    1000,
                     false
 
                 )
 
             }
         }
-        job =  lifecycleScope.launch {
-            viewModel.getAllEquipmentFlow().collect{
+        job = lifecycleScope.launch {
+            viewModel.getAllEquipmentFlow().collect {
                 val getEquipmentList = it
                 val EquipmentAdapter =
                     getEquipmentList.let { ListEquipmentAdapter(it) { onItemClick(it) } }

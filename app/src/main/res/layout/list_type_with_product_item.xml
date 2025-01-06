@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewProducts"
+        android:layout_width="87dp"
+        android:layout_height="76dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textViewNameProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Name products"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewWeightServing"
+        android:layout_width="46dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="12dp"
+        android:text="10 г"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
+
+    <TextView
+        android:id="@+id/textViewWeightPackage"
+        android:layout_width="61dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="1000 г"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
+</androidx.constraintlayout.widget.ConstraintLayout>

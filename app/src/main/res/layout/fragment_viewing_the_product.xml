@@ -6,15 +6,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.viewing_the_product.ViewingTheProductFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
-        android:text="This  hike"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="168dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/hamburger"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonChangePhoto"
+        android:layout_width="102dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Изменить фото"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputName"
+        android:layout_width="308dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/white"
+        app:helperText="Введите название продукта"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/entertextInputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputWeightOfOneServing"
+        android:layout_width="317dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/white"
+        app:helperText="Введите сухой вес продукта, на одну порцию, в граммах, или в штуках."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputName"
+        app:suffixText="г\шт">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/entertextInputWeightOfOneServing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Вес одной порции" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputWeightPackage"
+        android:layout_width="312dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="@color/white"
+        app:helperText="Введите вес упаковки в граммах, или количество штук в упаковке"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputWeightOfOneServing"
+        app:suffixText="г\шт">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/entertextInputWeightPackage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Вес упаковки" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Сохранить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAddInTypeOfMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="88dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Добавить в список продуктов"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Удалить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

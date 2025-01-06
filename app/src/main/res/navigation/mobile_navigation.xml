@@ -26,15 +26,21 @@
 
     <fragment
         android:id="@+id/food_list"
-        android:name="com.example.myapplication.ui.food_list.FoodListFragment"
+        android:name="com.example.myapplication.ui.type_food_list.FoodListFragment"
         android:label="@string/all_products"
-        tools:layout="@layout/fragment_food_list" >
+        tools:layout="@layout/fragment_type_food_list" >
         <action
             android:id="@+id/action_food_list_to_addingAProductFragment"
-            app:destination="@id/addingAProductFragment" />
+            app:destination="@id/addingATypeListProductFragment" />
         <action
-            android:id="@+id/action_food_list_to_viewingTheProductFragment"
+            android:id="@+id/action_type_food_list_to_listProductFragment"
+            app:destination="@id/listProductFragment" />
+        <action
+            android:id="@+id/action_type_food_list_to_viewingTheProductFragment"
             app:destination="@id/viewingTheProductFragment" />
+        <action
+            android:id="@+id/action_food_list_to_listAllProductsFragment"
+            app:destination="@id/listAllProductsFragment" />
     </fragment>
 
     <fragment
@@ -101,16 +107,16 @@
             app:destination="@id/this_hike" />
     </fragment>
     <fragment
-        android:id="@+id/addingAProductFragment"
-        android:name="com.example.myapplication.ui.adding_a_product.AddingAProductFragment"
+        android:id="@+id/addingATypeListProductFragment"
+        android:name="com.example.myapplication.ui.adding_a_type_list_product.AddingATypeListProductFragment"
         android:label="fragment_adding_a_product"
-        tools:layout="@layout/fragment_adding_a_product" >
+        tools:layout="@layout/fragment_adding_a__type_list_product" >
         <action
             android:id="@+id/action_addingAProductFragment_to_food_list"
             app:destination="@id/food_list" />
         <action
-            android:id="@+id/action_addingAProductFragment_to_viewingTheProductFragment"
-            app:destination="@id/viewingTheProductFragment" />
+            android:id="@+id/action_addingATypeListProductFragment_to_type_food_list"
+            app:destination="@id/food_list" />
     </fragment>
     <fragment
         android:id="@+id/viewingTheProductFragment"
@@ -121,8 +127,14 @@
             android:id="@+id/action_viewingTheProductFragment_to_food_list"
             app:destination="@id/food_list" />
         <action
-            android:id="@+id/action_viewingTheProductFragment_to_addingAProductFragment"
-            app:destination="@id/addingAProductFragment" />
+            android:id="@+id/action_viewingTheProductFragment_to_listProductFragment"
+            app:destination="@id/listProductFragment" />
+        <action
+            android:id="@+id/action_viewingTheProductFragment_to_type_food_list"
+            app:destination="@id/food_list" />
+        <action
+            android:id="@+id/action_viewingTheProductFragment_to_listAllProductsFragment"
+            app:destination="@id/listAllProductsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addingAParticipantFragment"
@@ -174,6 +186,33 @@
         <action
             android:id="@+id/action_viewingTheMenuInTheArchiveFragment_to_viewingAHikeFragment"
             app:destination="@id/viewingAHikeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listProductFragment"
+        android:name="com.example.myapplication.ui.list_product.ListProductFragment"
+        android:label="fragment_list_product"
+        tools:layout="@layout/fragment_list_product" >
+        <action
+            android:id="@+id/action_listProductFragment_to_viewingTheProductFragment"
+            app:destination="@id/viewingTheProductFragment" />
+        <action
+            android:id="@+id/action_listProductFragment_to_type_food_list"
+            app:destination="@id/food_list" />
+        <action
+            android:id="@+id/action_listProductFragment_to_addingATypeListProductFragment"
+            app:destination="@id/addingATypeListProductFragment" />
+        <action
+            android:id="@+id/action_listProductFragment_to_food_list"
+            app:destination="@id/food_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/listAllProductsFragment"
+        android:name="com.example.myapplication.ui.list_all_products.ListAllProductsFragment"
+        android:label="fragment_list_all_products"
+        tools:layout="@layout/fragment_list_all_products" >
+        <action
+            android:id="@+id/action_listAllProductsFragment_to_viewingTheProductFragment"
+            app:destination="@id/viewingTheProductFragment" />
     </fragment>
 
 </navigation>

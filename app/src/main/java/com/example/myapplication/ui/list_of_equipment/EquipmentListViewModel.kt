@@ -26,7 +26,7 @@ class EquipmentListViewModel(private val hikeDao: HikeDao) : ViewModel() {
         id: Int,
         name: String,
         photo: String,
-        weight: Double,
+        weight: Int,
         equipmentInTheCampaign: Boolean
     ) {
         ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
