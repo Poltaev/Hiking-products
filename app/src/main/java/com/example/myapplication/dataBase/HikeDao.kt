@@ -3,6 +3,7 @@ package com.example.myapplication.dataBase
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
@@ -24,7 +25,7 @@ interface HikeDao {
     @Query("SELECT * FROM List_With_Products")
     fun getAllListListProducts(): List<ListProducts>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneListProducts(storegeWithList: ListProducts)
 
     @Delete
@@ -40,7 +41,7 @@ interface HikeDao {
     @Query("SELECT * FROM List_Type_Of_Products")
     fun getAllListListTypeOfProducts(): List<ListTypeOfProducts>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneListTypeOfProducts(listTypeOfProducts: ListTypeOfProducts)
 
     @Delete
@@ -56,7 +57,7 @@ interface HikeDao {
     @Query("SELECT * FROM Product_Storage")
     fun getAllListProductStorage(): List<ProductStorage>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneProductStorage(productStorage: ProductStorage)
 
     @Delete
@@ -72,7 +73,7 @@ interface HikeDao {
     @Query("SELECT * FROM Products")
     fun getAllListProducts(): List<Products>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneProducts(products: Products)
 
     @Delete
@@ -88,7 +89,7 @@ interface HikeDao {
     @Query("SELECT * FROM Equipment")
     fun getAllListEquipment(): List<Equipment>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneEquipment(equipment: Equipment)
 
     @Delete
@@ -104,7 +105,7 @@ interface HikeDao {
     @Query("SELECT * FROM Participants")
     fun getAllListParticipants(): List<Participants>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertOneParticipant(participant: Participants)
 
     @Delete
