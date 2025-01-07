@@ -31,7 +31,7 @@ class AddProductsInListFragment : Fragment() {
 
     private var id = 1
 
-    private var listIdProducts = mutableListOf<Int>()
+    private val listIdProducts = mutableListOf<Int>()
 
     private var _binding: FragmentAddProductsInListBinding? = null
 
@@ -50,6 +50,14 @@ class AddProductsInListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             id = it.getInt("listTypeId")
+        }
+        lifecycleScope.launch(Dispatchers.IO) {
+                val listWithProduct = viewModel.getAllListWithProduct()
+                listWithProduct.forEach {
+                    if (it.listId == id) {
+                        listIdProducts.add(it.productsId)
+                }
+            }
         }
     }
 
@@ -101,16 +109,10 @@ class AddProductsInListFragment : Fragment() {
 
    suspend private fun checkAndUpDateTheList() {
        job = lifecycleScope.launch {
-           launch(Dispatchers.IO) {
-               val listWithProduct = viewModel.getAllListWithProduct()
-               listWithProduct.forEach {
-                   if (it.listId == id) {
-                       listIdProducts.add(it.productsId)
-                   }
-               }
-           }
            viewModel.getAllProductFlow().collect {
+               delay(100)
                val getProductList = it
+
                val ProductAdapter =
                    getProductList.let {
                        ListAddProductsAdapter(
@@ -126,19 +128,24 @@ class AddProductsInListFragment : Fragment() {
 
     private fun onItemClick(item: Products) {
         var weNaveIt = true
+        var remove = 0
         listIdProducts.forEach {
             if (item.id == it) {
                 weNaveIt = false
+                remove = it
                 lifecycleScope.launch(Dispatchers.IO) {
                     viewModel.deleteProductsWithList(ListProducts(id, item.id))
                 }
             }
         }
-        if (weNaveIt){}
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.addProductsWithList(id, item.id)
+        listIdProducts.remove(remove)
+        if (weNaveIt){
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.addProductsWithList(id, item.id)
+            }
+            listIdProducts.add(item.id)
         }
-        listIdProducts.add(item.id)
+        job.cancel()
         lifecycleScope.launch {
             checkAndUpDateTheList()
         }

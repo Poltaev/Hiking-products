@@ -2,6 +2,7 @@ package com.example.myapplication.ui.adapters
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.ui.graphics.Color
@@ -23,14 +24,14 @@ import com.example.myapplication.databinding.TypeListProductItemBinding
 class ListAddProductsAdapter(
     private val data: List<Products>,
     private val listIdProducts: List<Int>,
-    private val onClick: (Products) -> Unit
+    private val onClick: (Products) -> Unit,
 ) :
     RecyclerView.Adapter<ListAddProductsViewHolder>() {
 
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): ListAddProductsViewHolder {
 
         val binding = ListAddProductItemBinding.inflate(LayoutInflater.from(parent.context))
@@ -55,10 +56,20 @@ class ListAddProductsAdapter(
                 textViewWeightPackage.text = item.packageWeight.toString() + " г"
             }
             if (item != null) {
-                listIdProducts.forEach {
-                    if (it == item.id){
-                        buttonBackground.setBackgroundColor(ContextCompat.getColor(holder.binding.buttonBackground.context, R.color.transparent_green))
-                    }
+                if (listIdProducts.contains(item.id)) {
+                    buttonBackground.setBackgroundColor(
+                        ContextCompat.getColor(
+                            holder.binding.buttonBackground.context,
+                            R.color.transparent_green
+                        )
+                    )
+                } else {
+                    buttonBackground.setBackgroundColor(
+                        ContextCompat.getColor(
+                            holder.binding.buttonBackground.context,
+                            R.color.transparent
+                        )
+                    )
                 }
             }
 
