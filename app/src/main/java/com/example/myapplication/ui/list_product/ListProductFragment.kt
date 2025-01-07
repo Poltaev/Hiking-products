@@ -30,7 +30,6 @@ import kotlinx.coroutines.launch
 
 class ListProductFragment : Fragment() {
 
-//    lateinit var job: Job
 
     private var id = 1
 
@@ -83,7 +82,6 @@ class ListProductFragment : Fragment() {
 
         launch(Dispatchers.Main) {
             delay(100)
-            Log.i("Main12344", idListProductsforAdapter.size.toString())
             viewModel.getAllProductFlow().collect {
                 val getProductList = it
                 val listProductsforAdapter = mutableListOf<Products>()
@@ -94,7 +92,6 @@ class ListProductFragment : Fragment() {
                         }
                     }
                 }
-                Log.i("Main12344", idListProductsforAdapter.size.toString())
                 val ProductAdapter =
                     listProductsforAdapter.let { ListProductsInTypeListProductAdapter(it) { onItemClick(it) } }
                 binding.recyclerViewListWithProducts.adapter = ProductAdapter
@@ -110,6 +107,15 @@ class ListProductFragment : Fragment() {
                     bundle
                 )
             }
+        binding.buttonAddFood.setOnClickListener {
+            val bundle = Bundle().apply {
+                putInt("listTypeId", id)
+            }
+            findNavController().navigate(
+                R.id.action_listProductFragment_to_addProductsInListFragment,
+                bundle
+            )
+        }
             binding.buttonDeleteListProducts.setOnClickListener {
                 if (id != 9999) {
                     lifecycleScope.launch(Dispatchers.IO) {

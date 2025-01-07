@@ -204,6 +204,9 @@
         <action
             android:id="@+id/action_listProductFragment_to_food_list"
             app:destination="@id/food_list" />
+        <action
+            android:id="@+id/action_listProductFragment_to_addProductsInListFragment"
+            app:destination="@id/addProductsInListFragment" />
     </fragment>
     <fragment
         android:id="@+id/listAllProductsFragment"
@@ -213,6 +216,15 @@
         <action
             android:id="@+id/action_listAllProductsFragment_to_viewingTheProductFragment"
             app:destination="@id/viewingTheProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProductsInListFragment"
+        android:name="com.example.myapplication.ui.add_products_in_list.AddProductsInListFragment"
+        android:label="fragment_add_products_in_list"
+        tools:layout="@layout/fragment_add_products_in_list" >
+        <action
+            android:id="@+id/action_addProductsInListFragment_to_listProductFragment"
+            app:destination="@id/listProductFragment" />
     </fragment>
 
 </navigation>
