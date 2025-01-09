@@ -135,6 +135,9 @@
         <action
             android:id="@+id/action_viewingTheProductFragment_to_listAllProductsFragment"
             app:destination="@id/listAllProductsFragment" />
+        <action
+            android:id="@+id/action_viewingTheProductFragment_to_addThisProductInSomeListProductFragment"
+            app:destination="@id/addThisProductInSomeListProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/addingAParticipantFragment"
@@ -225,6 +228,15 @@
         <action
             android:id="@+id/action_addProductsInListFragment_to_listProductFragment"
             app:destination="@id/listProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addThisProductInSomeListProductFragment"
+        android:name="com.example.myapplication.ui.add_this_product_in_some_list_product.AddThisProductInSomeListProductFragment"
+        android:label="fragment_add_this_product_in_some_list_product"
+        tools:layout="@layout/fragment_add_this_product_in_some_list_product" >
+        <action
+            android:id="@+id/action_addThisProductInSomeListProductFragment_to_viewingTheProductFragment"
+            app:destination="@id/viewingTheProductFragment" />
     </fragment>
 
 </navigation>

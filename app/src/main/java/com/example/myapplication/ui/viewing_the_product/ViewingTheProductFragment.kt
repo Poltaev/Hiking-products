@@ -11,6 +11,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
@@ -23,7 +24,6 @@ import kotlinx.coroutines.launch
 
 class ViewingTheProductFragment : Fragment() {
 
-    private var photo = "Photo"
     private var id = 1
     private var name = "Имя"
     private var weightForPerson = 1
@@ -79,6 +79,15 @@ class ViewingTheProductFragment : Fragment() {
                 binding.textInputWeightOfOneServing.editText?.setText(weightForPerson.toString())
                 binding.textInputWeightPackage.editText?.setText(packageWeight.toString())
             }
+        }
+        binding.buttonAddInTypeOfMeal.setOnClickListener {
+            val bundle = Bundle().apply {
+                putInt("productsId", id)
+            }
+            findNavController().navigate(
+                R.id.action_viewingTheProductFragment_to_addThisProductInSomeListProductFragment,
+                bundle
+            )
         }
         binding.entertextInputName.doOnTextChanged { text, _, _, _ ->
             if (text == null){
