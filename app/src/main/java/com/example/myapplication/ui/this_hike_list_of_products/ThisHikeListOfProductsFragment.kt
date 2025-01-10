@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.list_of_purchased_products
+package com.example.myapplication.ui.this_hike_list_of_products
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -8,24 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
-import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
-import com.example.myapplication.databinding.FragmentCreatingANewCampaignBinding
-import com.example.myapplication.databinding.FragmentListOfPurchasedProductsBinding
-import com.example.myapplication.ui.this_hike.ThisHikeViewModel
+import com.example.myapplication.databinding.FragmentThisHikeListOfProductsBinding
 
-class ListOfPurchasedProductsFragment : Fragment() {
+class ThisHikeListOfProductsFragment : Fragment() {
 
-    private var _binding: FragmentListOfPurchasedProductsBinding? = null
+    private var _binding: FragmentThisHikeListOfProductsBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: ListOfPurchasedProductsViewModel by viewModels{
+    private val viewModel: ThisHikeListOfProductsViewModel by viewModels{
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
-                return ListOfPurchasedProductsViewModel(hikeDao) as T
+                return ThisHikeListOfProductsViewModel(hikeDao) as T
             }
         }
     }
@@ -34,7 +30,7 @@ class ListOfPurchasedProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListOfPurchasedProductsBinding.inflate(inflater, container, false)
+        _binding = FragmentThisHikeListOfProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
