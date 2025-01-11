@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.creating_a_new_camping
+package com.example.myapplication.ui.create_hike_set_the_number_of_day
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -10,22 +10,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
-import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
-import com.example.myapplication.databinding.FragmentAddingEquipmentBinding
-import com.example.myapplication.databinding.FragmentCreatingANewCampaignBinding
-import com.example.myapplication.ui.this_hike.ThisHikeViewModel
+import com.example.myapplication.databinding.FragmentCreateHikeParticipantBinding
+import com.example.myapplication.databinding.FragmentCreateHikeSetTheNumberOfDayBinding
+import com.example.myapplication.ui.create_hike_participant.CreateHikeParticipantViewModel
 
-class CreatingANewCampaignFragment : Fragment() {
+class CreateHikeSetTheNumberOfDayFragment : Fragment() {
 
-    private var _binding: FragmentCreatingANewCampaignBinding? = null
+    private var _binding: FragmentCreateHikeSetTheNumberOfDayBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: CreatingANewCampaignViewModel by viewModels{
+    private val viewModel: CreateHikeSetTheNumberOfDayViewModel by viewModels{
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
-                return CreatingANewCampaignViewModel(hikeDao) as T
+                return CreateHikeSetTheNumberOfDayViewModel(hikeDao) as T
             }
         }
     }
@@ -33,7 +32,7 @@ class CreatingANewCampaignFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreatingANewCampaignBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateHikeSetTheNumberOfDayBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }

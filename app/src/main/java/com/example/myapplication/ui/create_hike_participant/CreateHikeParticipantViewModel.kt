@@ -1,14 +1,12 @@
-package com.example.myapplication.ui.creating_a_new_camping
+package com.example.myapplication.ui.create_hike_participant
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.dataBase.HikeDao
-import com.example.myapplication.domain.ProductsUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
-class CreatingANewCampaignViewModel(private val hikeDao: HikeDao) : ViewModel() {
+class CreateHikeParticipantViewModel(private val hikeDao: HikeDao) : ViewModel() {
     val allEquipment = this.hikeDao.getAllEquipmentFlow()
         .stateIn(
             scope = viewModelScope,
