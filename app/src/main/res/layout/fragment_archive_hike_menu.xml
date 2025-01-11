@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.viewing_the_menu_in_the_archive.ViewingTheMenuInTheArchiveFragment">
+    tools:context=".ui.archive_hike_menu.ArchiveHikeMenuFragment">
 
     <TextView
         android:id="@+id/textView"

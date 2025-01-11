@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.viewing_people_from_the_archive
+package com.example.myapplication.ui.archive_hike_equipment
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -10,22 +10,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
-import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
-import com.example.myapplication.databinding.FragmentViewingPeopleBinding
-import com.example.myapplication.databinding.FragmentViewingPeopleFromTheArchiveBinding
-import com.example.myapplication.ui.this_hike.ThisHikeViewModel
+import com.example.myapplication.databinding.FragmentArchiveHikeEquipmentBinding
+import com.example.myapplication.databinding.FragmentViewingAHikeBinding
+import com.example.myapplication.ui.archive_hike_viewing.ArchiveHikeViewingModel
 
-class ViewingPeopleFromTheArchiveFragment : Fragment() {
+class ArchiveHikeEquipmentFragment : Fragment() {
 
-    private var _binding: FragmentViewingPeopleFromTheArchiveBinding? = null
+    private var _binding: FragmentArchiveHikeEquipmentBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: ViewingPeopleFromTheArchiveViewModel by viewModels{
+    private val viewModel: ArchiveHikeEquipmentViewModel by viewModels{
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
-                return ViewingPeopleFromTheArchiveViewModel(hikeDao) as T
+                return ArchiveHikeEquipmentViewModel(hikeDao) as T
             }
         }
     }
@@ -33,7 +32,7 @@ class ViewingPeopleFromTheArchiveFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentViewingPeopleFromTheArchiveBinding.inflate(inflater, container, false)
+        _binding = FragmentArchiveHikeEquipmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }

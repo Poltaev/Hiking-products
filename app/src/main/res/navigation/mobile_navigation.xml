@@ -71,7 +71,7 @@
         tools:layout="@layout/fragment_hike_archive" >
         <action
             android:id="@+id/action_hiking_archive_to_viewingAHikeFragment"
-            app:destination="@id/viewingAHikeFragment" />
+            app:destination="@id/archiveHikeViewingFragment" />
     </fragment>
     <fragment
         android:id="@+id/creatingANewCampaignFragment"
@@ -161,37 +161,43 @@
             app:destination="@id/equipment_list" />
     </fragment>
     <fragment
-        android:id="@+id/viewingAHikeFragment"
-        android:name="com.example.myapplication.ui.viewing_a_hike.ViewingAHikeFragment"
+        android:id="@+id/archiveHikeViewingFragment"
+        android:name="com.example.myapplication.ui.archive_hike_viewing.ArchiveHikeViewingFragment"
         android:label="fragment_viewing_a_hike"
         tools:layout="@layout/fragment_viewing_a_hike" >
         <action
             android:id="@+id/action_viewingAHikeFragment_to_viewingPeopleFromTheArchiveFragment"
-            app:destination="@id/viewingPeopleFromTheArchiveFragment" />
-        <action
-            android:id="@+id/action_viewingAHikeFragment_to_viewingTheMenuInTheArchiveFragment"
-            app:destination="@id/viewingTheMenuInTheArchiveFragment" />
+            app:destination="@id/archiveHikeMenuFragment" />
         <action
             android:id="@+id/action_viewingAHikeFragment_to_hiking_archive"
             app:destination="@id/hiking_archive" />
+        <action
+            android:id="@+id/action_viewingAHikeFragment_to_archiveHikeParticipantFragment"
+            app:destination="@id/archiveHikeParticipantFragment" />
+        <action
+            android:id="@+id/action_archiveHikeViewingFragment_to_archiveHikeEquipmentFragment"
+            app:destination="@id/archiveHikeEquipmentFragment" />
+        <action
+            android:id="@+id/action_archiveHikeViewingFragment_to_archiveHikeProductsFragment"
+            app:destination="@id/archiveHikeProductsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/viewingPeopleFromTheArchiveFragment"
-        android:name="com.example.myapplication.ui.viewing_people_from_the_archive.ViewingPeopleFromTheArchiveFragment"
+        android:id="@+id/archiveHikeParticipantFragment"
+        android:name="com.example.myapplication.ui.archive_hike_participant.ArchiveHikeParticipantFragment"
         android:label="fragment_viewing_people_from_the_archive"
         tools:layout="@layout/fragment_viewing_people_from_the_archive" >
         <action
             android:id="@+id/action_viewingPeopleFromTheArchiveFragment_to_viewingAHikeFragment"
-            app:destination="@id/viewingAHikeFragment" />
+            app:destination="@id/archiveHikeViewingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/viewingTheMenuInTheArchiveFragment"
-        android:name="com.example.myapplication.ui.viewing_the_menu_in_the_archive.ViewingTheMenuInTheArchiveFragment"
+        android:id="@+id/archiveHikeMenuFragment"
+        android:name="com.example.myapplication.ui.archive_hike_menu.ArchiveHikeMenuFragment"
         android:label="fragment_viewing_the_menu_in_the_archive"
-        tools:layout="@layout/fragment_viewing_the_menu_in_the_archive" >
+        tools:layout="@layout/fragment_archive_hike_menu" >
         <action
             android:id="@+id/action_viewingTheMenuInTheArchiveFragment_to_viewingAHikeFragment"
-            app:destination="@id/viewingAHikeFragment" />
+            app:destination="@id/archiveHikeViewingFragment" />
     </fragment>
     <fragment
         android:id="@+id/listProductFragment"
@@ -249,6 +255,24 @@
         <action
             android:id="@+id/action_thisHikeListOfEquipmentFragment_to_this_hike"
             app:destination="@id/this_hike" />
+    </fragment>
+    <fragment
+        android:id="@+id/archiveHikeEquipmentFragment"
+        android:name="com.example.myapplication.ui.archive_hike_equipment.ArchiveHikeEquipmentFragment"
+        android:label="fragment_archive_hike_equipment"
+        tools:layout="@layout/fragment_archive_hike_equipment" >
+        <action
+            android:id="@+id/action_archiveHikeEquipmentFragment_to_archiveHikeViewingFragment"
+            app:destination="@id/archiveHikeViewingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/archiveHikeProductsFragment"
+        android:name="com.example.myapplication.ui.archive_hike_products.ArchiveHikeProductsFragment"
+        android:label="fragment_archive_hike_products"
+        tools:layout="@layout/fragment_archive_hike_products" >
+        <action
+            android:id="@+id/action_archiveHikeProductsFragment_to_archiveHikeViewingFragment"
+            app:destination="@id/archiveHikeViewingFragment" />
     </fragment>
 
 </navigation>
