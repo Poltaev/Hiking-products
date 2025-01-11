@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.dataBase.App
-import com.example.myapplication.databinding.FragmentViewingTheMenuInTheArchiveBinding
+import com.example.myapplication.databinding.FragmentArchiveHikeMenuBinding
 
 class ArchiveHikeMenuFragment : Fragment() {
 
-    private var _binding: FragmentViewingTheMenuInTheArchiveBinding? = null
+    private var _binding: FragmentArchiveHikeMenuBinding? = null
 
     private val binding get() = _binding!!
 
@@ -29,7 +29,7 @@ class ArchiveHikeMenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentViewingTheMenuInTheArchiveBinding.inflate(inflater, container, false)
+        _binding = FragmentArchiveHikeMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
