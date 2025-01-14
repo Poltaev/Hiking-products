@@ -11,9 +11,6 @@
         android:label="@string/this_hike"
         tools:layout="@layout/fragment_this_hike" >
         <action
-            android:id="@+id/action_this_hike_to_creatingANewCampaignFragment"
-            app:destination="@id/createHikeParticipantFragment" />
-        <action
             android:id="@+id/action_this_hike_to_listOfPurchasedProductsFragment"
             app:destination="@id/thisHikeListOfProductsFragment" />
         <action
@@ -25,6 +22,9 @@
         <action
             android:id="@+id/action_this_hike_to_thisHikeListOfEquipmentFragment"
             app:destination="@id/thisHikeListOfEquipmentFragment" />
+        <action
+            android:id="@+id/action_this_hike_to_createHikeSetTheNumberOfDayFragment"
+            app:destination="@id/createHikeSetTheNumberOfDayFragment" />
     </fragment>
 
     <fragment
@@ -292,8 +292,8 @@
             android:id="@+id/action_createHikeListProductsFragment_to_createHikeProductsInListFragment"
             app:destination="@id/createHikeProductsInListFragment" />
         <action
-            android:id="@+id/action_createHikeListProductsFragment_to_createHikeSetTheNumberOfDayFragment"
-            app:destination="@id/createHikeSetTheNumberOfDayFragment" />
+            android:id="@+id/action_createHikeListProductsFragment_to_this_hike"
+            app:destination="@id/this_hike" />
     </fragment>
     <fragment
         android:id="@+id/createHikeProductsInListFragment"
@@ -310,8 +310,8 @@
         android:label="fragment_create_hike_set_the_number_of_day"
         tools:layout="@layout/fragment_create_hike_set_the_number_of_day" >
         <action
-            android:id="@+id/action_createHikeSetTheNumberOfDayFragment_to_this_hike"
-            app:destination="@id/this_hike" />
+            android:id="@+id/action_createHikeSetTheNumberOfDayFragment_to_createHikeParticipantFragment"
+            app:destination="@id/createHikeParticipantFragment" />
     </fragment>
 
 </navigation>

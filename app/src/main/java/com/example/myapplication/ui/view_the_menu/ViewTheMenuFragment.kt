@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
-import com.example.myapplication.databinding.FragmentListOfPurchasedProductsBinding
+
 import com.example.myapplication.databinding.FragmentViewTheMenuBinding
 import com.example.myapplication.ui.this_hike.ThisHikeViewModel
 

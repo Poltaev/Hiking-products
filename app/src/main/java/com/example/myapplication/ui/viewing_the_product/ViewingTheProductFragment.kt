@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentAddingAParticipantBinding
-import com.example.myapplication.databinding.FragmentViewingTheMenuInTheArchiveBinding
 import com.example.myapplication.databinding.FragmentViewingTheProductBinding
 import com.example.myapplication.ui.this_hike.ThisHikeViewModel
 import kotlinx.coroutines.Dispatchers
