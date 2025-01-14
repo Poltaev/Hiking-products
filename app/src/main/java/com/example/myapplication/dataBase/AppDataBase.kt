@@ -45,7 +45,7 @@ import com.example.myapplication.dataBase.thisHike.ThisHikeProductsParticipants
         ThisHikeParticipants::class,
         ThisHikeMealIntakeSheet::class,
         ThisHikeProductsMealList::class,
-
+        ThisHikeProductsParticipants::class
     ],
     version = 1
 )

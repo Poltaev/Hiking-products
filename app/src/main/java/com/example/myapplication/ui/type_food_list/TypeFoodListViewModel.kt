@@ -160,13 +160,31 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     21,
                     1,
                     "Перекусы",
-                    "Перекусы"
+                    "Орехи"
                 )
                 ProductsUseCase(hikeDao).loadListTypeOfProducts(
                     22,
                     1,
+                    "Перекусы",
+                    "Сухофрукты"
+                )
+                ProductsUseCase(hikeDao).loadListTypeOfProducts(
+                    23,
+                    1,
                     "Специи",
-                    "Специи"
+                    "Соль"
+                )
+                ProductsUseCase(hikeDao).loadListTypeOfProducts(
+                    24,
+                    1,
+                    "Специи",
+                    "Сахар"
+                )
+                ProductsUseCase(hikeDao).loadListTypeOfProducts(
+                    25,
+                    1,
+                    "Специи",
+                    "К супу"
                 )
             }
         }
@@ -720,7 +738,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    21,
+                    22,
                     45
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -731,7 +749,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    21,
+                    22,
                     46
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -742,7 +760,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    21,
+                    22,
                     47
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -753,7 +771,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    21,
+                    22,
                     48
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -775,7 +793,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    22,
+                    25,
                     50
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -786,7 +804,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    22,
+                    24,
                     51
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -797,7 +815,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    22,
+                    23,
                     52
                 )
                 ProductsUseCase(hikeDao).loadProducts(
@@ -808,7 +826,7 @@ class TypeFoodListViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     false
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
-                    22,
+                    25,
                     53
                 )
             }

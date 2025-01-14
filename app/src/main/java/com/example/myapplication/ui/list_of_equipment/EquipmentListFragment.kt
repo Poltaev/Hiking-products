@@ -52,13 +52,110 @@ class EquipmentListFragment : Fragment() {
             val getListEquipment = viewModel.getAllEquipmentList()
             if (getListEquipment.size == 0) {
 
+//                viewModel.addEquipment(
+//                    1,
+//                    "Нажмите сюда или на кнопку снизу, чтобы добавить своё снаряжение.",
+//                    "Photo",
+//                    1000,
+//                    false
+//                )
                 viewModel.addEquipment(
                     1,
-                    "Нажмите сюда или на кнопку снизу, чтобы добавить своё снаряжение.",
+                    "Ремнабор",
                     "Photo",
-                    1000,
+                    650,
                     false
-
+                )
+                viewModel.addEquipment(
+                    2,
+                    "Костровое",
+                    "Photo",
+                    575,
+                    false
+                )
+                viewModel.addEquipment(
+                    3,
+                    "Топор",
+                    "Photo",
+                    685,
+                    false
+                )
+                viewModel.addEquipment(
+                    3,
+                    "Конек",
+                    "Photo",
+                    545,
+                    false
+                )
+                viewModel.addEquipment(
+                    4,
+                    "Спальник спарка",
+                    "Photo",
+                    1780,
+                    false
+                )
+                viewModel.addEquipment(
+                    5,
+                    "Горелка Яр",
+                    "Photo",
+                    371,
+                    false
+                )
+                viewModel.addEquipment(
+                    6,
+                    "Палатка тройка",
+                    "Photo",
+                    2240,
+                    false
+                )
+                viewModel.addEquipment(
+                    7,
+                    "Палатка двойка",
+                    "Photo",
+                    2650,
+                    false
+                )
+                viewModel.addEquipment(
+                    8,
+                    "Аппаратура для видео",
+                    "Photo",
+                    2477,
+                    false
+                )
+                viewModel.addEquipment(
+                    9,
+                    "Спальник спарка один",
+                    "Photo",
+                    1780,
+                    false
+                )
+                viewModel.addEquipment(
+                    10,
+                    "Кухонное",
+                    "Photo",
+                    535,
+                    false
+                )
+                viewModel.addEquipment(
+                    11,
+                    "Спальник спарка второй",
+                    "Photo",
+                    1780,
+                    false
+                )
+                viewModel.addEquipment(
+                    12,
+                    "Женская палатка",
+                    "Photo",
+                    2450,
+                    false
+                )
+                viewModel.addEquipment(
+                    13,
+                    "Гитара",
+                    "Photo",
+                    2300,
+                    false
                 )
 
             }

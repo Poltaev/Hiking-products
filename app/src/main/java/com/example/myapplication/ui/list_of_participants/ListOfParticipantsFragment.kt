@@ -55,14 +55,98 @@ class ListOfParticipantsFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
             val getListParticipants = viewModel.getAllParticipantsList()
             if (getListParticipants.size == 0) {
+//                viewModel.addParticipants(
+//                    1,
+//                    "Photo",
+//                    "Для добавления",
+//                    "участника",
+//                    "нажмите сюда, или на кнопку",
+//                    "17",
+//                    10000,
+//                    10000,
+//                    false
+//
+//                )
                 viewModel.addParticipants(
                     1,
                     "Photo",
-                    "Для добавления",
-                    "участника",
-                    "нажмите сюда, или на кнопку",
-                    "17",
+                    "Ярослав",
+                    "Клюкин",
+                    "Мужской",
+                    "27",
+                    25000,
                     10000,
+                    false
+
+                )
+                viewModel.addParticipants(
+                    2,
+                    "Photo",
+                    "Данила",
+                    "Дайбов",
+                    "Мужской",
+                    "27",
+                    24000,
+                    10000,
+                    false
+
+                )
+                viewModel.addParticipants(
+                    3,
+                    "Photo",
+                    "Павел",
+                    "Почикаев",
+                    "Мужской",
+                    "27",
+                    23000,
+                    10000,
+                    false
+
+                )
+                viewModel.addParticipants(
+                    4,
+                    "Photo",
+                    "Евгений",
+                    "Полтаев",
+                    "Мужской",
+                    "28",
+                    23000,
+                    10000,
+                    false
+
+                )
+                viewModel.addParticipants(
+                    5,
+                    "Photo",
+                    "Елизавета",
+                    "Хлобостова",
+                    "Женский",
+                    "22",
+                    19000,
+                    10000,
+                    false
+
+                )
+                viewModel.addParticipants(
+                    6,
+                    "Photo",
+                    "Софья",
+                    "Арзамасцева",
+                    "Женский",
+                    "22",
+                    19000,
+                    10000,
+                    false
+
+                )
+                viewModel.addParticipants(
+                    7,
+                    "Photo",
+                    "Анна",
+                    "Хурина",
+                    "Женский",
+                    "22",
+                    19000,
                     10000,
                     false
 
