@@ -136,6 +136,7 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
         name: String,
         weightForPerson: Int,
         packageWeight: Int,
+        theVolumeItem: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean
     ) {
         val ProductsForLoad = Products(
@@ -143,6 +144,7 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
             name = name,
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
+            theVolumeItem = theVolumeItem,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
         hikeDao.insertOneProducts(ProductsForLoad)
@@ -157,6 +159,7 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
         name: String,
         weightForPerson: Int,
         packageWeight: Int,
+        theVolumeItem: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean
     ) {
         val products = Products(
@@ -164,6 +167,7 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
             name = name,
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
+            theVolumeItem = theVolumeItem,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
         hikeDao.updateOneProducts(products)

@@ -64,98 +64,112 @@ class EquipmentListFragment : Fragment() {
                     "Ремнабор",
                     "Photo",
                     650,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     2,
                     "Костровое",
                     "Photo",
                     575,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     3,
                     "Топор",
                     "Photo",
                     685,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     3,
                     "Конек",
                     "Photo",
                     545,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     4,
                     "Спальник спарка",
                     "Photo",
                     1780,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     5,
                     "Горелка Яр",
                     "Photo",
                     371,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     6,
                     "Палатка тройка",
                     "Photo",
                     2240,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     7,
                     "Палатка двойка",
                     "Photo",
                     2650,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     8,
                     "Аппаратура для видео",
                     "Photo",
                     2477,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     9,
                     "Спальник спарка один",
                     "Photo",
                     1780,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     10,
                     "Кухонное",
                     "Photo",
                     535,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     11,
                     "Спальник спарка второй",
                     "Photo",
                     1780,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     12,
                     "Женская палатка",
                     "Photo",
                     2450,
-                    false
+                    false,
+                    true
                 )
                 viewModel.addEquipment(
                     13,
                     "Гитара",
                     "Photo",
                     2300,
-                    false
+                    false,
+                    true
                 )
 
             }

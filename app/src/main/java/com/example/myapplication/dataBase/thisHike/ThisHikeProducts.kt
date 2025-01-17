@@ -25,6 +25,8 @@ data class ThisHikeProducts(
     val partiallyAssembled : Boolean,
     @ColumnInfo(name = "fully_assembled")
     val fullyAssembled : Boolean,
+    @ColumnInfo(name = "the_volume_item")
+    val theVolumeItem : Boolean,
     @ColumnInfo(name = "comment")
     val comment : String
 )

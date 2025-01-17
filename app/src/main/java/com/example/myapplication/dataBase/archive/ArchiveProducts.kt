@@ -21,6 +21,8 @@ data class ArchiveProducts(
     val weightOnTheHike : Int,
     @ColumnInfo(name = "remaining_weight")
     val remainingWeight : Int,
+    @ColumnInfo(name = "the_volume_item")
+    val theVolumeItem : Boolean,
     @ColumnInfo(name = "comment")
     val comment : String
 )

@@ -22,6 +22,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         name: String,
         photo: String,
         weight: Int,
+        theVolumeItem: Boolean,
         equipmentInTheCampaign: Boolean
     ) {
         val equipmentForLoad = Equipment(
@@ -29,6 +30,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
             name = name,
             photo = photo,
             weight = weight,
+            theVolumeItem = theVolumeItem,
             equipmentInTheCampaign = equipmentInTheCampaign
         )
         hikeDao.insertOneEquipment(equipmentForLoad)
@@ -43,6 +45,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         name: String,
         photo: String,
         weight: Int,
+        theVolumeItem: Boolean,
         equipmentInTheCampaign: Boolean
     ) {
         val equipment = Equipment(
@@ -50,6 +53,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
             name = name,
             photo = photo,
             weight = weight,
+            theVolumeItem =theVolumeItem,
             equipmentInTheCampaign = equipmentInTheCampaign
         )
         hikeDao.updateOneEquipment(equipment)

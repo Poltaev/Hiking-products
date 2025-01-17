@@ -24,6 +24,7 @@ class ViewingTheProductViewModel(private val hikeDao: HikeDao) : ViewModel() {
         name: String,
         weightForPerson: Int,
         packageWeight: Int,
+        theVolumeItem: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean
     ) {
         ProductsUseCase(hikeDao).loadProducts(
@@ -31,6 +32,7 @@ class ViewingTheProductViewModel(private val hikeDao: HikeDao) : ViewModel() {
             name = name,
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
+            theVolumeItem = theVolumeItem,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
     }

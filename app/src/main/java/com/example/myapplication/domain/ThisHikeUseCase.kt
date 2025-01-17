@@ -83,6 +83,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         remainingWeight: Int,
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
+        theVolumeItem: Boolean,
         comment: String
     ) {
         val thisHikeProducts = ThisHikeProducts(
@@ -95,6 +96,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             remainingWeight = remainingWeight,
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.insertThisHikeProducts(thisHikeProducts)
@@ -114,6 +116,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         remainingWeight: Int,
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
+        theVolumeItem: Boolean,
         comment: String
     ) {
         val thisHikeProducts = ThisHikeProducts(
@@ -126,6 +129,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             remainingWeight = remainingWeight,
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.updateThisHikeProducts(thisHikeProducts)
@@ -148,6 +152,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         weight: Int,
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
+        theVolumeItem: Boolean,
         comment: String
     ) {
         val thisHikeEquipment = ThisHikeEquipment(
@@ -158,6 +163,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             weight = weight,
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
+            theVolumeItem = theVolumeItem,
             comment = comment
             )
         hikeDao.insertThisHikeEquipment(thisHikeEquipment)
@@ -175,6 +181,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         weight: Int,
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
+        theVolumeItem: Boolean,
         comment: String
     ) {
         val thisHikeEquipment = ThisHikeEquipment(
@@ -185,6 +192,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             weight = weight,
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.updateThisHikeEquipment(thisHikeEquipment)

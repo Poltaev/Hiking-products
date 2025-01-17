@@ -17,10 +17,4 @@ data class CurrentHike(
     val fullDays : Int,
     @ColumnInfo(name = "number_of_snacks_per_day")
     val numberOfSnacksPerDay : Int
-//    @ColumnInfo(name = "list_of_participants")
-//    val listOfParticipants : CurrentHikeWithParticipants,
-//    @ColumnInfo(name = "list_of_products_hike")
-//    val listOfProductsHike : CurrentHikeWithEquipment,
-//    @ColumnInfo(name = "listOfEquipment")
-//    val listOfEquipment : CurrentHikeWithEquipment
 )

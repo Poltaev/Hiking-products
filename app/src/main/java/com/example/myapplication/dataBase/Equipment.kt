@@ -15,6 +15,8 @@ data class Equipment(
     val photo : String,
     @ColumnInfo(name = "weight")
     val weight : Int,
+    @ColumnInfo(name = "the_volume_item")
+    val theVolumeItem : Boolean,
     @ColumnInfo(name = "equipment_in_the_campaign")
     val equipmentInTheCampaign : Boolean
 

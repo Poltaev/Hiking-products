@@ -31,6 +31,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         theWeightOfOneMeal: Int,
         weightOnTheHike: Int,
         remainingWeight: Int,
+        theVolumeItem: Boolean,
         comment: String,
     ) {
         val archiveProducts = ArchiveProducts(
@@ -41,6 +42,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             theWeightOfOneMeal = theWeightOfOneMeal,
             weightOnTheHike = weightOnTheHike,
             remainingWeight = remainingWeight,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.insertArchiveProducts(archiveProducts)
@@ -58,6 +60,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         theWeightOfOneMeal: Int,
         weightOnTheHike: Int,
         remainingWeight: Int,
+        theVolumeItem: Boolean,
         comment: String,
     ) {
         val archiveProducts = ArchiveProducts(
@@ -68,6 +71,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             theWeightOfOneMeal = theWeightOfOneMeal,
             weightOnTheHike = weightOnTheHike,
             remainingWeight = remainingWeight,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.updateOneArchiveProducts(archiveProducts)
@@ -88,6 +92,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         name: String,
         photo: String,
         weight: Int,
+        theVolumeItem: Boolean,
         comment: String,
     ) {
         val archiveEquipment = ArchiveEquipment(
@@ -96,6 +101,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             name = name,
             photo = photo,
             weight = weight,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.insertArchiveEquipment(archiveEquipment)
@@ -111,6 +117,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         name: String,
         photo: String,
         weight: Int,
+        theVolumeItem: Boolean,
         comment: String,
     ) {
         val archiveEquipment = ArchiveEquipment(
@@ -119,6 +126,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             name = name,
             photo = photo,
             weight = weight,
+            theVolumeItem = theVolumeItem,
             comment = comment
         )
         hikeDao.updateArchiveEquipment(archiveEquipment)

@@ -15,6 +15,8 @@ data class Products(
     val weightForPerson : Int,
     @ColumnInfo(name = "package_weight")
     val packageWeight : Int,
+    @ColumnInfo(name = "the_volume_item")
+    val theVolumeItem : Boolean,
     @ColumnInfo(name = "we_will_use_it_in_the_current_campaign")
     val weWillUseItInTheCurrentCampaign : Boolean
 

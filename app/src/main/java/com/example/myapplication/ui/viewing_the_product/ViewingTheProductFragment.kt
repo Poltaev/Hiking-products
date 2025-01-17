@@ -27,6 +27,7 @@ class ViewingTheProductFragment : Fragment() {
     private var name = "Имя"
     private var weightForPerson = 1
     private var packageWeight = 1
+    private var theVolumeItem = false
     private var weWillUseItInTheCurrentCampaign = false
 
     private var _binding: FragmentViewingTheProductBinding? = null
@@ -118,6 +119,7 @@ class ViewingTheProductFragment : Fragment() {
                     name,
                     weightForPerson,
                     packageWeight,
+                    theVolumeItem,
                     weWillUseItInTheCurrentCampaign
                 )
             }

@@ -17,6 +17,8 @@ data class ArchiveEquipment(
     val photo : String,
     @ColumnInfo(name = "weight")
     val weight : Int,
+    @ColumnInfo(name = "the_volume_item")
+    val theVolumeItem : Boolean,
     @ColumnInfo(name = "comment")
     val comment : String
 )
