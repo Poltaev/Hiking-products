@@ -42,4 +42,12 @@
         <item>11</item>
         <item>12</item>
     </string-array>
+    <string-array name="list_participant">
+        <item>Участник 1</item>
+        <item>Участник 2</item>
+        <item>Участник 3</item>
+        <item>Участник 4</item>
+        <item>Участник 5</item>
+        <item>Участник 6</item>
+    </string-array>
 </resources>

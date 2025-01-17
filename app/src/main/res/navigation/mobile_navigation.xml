@@ -99,6 +99,9 @@
         <action
             android:id="@+id/action_viewingPeopleFragment_to_this_hike"
             app:destination="@id/this_hike" />
+        <action
+            android:id="@+id/action_thisHikeListOfParticipantsFragment_to_viewingABackpackFragment"
+            app:destination="@id/viewingABackpackFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewTheMenuFragment"
@@ -108,6 +111,9 @@
         <action
             android:id="@+id/action_viewTheMenuFragment_to_this_hike"
             app:destination="@id/this_hike" />
+        <action
+            android:id="@+id/action_viewTheMenuFragment_to_watchingASingleMealFragment"
+            app:destination="@id/watchingASingleMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/addingATypeListProductFragment"
@@ -280,17 +286,14 @@
         android:label="fragment_create_hike_equipment"
         tools:layout="@layout/fragment_create_hike_equipment" >
         <action
-            android:id="@+id/action_createHikeEquipmentFragment_to_createHikeListProductsFragment"
-            app:destination="@id/createHikeListProductsFragment" />
+            android:id="@+id/action_createHikeEquipmentFragment_to_createHikeProductsInListFragment"
+            app:destination="@id/createHikeProductsInListFragment" />
     </fragment>
     <fragment
         android:id="@+id/createHikeListProductsFragment"
         android:name="com.example.myapplication.ui.create_hike_list_products.CreateHikeListProductsFragment"
         android:label="fragment_create_hike_list_products"
         tools:layout="@layout/fragment_create_hike_list_products" >
-        <action
-            android:id="@+id/action_createHikeListProductsFragment_to_createHikeProductsInListFragment"
-            app:destination="@id/createHikeProductsInListFragment" />
         <action
             android:id="@+id/action_createHikeListProductsFragment_to_this_hike"
             app:destination="@id/this_hike" />
@@ -312,6 +315,36 @@
         <action
             android:id="@+id/action_createHikeSetTheNumberOfDayFragment_to_createHikeParticipantFragment"
             app:destination="@id/createHikeParticipantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchingASingleMealFragment"
+        android:name="com.example.myapplication.ui.watching_a_single_meal.WatchingASingleMealFragment"
+        android:label="fragment_watching_a_single_meal"
+        tools:layout="@layout/fragment_watching_a_single_meal" >
+        <action
+            android:id="@+id/action_watchingASingleMealFragment_to_viewTheMenuFragment"
+            app:destination="@id/viewTheMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewingABackpackFragment"
+        android:name="com.example.myapplication.ui.viewing_a_backpack.ViewingABackpackFragment"
+        android:label="fragment_viewing_a_backpack"
+        tools:layout="@layout/fragment_viewing_a_backpack" >
+        <action
+            android:id="@+id/action_viewingABackpackFragment_to_thisHikeListOfParticipantsFragment"
+            app:destination="@id/thisHikeListOfParticipantsFragment" />
+        <action
+            android:id="@+id/action_viewingABackpackFragment_to_passOnOneThingFragment"
+            app:destination="@id/passOnOneThingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passOnOneThingFragment"
+        android:name="com.example.myapplication.ui.pass_on_one_thing.PassOnOneThingFragment"
+        android:label="fragment_pass_on_one_thing"
+        tools:layout="@layout/fragment_pass_on_one_thing" >
+        <action
+            android:id="@+id/action_passOnOneThingFragment_to_viewingABackpackFragment"
+            app:destination="@id/viewingABackpackFragment" />
     </fragment>
 
 </navigation>
