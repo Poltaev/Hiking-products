@@ -27,8 +27,6 @@ class CreateHikeProductsFragment : Fragment() {
 
     lateinit var job: Job
 
-    private val listId = mutableListOf<Int>()
-
     private var _binding: FragmentCreateHikeProductsInListBinding? = null
 
     private val binding get() = _binding!!
@@ -38,18 +36,6 @@ class CreateHikeProductsFragment : Fragment() {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
                 return CreateHikeProductsiewModel(hikeDao) as T
-            }
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        lifecycleScope.launch(Dispatchers.IO) {
-            val listProducts = viewModel.getAllProductsList()
-            listProducts.forEach {
-                if (it.weWillUseItInTheCurrentCampaign) {
-                    listId.add(id)
-                }
             }
         }
     }
@@ -109,8 +95,7 @@ class CreateHikeProductsFragment : Fragment() {
                 val ProductsAdapter =
                     getProductsList.let {
                         CreateHikeProductsAdapter(
-                            it,
-                            listId
+                            it
                         ) { onItemClick(it) }
                     }
                 binding.recyclerViewListProducts.adapter = ProductsAdapter
@@ -119,12 +104,11 @@ class CreateHikeProductsFragment : Fragment() {
     }
 
     private fun onItemClick(item: Products) {
-        var weNaveIt = true
-        var remove = 0
-        listId.forEach {
-            if (item.id == it) {
-                weNaveIt = false
-                remove = it
+        lifecycleScope.launch(Dispatchers.IO) {
+            val listProduct = viewModel.getAllProductsList()
+            listProduct.forEach {
+                if (item.id == it.id) {
+                    if (it.weWillUseItInTheCurrentCampaign) {
                 lifecycleScope.launch(Dispatchers.IO) {
                     viewModel.upDateProducts(
                         item.id,
@@ -135,21 +119,20 @@ class CreateHikeProductsFragment : Fragment() {
                         false
                     )
                 }
+                    } else {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            viewModel.upDateProducts(
+                                item.id,
+                                item.name,
+                                item.weightForPerson,
+                                item.packageWeight,
+                                item.theVolumeItem,
+                                true
+                            )
+                        }
+                    }
+                }
             }
-        }
-        listId.remove(remove)
-        if (weNaveIt) {
-            lifecycleScope.launch(Dispatchers.IO) {
-                viewModel.upDateProducts(
-                    item.id,
-                    item.name,
-                    item.weightForPerson,
-                    item.packageWeight,
-                    item.theVolumeItem,
-                    false
-                )
-            }
-            listId.add(item.id)
         }
         job.cancel()
         checkAndUpDateTheList()

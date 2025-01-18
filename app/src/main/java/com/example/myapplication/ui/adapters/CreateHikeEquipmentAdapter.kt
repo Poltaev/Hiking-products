@@ -26,7 +26,6 @@ import com.example.myapplication.databinding.TypeListProductItemBinding
 
 class CreateHikeEquipmentAdapter(
     private val data: List<Equipment>,
-    private val listId: List<Int>,
     private val onClick: (Equipment) -> Unit,
 ) :
     RecyclerView.Adapter<CreateHikeEquipmentViewHolder>() {
@@ -58,7 +57,7 @@ class CreateHikeEquipmentAdapter(
 
 
             if (item != null) {
-                if (listId.contains(item.id)) {
+                if (item.equipmentInTheCampaign) {
                     buttonBackground.setBackgroundColor(
                         ContextCompat.getColor(
                             holder.binding.buttonBackground.context,
