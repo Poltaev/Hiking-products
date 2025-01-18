@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentCreateHikeListProductsBinding
@@ -39,6 +40,11 @@ class CreateHikeListProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buttonFurther.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_createHikeListProductsFragment_to_this_hike
+            )
+        }
     }
 
     override fun onDestroyView() {

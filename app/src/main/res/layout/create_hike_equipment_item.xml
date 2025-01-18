@@ -41,4 +41,16 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewEquipment"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameEquipment" />
 
+    <Button
+        android:id="@+id/buttonBackground"
+        android:layout_width="384dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/transparent"
+        android:clickable="false"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

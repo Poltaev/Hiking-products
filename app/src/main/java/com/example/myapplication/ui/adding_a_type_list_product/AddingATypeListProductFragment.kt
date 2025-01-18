@@ -93,32 +93,6 @@ class AddingATypeListProductFragment : Fragment() {
             )
             toast.show()
         }
-//        binding.buttonDelete.setOnClickListener {
-//            if (id != 9999) {
-//                lifecycleScope.launch(Dispatchers.IO) {
-//                    val typeOfProductsList = viewModel.getAllListTypeOfProductsList()
-//                    typeOfProductsList.forEach {
-//                        if (it.id == id) {
-//                            viewModel.deleteListTypeOfProducts(it)
-//                        }
-//                    }
-//                }
-//
-//                val toast = Toast.makeText(
-//                    requireContext().applicationContext,
-//                    "Список удален",
-//                    Toast.LENGTH_SHORT
-//                )
-//                toast.show()
-//            } else {
-//                val toast = Toast.makeText(
-//                    requireContext().applicationContext,
-//                    "Список для удаления не выбран",
-//                    Toast.LENGTH_SHORT
-//                )
-//                toast.show()
-//            }
-//        }
     }
 
     override fun onResume() {

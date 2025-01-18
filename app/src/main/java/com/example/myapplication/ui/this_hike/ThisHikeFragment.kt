@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentThisHikeBinding
 import com.example.myapplication.ui.hike_archive.HikeArchiveViewModel
@@ -42,7 +44,31 @@ class ThisHikeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.buttonCreateNewButton.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_this_hike_to_createHikeSetTheNumberOfDayFragment
+            )
+        }
+        binding.buttonEquipment.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_this_hike_to_thisHikeListOfEquipmentFragment
+            )
+        }
+        binding.buttonProducts.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_this_hike_to_listOfPurchasedProductsFragment
+            )
+        }
+        binding.buttonBackpacks.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_this_hike_to_viewingPeopleFragment
+            )
+        }
+        binding.buttonMenu.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_this_hike_to_viewTheMenuFragment
+            )
+        }
     }
 
     override fun onDestroyView() {

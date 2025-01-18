@@ -76,7 +76,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "27",
                     25000,
                     10000,
-                    false
+                    true
 
                 )
                 viewModel.addParticipants(
@@ -88,7 +88,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "27",
                     24000,
                     10000,
-                    false
+                    true
 
                 )
                 viewModel.addParticipants(
@@ -100,7 +100,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "27",
                     23000,
                     10000,
-                    false
+                    true
 
                 )
                 viewModel.addParticipants(
@@ -112,7 +112,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "28",
                     23000,
                     10000,
-                    false
+                    true
 
                 )
                 viewModel.addParticipants(
@@ -124,7 +124,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "22",
                     19000,
                     10000,
-                    false
+                    true
 
                 )
                 viewModel.addParticipants(
@@ -136,7 +136,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "22",
                     19000,
                     10000,
-                    false
+                    true
 
                 )
                 viewModel.addParticipants(
@@ -148,7 +148,7 @@ class ListOfParticipantsFragment : Fragment() {
                     "22",
                     19000,
                     10000,
-                    false
+                    true
 
                 )
             }

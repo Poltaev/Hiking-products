@@ -27,7 +27,8 @@ class AddingEquipmentFragment : Fragment() {
     private var name = "Name"
     private var photo = "Photo"
     private var weight = 1022
-    private var equipmentInTheCampaign = false
+    private var theVolumeItem = false
+    private var equipmentInTheCampaign = true
 
     private var _binding: FragmentAddingEquipmentBinding? = null
 
@@ -107,6 +108,7 @@ class AddingEquipmentFragment : Fragment() {
                     name,
                     photo,
                     weight,
+                    theVolumeItem,
                     equipmentInTheCampaign
                 )
             }

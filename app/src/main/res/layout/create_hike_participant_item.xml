@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageViewParticipants"
-        android:layout_width="80dp"
-        android:layout_height="94dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,4 +48,35 @@
         android:text="Gender"
         app:layout_constraintStart_toEndOf="@+id/imageViewParticipants"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameParticipants" />
+
+    <Button
+        android:id="@+id/buttonBackground"
+        android:layout_width="384dp"
+        android:layout_height="115dp"
+        android:backgroundTint="@color/transparent"
+        android:clickable="false"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMaxWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textViewAge"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameParticipants" />
+
+    <TextView
+        android:id="@+id/textViewWeightOfPersonalItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textViewGender"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMaxWeight" />
 </androidx.constraintlayout.widget.ConstraintLayout>

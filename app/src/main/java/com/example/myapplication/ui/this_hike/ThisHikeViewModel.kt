@@ -23,11 +23,12 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
     fun addEquipment() {
         viewModelScope.launch {
             ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    id = 1,
-                    name = "name",
-                    photo = "photo",
-                    weight = 120,
-                    equipmentInTheCampaign = false
+                id = 1,
+                name = "name",
+                photo = "photo",
+                weight = 120,
+                theVolumeItem = false,
+                equipmentInTheCampaign = true
             )
         }
     }

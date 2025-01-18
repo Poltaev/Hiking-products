@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.create_hike_participant
+package com.example.myapplication.ui.create_hike_products
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -13,32 +13,31 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
-import com.example.myapplication.dataBase.Participants
-import com.example.myapplication.dataBase.products.ListProducts
+import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.products.Products
-import com.example.myapplication.databinding.FragmentCreateHikeParticipantBinding
-import com.example.myapplication.ui.adapters.CreateHikeParticipantsAdapter
-import com.example.myapplication.ui.adapters.ListAddProductsAdapter
+import com.example.myapplication.databinding.FragmentCreateHikeProductsInListBinding
+import com.example.myapplication.ui.adapters.CreateHikeEquipmentAdapter
+import com.example.myapplication.ui.adapters.CreateHikeProductsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class CreateHikeParticipantFragment : Fragment() {
+class CreateHikeProductsFragment : Fragment() {
 
     lateinit var job: Job
 
     private val listId = mutableListOf<Int>()
 
-    private var _binding: FragmentCreateHikeParticipantBinding? = null
+    private var _binding: FragmentCreateHikeProductsInListBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: CreateHikeParticipantViewModel by viewModels {
+    private val viewModel: CreateHikeProductsiewModel by viewModels{
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
-                return CreateHikeParticipantViewModel(hikeDao) as T
+                return CreateHikeProductsiewModel(hikeDao) as T
             }
         }
     }
@@ -46,20 +45,19 @@ class CreateHikeParticipantFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch(Dispatchers.IO) {
-            val listParticipant = viewModel.getAllParticipantsList()
-            listParticipant.forEach {
-                if (it.participationInTheCampaign) {
+            val listProducts = viewModel.getAllProductsList()
+            listProducts.forEach {
+                if (it.weWillUseItInTheCurrentCampaign) {
                     listId.add(id)
                 }
             }
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCreateHikeParticipantBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateHikeProductsInListBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -69,60 +67,58 @@ class CreateHikeParticipantFragment : Fragment() {
         checkAndUpDateTheList()
         binding.buttonFurther.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
-                val listParticipant = viewModel.getAllParticipantsList()
-                listParticipant.forEach {
-                    if (it.participationInTheCampaign) {
-                        viewModel.createHikeParticipant(
+                val listProducts = viewModel.getAllProductsList()
+                listProducts.forEach {
+                    if (it.weWillUseItInTheCurrentCampaign) {
+                        viewModel.createHikeProducts(
                             it.id,
-                            1,
-                            it.photo,
-                            it.firstName,
-                            it.lastName,
-                            it.gender,
-                            it.age,
-                            it.maximumPortableWeight,
-                            it.weightOfPersonalItems,
+                            it.name,
+                            it.weightForPerson,
+                            it.packageWeight,
+                            0,
+                            0,
+                            0,
+                            false,
+                            false,
+                            false,
                             ""
                         )
                     }
                 }
             }
             findNavController().navigate(
-                R.id.action_createHikeParticipantFragment_to_createHikeEquipmentFragment
+                R.id.action_createHikeProductsInListFragment_to_createHikeListProductsFragment
             )
         }
     }
-
     override fun onPause() {
         super.onPause()
         job.cancel()
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
     private fun checkAndUpDateTheList() {
         job = lifecycleScope.launch {
             delay(100)
-            viewModel.getAllParticipantFlow().collect {
+            viewModel.getAllProductsFlow().collect {
                 delay(100)
-                val getParticipantList = it
-                Log.i("Size listid", "${it[0].participationInTheCampaign}")
-                val ParticipantsAdapter =
-                    getParticipantList.let {
-                        CreateHikeParticipantsAdapter(
+                val getProductsList = it
+                Log.i("Size listid", "${it[0].weWillUseItInTheCurrentCampaign}")
+                val ProductsAdapter =
+                    getProductsList.let {
+                        CreateHikeProductsAdapter(
                             it,
                             listId
                         ) { onItemClick(it) }
                     }
-                binding.recyclerViewListParticipant.adapter = ParticipantsAdapter
+                binding.recyclerViewListProducts.adapter = ProductsAdapter
             }
         }
     }
 
-    private fun onItemClick(item: Participants) {
+    private fun onItemClick(item: Products) {
         var weNaveIt = true
         var remove = 0
         listId.forEach {
@@ -130,15 +126,12 @@ class CreateHikeParticipantFragment : Fragment() {
                 weNaveIt = false
                 remove = it
                 lifecycleScope.launch(Dispatchers.IO) {
-                    viewModel.upDateParticipant(
+                    viewModel.upDateProducts(
                         item.id,
-                        item.photo,
-                        item.firstName,
-                        item.lastName,
-                        item.gender,
-                        item.age,
-                        item.maximumPortableWeight,
-                        item.weightOfPersonalItems,
+                        item.name,
+                        item.weightForPerson,
+                        item.packageWeight,
+                        item.theVolumeItem,
                         false
                     )
                 }
@@ -147,16 +140,13 @@ class CreateHikeParticipantFragment : Fragment() {
         listId.remove(remove)
         if (weNaveIt) {
             lifecycleScope.launch(Dispatchers.IO) {
-                viewModel.upDateParticipant(
+                viewModel.upDateProducts(
                     item.id,
-                    item.photo,
-                    item.firstName,
-                    item.lastName,
-                    item.gender,
-                    item.age,
-                    item.maximumPortableWeight,
-                    item.weightOfPersonalItems,
-                    true
+                    item.name,
+                    item.weightForPerson,
+                    item.packageWeight,
+                    item.theVolumeItem,
+                    false
                 )
             }
             listId.add(item.id)

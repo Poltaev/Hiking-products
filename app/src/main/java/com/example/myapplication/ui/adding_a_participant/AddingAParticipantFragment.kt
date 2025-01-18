@@ -32,7 +32,7 @@ class AddingAParticipantFragment : Fragment() {
     private var age = "28"
     private var limitWeight = 25767
     private var weightOfPersonalItems = 10003
-    private var campaignParticipant = false
+    private var campaignParticipant = true
 
     private var _binding: FragmentAddingAParticipantBinding? = null
 

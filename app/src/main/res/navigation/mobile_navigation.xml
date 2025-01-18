@@ -76,7 +76,7 @@
     <fragment
         android:id="@+id/createHikeParticipantFragment"
         android:name="com.example.myapplication.ui.create_hike_participant.CreateHikeParticipantFragment"
-        android:label="fragment_creating_a_new_campaign"
+        android:label="Добавление участников похода"
         tools:layout="@layout/fragment_create_hike_participant" >
         <action
             android:id="@+id/action_createHikeParticipantFragment_to_createHikeEquipmentFragment"
@@ -85,7 +85,7 @@
     <fragment
         android:id="@+id/thisHikeListOfProductsFragment"
         android:name="com.example.myapplication.ui.this_hike_list_of_products.ThisHikeListOfProductsFragment"
-        android:label="fragment_list_of_purchased_products"
+        android:label="Список продуктов в поход"
         tools:layout="@layout/fragment_this_hike_list_of_products" >
         <action
             android:id="@+id/action_listOfPurchasedProductsFragment_to_this_hike"
@@ -94,7 +94,7 @@
     <fragment
         android:id="@+id/thisHikeListOfParticipantsFragment"
         android:name="com.example.myapplication.ui.this_hike_list_of_participants.ThisHikeListOfParticipantsFragment"
-        android:label="fragment_viewing_people"
+        android:label="Список учасников и их груза"
         tools:layout="@layout/fragment_this_hike_list_of_participants" >
         <action
             android:id="@+id/action_viewingPeopleFragment_to_this_hike"
@@ -106,7 +106,7 @@
     <fragment
         android:id="@+id/viewTheMenuFragment"
         android:name="com.example.myapplication.ui.view_the_menu.ViewTheMenuFragment"
-        android:label="fragment_view_the_menu"
+        android:label="Меню"
         tools:layout="@layout/fragment_view_the_menu" >
         <action
             android:id="@+id/action_viewTheMenuFragment_to_this_hike"
@@ -118,7 +118,7 @@
     <fragment
         android:id="@+id/addingATypeListProductFragment"
         android:name="com.example.myapplication.ui.adding_a_type_list_product.AddingATypeListProductFragment"
-        android:label="fragment_adding_a_product"
+        android:label="Добавить новый тип продуктов"
         tools:layout="@layout/fragment_adding_a__type_list_product" >
         <action
             android:id="@+id/action_addingAProductFragment_to_food_list"
@@ -130,7 +130,7 @@
     <fragment
         android:id="@+id/viewingTheProductFragment"
         android:name="com.example.myapplication.ui.viewing_the_product.ViewingTheProductFragment"
-        android:label="fragment_viewing_the_product"
+        android:label="Добавить продукт"
         tools:layout="@layout/fragment_viewing_the_product" >
         <action
             android:id="@+id/action_viewingTheProductFragment_to_food_list"
@@ -151,7 +151,7 @@
     <fragment
         android:id="@+id/addingAParticipantFragment"
         android:name="com.example.myapplication.ui.adding_a_participant.AddingAParticipantFragment"
-        android:label="fragment_adding_a_participant"
+        android:label="Добавить участника"
         tools:layout="@layout/fragment_adding_a_participant" >
         <action
             android:id="@+id/action_addingAParticipantFragment_to_list_of_participants"
@@ -160,7 +160,7 @@
     <fragment
         android:id="@+id/addingEquipmentFragment"
         android:name="com.example.myapplication.ui.adding_equipment.AddingEquipmentFragment"
-        android:label="fragment_adding_equipment"
+        android:label="Добавить снаряжение"
         tools:layout="@layout/fragment_adding_equipment" >
         <action
             android:id="@+id/action_addingEquipmentFragment_to_equipment_list"
@@ -169,7 +169,7 @@
     <fragment
         android:id="@+id/archiveHikeViewingFragment"
         android:name="com.example.myapplication.ui.archive_hike_viewing.ArchiveHikeViewingFragment"
-        android:label="fragment_viewing_a_hike"
+        android:label="Архивный поход"
         tools:layout="@layout/fragment_viewing_a_hike" >
         <action
             android:id="@+id/action_viewingAHikeFragment_to_viewingPeopleFromTheArchiveFragment"
@@ -190,7 +190,7 @@
     <fragment
         android:id="@+id/archiveHikeParticipantFragment"
         android:name="com.example.myapplication.ui.archive_hike_participant.ArchiveHikeParticipantFragment"
-        android:label="fragment_viewing_people_from_the_archive"
+        android:label="Учасники похода и их груз"
         tools:layout="@layout/fragment_viewing_people_from_the_archive" >
         <action
             android:id="@+id/action_viewingPeopleFromTheArchiveFragment_to_viewingAHikeFragment"
@@ -199,7 +199,7 @@
     <fragment
         android:id="@+id/archiveHikeMenuFragment"
         android:name="com.example.myapplication.ui.archive_hike_menu.ArchiveHikeMenuFragment"
-        android:label="fragment_viewing_the_menu_in_the_archive"
+        android:label="Меню"
         tools:layout="@layout/fragment_archive_hike_menu" >
         <action
             android:id="@+id/action_viewingTheMenuInTheArchiveFragment_to_viewingAHikeFragment"
@@ -208,7 +208,7 @@
     <fragment
         android:id="@+id/listProductFragment"
         android:name="com.example.myapplication.ui.list_product.ListProductFragment"
-        android:label="fragment_list_product"
+        android:label="Список типов продуктов"
         tools:layout="@layout/fragment_list_product" >
         <action
             android:id="@+id/action_listProductFragment_to_viewingTheProductFragment"
@@ -229,7 +229,7 @@
     <fragment
         android:id="@+id/listAllProductsFragment"
         android:name="com.example.myapplication.ui.list_all_products.ListAllProductsFragment"
-        android:label="fragment_list_all_products"
+        android:label="Все продукты"
         tools:layout="@layout/fragment_list_all_products" >
         <action
             android:id="@+id/action_listAllProductsFragment_to_viewingTheProductFragment"
@@ -238,7 +238,7 @@
     <fragment
         android:id="@+id/addProductsInListFragment"
         android:name="com.example.myapplication.ui.add_products_in_list.AddProductsInListFragment"
-        android:label="fragment_add_products_in_list"
+        android:label="Присвоить продуктам этот тип"
         tools:layout="@layout/fragment_add_products_in_list" >
         <action
             android:id="@+id/action_addProductsInListFragment_to_listProductFragment"
@@ -247,7 +247,7 @@
     <fragment
         android:id="@+id/addThisProductInSomeListProductFragment"
         android:name="com.example.myapplication.ui.add_this_product_in_some_list_product.AddThisProductInSomeListProductFragment"
-        android:label="fragment_add_this_product_in_some_list_product"
+        android:label="Присвоить продукту эти типы"
         tools:layout="@layout/fragment_add_this_product_in_some_list_product" >
         <action
             android:id="@+id/action_addThisProductInSomeListProductFragment_to_viewingTheProductFragment"
@@ -256,7 +256,7 @@
     <fragment
         android:id="@+id/thisHikeListOfEquipmentFragment"
         android:name="com.example.myapplication.ui.this_hike_list_of_equipment.ThisHikeListOfEquipmentFragment"
-        android:label="fragment_this_hike_list_of_equipment"
+        android:label="Список снаряжения в походе"
         tools:layout="@layout/fragment_this_hike_list_of_equipment" >
         <action
             android:id="@+id/action_thisHikeListOfEquipmentFragment_to_this_hike"
@@ -265,7 +265,7 @@
     <fragment
         android:id="@+id/archiveHikeEquipmentFragment"
         android:name="com.example.myapplication.ui.archive_hike_equipment.ArchiveHikeEquipmentFragment"
-        android:label="fragment_archive_hike_equipment"
+        android:label="Список снаряжения в походе"
         tools:layout="@layout/fragment_archive_hike_equipment" >
         <action
             android:id="@+id/action_archiveHikeEquipmentFragment_to_archiveHikeViewingFragment"
@@ -274,7 +274,7 @@
     <fragment
         android:id="@+id/archiveHikeProductsFragment"
         android:name="com.example.myapplication.ui.archive_hike_products.ArchiveHikeProductsFragment"
-        android:label="fragment_archive_hike_products"
+        android:label="Список продуктов"
         tools:layout="@layout/fragment_archive_hike_products" >
         <action
             android:id="@+id/action_archiveHikeProductsFragment_to_archiveHikeViewingFragment"
@@ -283,7 +283,7 @@
     <fragment
         android:id="@+id/createHikeEquipmentFragment"
         android:name="com.example.myapplication.ui.create_hike_equipment.CreateHikeEquipmentFragment"
-        android:label="fragment_create_hike_equipment"
+        android:label="Выбор снаряжения"
         tools:layout="@layout/fragment_create_hike_equipment" >
         <action
             android:id="@+id/action_createHikeEquipmentFragment_to_createHikeProductsInListFragment"
@@ -292,7 +292,7 @@
     <fragment
         android:id="@+id/createHikeListProductsFragment"
         android:name="com.example.myapplication.ui.create_hike_list_products.CreateHikeListProductsFragment"
-        android:label="fragment_create_hike_list_products"
+        android:label="Выбрать используемые типы продуктов"
         tools:layout="@layout/fragment_create_hike_list_products" >
         <action
             android:id="@+id/action_createHikeListProductsFragment_to_this_hike"
@@ -300,8 +300,8 @@
     </fragment>
     <fragment
         android:id="@+id/createHikeProductsInListFragment"
-        android:name="com.example.myapplication.ui.create_hike_products_in_list.CreateHikeProductsInListFragment"
-        android:label="fragment_create_hike_products_in_list"
+        android:name="com.example.myapplication.ui.create_hike_products.CreateHikeProductsFragment"
+        android:label="Выбрать продукты"
         tools:layout="@layout/fragment_create_hike_products_in_list" >
         <action
             android:id="@+id/action_createHikeProductsInListFragment_to_createHikeListProductsFragment"
@@ -310,7 +310,7 @@
     <fragment
         android:id="@+id/createHikeSetTheNumberOfDayFragment"
         android:name="com.example.myapplication.ui.create_hike_set_the_number_of_day.CreateHikeSetTheNumberOfDayFragment"
-        android:label="fragment_create_hike_set_the_number_of_day"
+        android:label="Задать продолжительность похода"
         tools:layout="@layout/fragment_create_hike_set_the_number_of_day" >
         <action
             android:id="@+id/action_createHikeSetTheNumberOfDayFragment_to_createHikeParticipantFragment"
@@ -319,7 +319,7 @@
     <fragment
         android:id="@+id/watchingASingleMealFragment"
         android:name="com.example.myapplication.ui.watching_a_single_meal.WatchingASingleMealFragment"
-        android:label="fragment_watching_a_single_meal"
+        android:label="Прием пищи"
         tools:layout="@layout/fragment_watching_a_single_meal" >
         <action
             android:id="@+id/action_watchingASingleMealFragment_to_viewTheMenuFragment"
@@ -328,7 +328,7 @@
     <fragment
         android:id="@+id/viewingABackpackFragment"
         android:name="com.example.myapplication.ui.viewing_a_backpack.ViewingABackpackFragment"
-        android:label="fragment_viewing_a_backpack"
+        android:label="Список груза участника"
         tools:layout="@layout/fragment_viewing_a_backpack" >
         <action
             android:id="@+id/action_viewingABackpackFragment_to_thisHikeListOfParticipantsFragment"
@@ -340,7 +340,7 @@
     <fragment
         android:id="@+id/passOnOneThingFragment"
         android:name="com.example.myapplication.ui.pass_on_one_thing.PassOnOneThingFragment"
-        android:label="fragment_pass_on_one_thing"
+        android:label="Передать груз"
         tools:layout="@layout/fragment_pass_on_one_thing" >
         <action
             android:id="@+id/action_passOnOneThingFragment_to_viewingABackpackFragment"

@@ -33,17 +33,17 @@
         android:id="@+id/spinnerNamberOfSnacks"
         android:layout_width="305dp"
         android:layout_height="33dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:entries="@array/number_of_snacks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputName" />
 
     <Spinner
         android:id="@+id/spinnerNamberOfDay"
         android:layout_width="305dp"
         android:layout_height="33dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:entries="@array/number_of_day"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,4 +79,22 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonFurther"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputName"
+        android:layout_width="308dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="18dp"
+        app:boxBackgroundColor="@color/white"
+        app:helperText="Введите название похода"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeading">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/entertextInputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название похода" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
