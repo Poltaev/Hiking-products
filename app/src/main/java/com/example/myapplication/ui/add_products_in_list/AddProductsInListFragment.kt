@@ -112,7 +112,6 @@ class AddProductsInListFragment : Fragment() {
            viewModel.getAllProductFlow().collect {
                delay(100)
                val getProductList = it
-
                val ProductAdapter =
                    getProductList.let {
                        ListAddProductsAdapter(

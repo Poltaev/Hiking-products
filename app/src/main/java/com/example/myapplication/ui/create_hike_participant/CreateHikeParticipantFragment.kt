@@ -28,8 +28,6 @@ class CreateHikeParticipantFragment : Fragment() {
 
     lateinit var job: Job
 
-    private val listId = mutableListOf<Int>()
-
     private var _binding: FragmentCreateHikeParticipantBinding? = null
 
     private val binding get() = _binding!!
@@ -43,17 +41,6 @@ class CreateHikeParticipantFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        lifecycleScope.launch(Dispatchers.IO) {
-            val listParticipant = viewModel.getAllParticipantsList()
-            listParticipant.forEach {
-                if (it.participationInTheCampaign) {
-                    listId.add(id)
-                }
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,16 +92,13 @@ class CreateHikeParticipantFragment : Fragment() {
 
     private fun checkAndUpDateTheList() {
         job = lifecycleScope.launch {
-            delay(100)
             viewModel.getAllParticipantFlow().collect {
                 delay(100)
                 val getParticipantList = it
-                Log.i("Size listid", "${it[0].participationInTheCampaign}")
                 val ParticipantsAdapter =
                     getParticipantList.let {
                         CreateHikeParticipantsAdapter(
-                            it,
-                            listId
+                            it
                         ) { onItemClick(it) }
                     }
                 binding.recyclerViewListParticipant.adapter = ParticipantsAdapter
@@ -123,45 +107,43 @@ class CreateHikeParticipantFragment : Fragment() {
     }
 
     private fun onItemClick(item: Participants) {
-        var weNaveIt = true
-        var remove = 0
-        listId.forEach {
-            if (item.id == it) {
-                weNaveIt = false
-                remove = it
-                lifecycleScope.launch(Dispatchers.IO) {
-                    viewModel.upDateParticipant(
-                        item.id,
-                        item.photo,
-                        item.firstName,
-                        item.lastName,
-                        item.gender,
-                        item.age,
-                        item.maximumPortableWeight,
-                        item.weightOfPersonalItems,
-                        false
-                    )
+        lifecycleScope.launch(Dispatchers.IO) {
+            val listParticipant = viewModel.getAllParticipantsList()
+            listParticipant.forEach {
+                if (item.id == it.id) {
+                    if (it.participationInTheCampaign) {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            viewModel.upDateParticipant(
+                                item.id,
+                                item.photo,
+                                item.firstName,
+                                item.lastName,
+                                item.gender,
+                                item.age,
+                                item.maximumPortableWeight,
+                                item.weightOfPersonalItems,
+                                false
+                            )
+                        }
+                    } else {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            viewModel.upDateParticipant(
+                                item.id,
+                                item.photo,
+                                item.firstName,
+                                item.lastName,
+                                item.gender,
+                                item.age,
+                                item.maximumPortableWeight,
+                                item.weightOfPersonalItems,
+                                true
+                            )
+                        }
+                    }
                 }
             }
+            job.cancel()
+            checkAndUpDateTheList()
         }
-        listId.remove(remove)
-        if (weNaveIt) {
-            lifecycleScope.launch(Dispatchers.IO) {
-                viewModel.upDateParticipant(
-                    item.id,
-                    item.photo,
-                    item.firstName,
-                    item.lastName,
-                    item.gender,
-                    item.age,
-                    item.maximumPortableWeight,
-                    item.weightOfPersonalItems,
-                    true
-                )
-            }
-            listId.add(item.id)
-        }
-        job.cancel()
-        checkAndUpDateTheList()
     }
 }
