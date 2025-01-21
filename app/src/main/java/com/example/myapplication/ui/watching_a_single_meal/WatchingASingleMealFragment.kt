@@ -19,6 +19,7 @@ import com.example.myapplication.databinding.FragmentWatchingASingleMealBinding
 import com.example.myapplication.ui.adapters.ThisHikeMenuAdapter
 import com.example.myapplication.ui.adapters.ThisHikeProductsMenuAdapter
 import com.example.myapplication.ui.this_hike_list_of_products.ThisHikeListOfProductsViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -56,7 +57,7 @@ class WatchingASingleMealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        job = lifecycleScope.launch {
+        job = lifecycleScope.launch(Dispatchers.IO) {
             val listIdProducts = mutableListOf<Int>()
             val listProducts = mutableListOf<ThisHikeProducts>()
             viewModel.getAllMenuListFlow().collect {
@@ -67,7 +68,7 @@ class WatchingASingleMealFragment : Fragment() {
                 }
                 viewModel.getAllListFoodFlow().collect{x ->
                     listIdProducts.forEach {
-                        for (y in 0..x.size){
+                        for (y in 0..x.size-1){
                             if (it == x[y].id) listProducts.add(x[y])
                         }
                     }

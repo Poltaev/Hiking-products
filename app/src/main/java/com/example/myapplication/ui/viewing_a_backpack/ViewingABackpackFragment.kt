@@ -59,38 +59,44 @@ class ViewingABackpackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         job = lifecycleScope.launch {
-            val listIdProducts = mutableListOf<Int>()
-            val listProducts = mutableListOf<ThisHikeProducts>()
-            viewModel.getAllProductsParticipantsFlow().collect {
-                it.forEach {
-                    if (it.participantId == participantsId) {
-                        listIdProducts.add(it.productsId)
-                    }
-                }
-                viewModel.getAllListFoodFlow().collect { x ->
-                    listIdProducts.forEach {
-                        for (y in 0..x.size) {
-                            if (it == x[y].id) listProducts.add(x[y])
+            launch {
+                val listIdProducts = mutableListOf<Int>()
+                val listProducts = mutableListOf<ThisHikeProducts>()
+                viewModel.getAllProductsParticipantsFlow().collect {
+                    it.forEach {
+                        if (it.participantId == participantsId) {
+                            listIdProducts.add(it.productsId)
                         }
                     }
-                }
-                val typeListAdapter = listProducts.let {
-                    ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
-                }
-                binding.recyclerViewListEating.adapter = typeListAdapter
-            }
-            viewModel.getAllEquipmentFlow().collect {
-                val listEquipment = mutableListOf<ThisHikeEquipment>()
-                it.forEach {
-                    if (it.participantsId == participantsId){
-                       listEquipment.add(it)
+                    viewModel.getAllListFoodFlow().collect { x ->
+                        listIdProducts.forEach {
+                            for (y in 0..x.size) {
+                                if (it == x[y].id) listProducts.add(x[y])
+                            }
+                        }
                     }
+                    val typeListAdapter = listProducts.let {
+                        ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
+                    }
+                    binding.recyclerViewListEating.adapter = typeListAdapter
                 }
-                val typeListAdapter = listEquipment.let {
-                    ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
-                }
-                binding.recyclerViewListEquipment.adapter = typeListAdapter
             }
+
+            launch {
+                viewModel.getAllEquipmentFlow().collect {
+                    val listEquipment = mutableListOf<ThisHikeEquipment>()
+                    it.forEach {
+                        if (it.participantsId == participantsId) {
+                            listEquipment.add(it)
+                        }
+                    }
+                    val typeListAdapter = listEquipment.let {
+                        ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
+                    }
+                    binding.recyclerViewListEquipment.adapter = typeListAdapter
+                }
+            }
+
         }
 
     }

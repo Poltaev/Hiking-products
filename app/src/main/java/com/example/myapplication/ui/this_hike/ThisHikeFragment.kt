@@ -15,6 +15,7 @@ import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentThisHikeBinding
 import com.example.myapplication.ui.hike_archive.HikeArchiveViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ThisHikeFragment : Fragment() {
@@ -44,6 +45,11 @@ class ThisHikeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch(Dispatchers.IO) {
+            if (viewModel.getAllThisHike().size != 0){
+                binding.textViewNameHike.text = viewModel.getAllThisHike()[0].name
+            }
+        }
         binding.buttonCreateNewButton.setOnClickListener {
             findNavController().navigate(
                 R.id.action_this_hike_to_createHikeSetTheNumberOfDayFragment

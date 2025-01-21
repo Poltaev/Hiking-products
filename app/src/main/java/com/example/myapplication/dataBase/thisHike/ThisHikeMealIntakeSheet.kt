@@ -8,9 +8,13 @@ import androidx.room.PrimaryKey
 data class ThisHikeMealIntakeSheet(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id : Int,
+    val id: Int,
     @ColumnInfo(name = "hikeId")
-    val hikeId : Int,
+    val hikeId: Int,
     @ColumnInfo(name = "name")
-    val name : String
+    val name: String,
+    @ColumnInfo(name = "numberOfday")
+    val numberOfday: Int,
+    @ColumnInfo(name = "typeMeal")
+    val typeMeal: String
 )

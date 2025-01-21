@@ -34,7 +34,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         id: Int,
         name: String,
         numberOfDay: Int,
-        numberOfSnacksInDay: Int
+        numberOfSnacksInDay: Int,
     ) {
         val thisHike = ThisHike(
             id = id,
@@ -53,7 +53,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         id: Int,
         name: String,
         numberOfDay: Int,
-        numberOfSnacksInDay: Int
+        numberOfSnacksInDay: Int,
     ) {
         val thisHike = ThisHike(
             id = id,
@@ -84,7 +84,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
-        comment: String
+        comment: String,
     ) {
         val thisHikeProducts = ThisHikeProducts(
             id = id,
@@ -117,7 +117,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
-        comment: String
+        comment: String,
     ) {
         val thisHikeProducts = ThisHikeProducts(
             id = id,
@@ -146,18 +146,18 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun insertThisHikeEquipment(
         id: Int,
-        hikeId: Int,
+        participantsId: Int,
         name: String,
         photo: String,
         weight: Int,
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
-        comment: String
+        comment: String,
     ) {
         val thisHikeEquipment = ThisHikeEquipment(
             id = id,
-            hikeId = hikeId,
+            participantsId = participantsId,
             name = name,
             photo = photo,
             weight = weight,
@@ -165,7 +165,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
             comment = comment
-            )
+        )
         hikeDao.insertThisHikeEquipment(thisHikeEquipment)
     }
 
@@ -175,18 +175,18 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun updateThisHikeEquipment(
         id: Int,
-        hikeId: Int,
+        participantsId: Int,
         name: String,
         photo: String,
         weight: Int,
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
-        comment: String
+        comment: String,
     ) {
         val thisHikeEquipment = ThisHikeEquipment(
             id = id,
-            hikeId = hikeId,
+            participantsId = participantsId,
             name = name,
             photo = photo,
             weight = weight,
@@ -217,11 +217,11 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
-        comment: String
+        comment: String,
     ) {
         val thisHikeParticipants = ThisHikeParticipants(
             id = id,
-            hikeId  = hikeId,
+            hikeId = hikeId,
             photo = photo,
             firstName = firstName,
             lastName = lastName,
@@ -248,11 +248,11 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
-        comment: String
+        comment: String,
     ) {
         val thisHikeParticipants = ThisHikeParticipants(
             id = id,
-            hikeId  = hikeId,
+            hikeId = hikeId,
             photo = photo,
             firstName = firstName,
             lastName = lastName,
@@ -277,12 +277,16 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
     suspend fun insertThisHikeMealIntakeSheet(
         id: Int,
         hikeId: Int,
-        name: String
+        name: String,
+        numberOfday: Int,
+        typeMeal: String
     ) {
         val thisHikeMealIntakeSheet = ThisHikeMealIntakeSheet(
             id = id,
             hikeId = hikeId,
-            name = name
+            name = name,
+            numberOfday = numberOfday,
+            typeMeal = typeMeal
         )
         hikeDao.insertThisHikeMealIntakeSheet(thisHikeMealIntakeSheet)
     }
@@ -294,12 +298,16 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
     suspend fun updateThisHikeMealIntakeSheet(
         id: Int,
         hikeId: Int,
-        name: String
+        name: String,
+        numberOfday: Int,
+        typeMeal: String,
     ) {
         val thisHikeMealIntakeSheet = ThisHikeMealIntakeSheet(
             id = id,
             hikeId = hikeId,
-            name = name
+            name = name,
+            numberOfday = numberOfday,
+            typeMeal = typeMeal
         )
         hikeDao.updateThisHikeMealIntakeSheet(thisHikeMealIntakeSheet)
     }
@@ -315,7 +323,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun insertThisHikeProductsMealList(
         mealIntakeId: Int,
-        productsId: Int
+        productsId: Int,
     ) {
         val thisHikeProductsMealList = ThisHikeProductsMealList(
             mealIntakeId = mealIntakeId,
@@ -330,7 +338,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun updateThisHikeProductsMealList(
         mealIntakeId: Int,
-        productsId: Int
+        productsId: Int,
     ) {
         val thisHikeProductsMealList = ThisHikeProductsMealList(
             mealIntakeId = mealIntakeId,
@@ -350,7 +358,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun insertThisHikeProductsParticipants(
         participantId: Int,
-        productsId: Int
+        productsId: Int,
     ) {
         val thisHikeProductsParticipants = ThisHikeProductsParticipants(
             participantId = participantId,
@@ -365,7 +373,7 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun updateThisHikeProductsParticipants(
         participantId: Int,
-        productsId: Int
+        productsId: Int,
     ) {
         val thisHikeProductsParticipants = ThisHikeProductsParticipants(
             participantId = participantId,

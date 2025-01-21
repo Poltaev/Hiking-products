@@ -293,19 +293,15 @@
         android:id="@+id/createHikeListProductsFragment"
         android:name="com.example.myapplication.ui.create_hike_list_products.CreateHikeListProductsFragment"
         android:label="Выбрать используемые типы продуктов"
-        tools:layout="@layout/fragment_create_hike_list_products" >
-        <action
-            android:id="@+id/action_createHikeListProductsFragment_to_this_hike"
-            app:destination="@id/this_hike" />
-    </fragment>
+        tools:layout="@layout/fragment_create_hike_list_products" />
     <fragment
         android:id="@+id/createHikeProductsInListFragment"
         android:name="com.example.myapplication.ui.create_hike_products.CreateHikeProductsFragment"
         android:label="Выбрать продукты"
         tools:layout="@layout/fragment_create_hike_products_in_list" >
         <action
-            android:id="@+id/action_createHikeProductsInListFragment_to_createHikeListProductsFragment"
-            app:destination="@id/createHikeListProductsFragment" />
+            android:id="@+id/action_createHikeProductsInListFragment_to_this_hike"
+            app:destination="@id/this_hike" />
     </fragment>
     <fragment
         android:id="@+id/createHikeSetTheNumberOfDayFragment"

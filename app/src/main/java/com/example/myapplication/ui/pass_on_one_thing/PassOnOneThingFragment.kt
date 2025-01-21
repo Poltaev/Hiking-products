@@ -85,7 +85,7 @@ class PassOnOneThingFragment : Fragment() {
             }
         }
         if (equipmentId != 9999) {
-            job = lifecycleScope.launch {
+            job = lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.getAllEquipmentFlow().collect {
                     it.forEach {
                         if (it.id == equipmentId) {

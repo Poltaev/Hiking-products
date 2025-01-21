@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.HikeDao
 import com.example.myapplication.dataBase.Participants
+import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.domain.ParticipantsEquipmentUseCase
 import com.example.myapplication.domain.ThisHikeUseCase
 import kotlinx.coroutines.flow.Flow
@@ -32,9 +33,12 @@ class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao)  : ViewModel() 
     suspend  fun getAllEquipmentList(): List<Equipment> {
         return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
     }
+    suspend  fun getAllParticipantList(): List<ThisHikeParticipants> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
+    }
     suspend fun createHikeEquipment(
         id: Int,
-        hikeId: Int,
+        participantsId: Int,
         name:String,
         photo: String,
         weight: Int,
@@ -45,7 +49,7 @@ class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao)  : ViewModel() 
     ) {
         return ThisHikeUseCase(hikeDao).insertThisHikeEquipment(
             id = id,
-            hikeId = hikeId,
+            participantsId = participantsId,
             name = name,
             photo = photo,
             weight = weight,

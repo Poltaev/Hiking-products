@@ -42,7 +42,7 @@ class CreateHikeListProductsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonFurther.setOnClickListener {
             findNavController().navigate(
-                R.id.action_createHikeListProductsFragment_to_this_hike
+                R.id.action_createHikeProductsInListFragment_to_this_hike
             )
         }
     }
