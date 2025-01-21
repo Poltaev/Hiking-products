@@ -2,8 +2,18 @@ package com.example.myapplication.ui.watching_a_single_meal
 
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.dataBase.HikeDao
+import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
+import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
+import com.example.myapplication.dataBase.thisHike.ThisHikeProductsMealList
+import com.example.myapplication.domain.ThisHikeUseCase
+import kotlinx.coroutines.flow.Flow
 
 class WatchingASingleMealViewModel(private val hikeDao: HikeDao) : ViewModel() {
-
+    suspend fun getAllMenuListFlow(): Flow<List<ThisHikeProductsMealList>> {
+        return ThisHikeUseCase(hikeDao).getAllThisHikeProductsMealListFlow()
+    }
+    suspend fun getAllListFoodFlow(): Flow<List<ThisHikeProducts>> {
+        return ThisHikeUseCase(hikeDao).getAllThisHikeProductsFlow()
+    }
 
 }

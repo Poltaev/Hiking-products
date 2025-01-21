@@ -8,14 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentThisHikeListOfEquipmentBinding
 import com.example.myapplication.databinding.FragmentThisHikeListOfProductsBinding
+import com.example.myapplication.ui.adapters.ListTypeProductsAdapter
+import com.example.myapplication.ui.adapters.ThisHikeEquipmentAdapter
 import com.example.myapplication.ui.this_hike_list_of_products.ThisHikeListOfProductsViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class ThisHikeListOfEquipmentFragment : Fragment() {
-
+    lateinit var job: Job
     private var _binding: FragmentThisHikeListOfEquipmentBinding? = null
 
     private val binding get() = _binding!!
@@ -40,10 +45,21 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        job = lifecycleScope.launch {
+            viewModel.getAllThisHikeListEquipmentFlow().collect {
+                val listEquipment = it
+                val typeListAdapter = listEquipment.let {
+                    ThisHikeEquipmentAdapter(it)
+                }
+                binding.recyclerViewListEquipment.adapter = typeListAdapter
+            }
+        }
 
     }
-
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

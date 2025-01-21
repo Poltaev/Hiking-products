@@ -13,12 +13,6 @@ data class ThisHikeWithProductsEquipmrntParticipants(
     )
     val listParticipants: List<ThisHikeParticipants>,
     @Relation(
-        entity = ThisHikeEquipment::class,
-        parentColumn = "id",
-        entityColumn = "hikeId"
-    )
-    val listEquipment: List<ThisHikeEquipment>,
-    @Relation(
         entity = ThisHikeMealIntakeSheet::class,
         parentColumn = "id",
         entityColumn = "hikeId"

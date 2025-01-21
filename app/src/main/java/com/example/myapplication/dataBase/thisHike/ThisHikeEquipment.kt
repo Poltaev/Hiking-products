@@ -9,8 +9,8 @@ data class ThisHikeEquipment(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id : Int,
-    @ColumnInfo(name = "hikeId")
-    val hikeId : Int,
+    @ColumnInfo(name = "participantsId")
+    val participantsId : Int,
     @ColumnInfo(name = "name")
     val name : String,
     @ColumnInfo(name = "photo")
