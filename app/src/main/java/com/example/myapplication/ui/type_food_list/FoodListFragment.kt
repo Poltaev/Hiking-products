@@ -50,9 +50,6 @@ class FoodListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.checkingForStorageAvailability()
-        viewModel.сheckingForTypeLists()
-        viewModel.checkingTheAvailabilityOfProducts()
         job = lifecycleScope.launch {
             viewModel.getAllTypeListFlow().collect {
                 val listTypeList = it

@@ -9,11 +9,11 @@ import com.example.myapplication.domain.ThisHikeUseCase
 import kotlinx.coroutines.flow.Flow
 
 class WatchingASingleMealViewModel(private val hikeDao: HikeDao) : ViewModel() {
-    suspend fun getAllMenuListFlow(): Flow<List<ThisHikeProductsMealList>> {
-        return ThisHikeUseCase(hikeDao).getAllThisHikeProductsMealListFlow()
+    suspend fun getAllMenuList(): List<ThisHikeProductsMealList> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeProductsMealList()
     }
-    suspend fun getAllListFoodFlow(): Flow<List<ThisHikeProducts>> {
-        return ThisHikeUseCase(hikeDao).getAllThisHikeProductsFlow()
+    suspend fun getAllListFood(): List<ThisHikeProducts> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
     }
 
 }

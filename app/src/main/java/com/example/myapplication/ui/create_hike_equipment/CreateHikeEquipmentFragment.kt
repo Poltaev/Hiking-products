@@ -63,7 +63,7 @@ class CreateHikeEquipmentFragment : Fragment() {
                 var x = 0
                 viewModel.getAllEquipmentList().forEach {
                     if (it.equipmentInTheCampaign) {
-                        if (x >= listParticipantId.size - 1){ x = 0 }
+                        if (x >= listParticipantId.size){ x = 0 }
                             viewModel.createHikeEquipment(
                                 it.id,
                                 listParticipantId[x],

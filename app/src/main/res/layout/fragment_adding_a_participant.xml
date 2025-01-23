@@ -66,6 +66,7 @@
             android:id="@+id/enterFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Имя" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +84,7 @@
             android:id="@+id/enterSecondName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Фамилия" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,6 +102,7 @@
             android:id="@+id/enterGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Пол" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,6 +121,7 @@
             android:id="@+id/enterAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Возраст" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,6 +142,7 @@
             android:id="@+id/enterLimitWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Предельный вес" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,6 +162,7 @@
             android:id="@+id/enterWeightOfPersonalItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Вес личных вещей" />
     </com.google.android.material.textfield.TextInputLayout>
 

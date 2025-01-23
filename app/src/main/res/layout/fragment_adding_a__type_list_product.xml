@@ -33,6 +33,7 @@
             android:id="@+id/enterNameListProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Название списка" />
     </com.google.android.material.textfield.TextInputLayout>
 

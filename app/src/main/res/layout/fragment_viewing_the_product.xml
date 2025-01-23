@@ -44,6 +44,7 @@
             android:id="@+id/entertextInputName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Название" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,6 +64,7 @@
             android:id="@+id/entertextInputWeightOfOneServing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Вес одной порции" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +85,7 @@
             android:id="@+id/entertextInputWeightPackage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Вес упаковки" />
     </com.google.android.material.textfield.TextInputLayout>
 

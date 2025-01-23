@@ -45,6 +45,11 @@ class ThisHikeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.checkingForStorageAvailability()
+        viewModel.сheckingForTypeLists()
+        viewModel.checkingTheAvailabilityOfProducts()
+        viewModel.checkParticipants()
+        viewModel.checkEquipment()
         lifecycleScope.launch(Dispatchers.IO) {
             if (viewModel.getAllThisHike().size != 0){
                 binding.textViewNameHike.text = viewModel.getAllThisHike()[0].name

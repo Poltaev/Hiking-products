@@ -69,6 +69,7 @@
             android:id="@+id/enterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Название" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,6 +89,7 @@
             android:id="@+id/enterWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:hint="Вес" />
     </com.google.android.material.textfield.TextInputLayout>
 

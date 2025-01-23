@@ -2,6 +2,7 @@ package com.example.myapplication.ui.watching_a_single_meal
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.example.myapplication.ui.adapters.ThisHikeProductsMenuAdapter
 import com.example.myapplication.ui.this_hike_list_of_products.ThisHikeListOfProductsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class WatchingASingleMealFragment : Fragment() {
@@ -56,29 +58,34 @@ class WatchingASingleMealFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val listIdProducts = mutableListOf<Int>()
+        val listProducts = mutableListOf<ThisHikeProducts>()
         job = lifecycleScope.launch(Dispatchers.IO) {
-            val listIdProducts = mutableListOf<Int>()
-            val listProducts = mutableListOf<ThisHikeProducts>()
-            viewModel.getAllMenuListFlow().collect {
-                it.forEach {
-                    if (it.mealIntakeId == id){
-                        listIdProducts.add(it.productsId)
-                    }
+            viewModel.getAllMenuList().forEach {
+                Log.i("id", "${id}")
+                if (it.mealIntakeId == id) {
+                    listIdProducts.add(it.productsId)
+                    Log.i("idAdd", "${it.productsId}")
                 }
-                viewModel.getAllListFoodFlow().collect{x ->
+            }
+                viewModel.getAllListFood().forEach { item1 ->
                     listIdProducts.forEach {
-                        for (y in 0..x.size-1){
-                            if (it == x[y].id) listProducts.add(x[y])
+                        if (item1.id == it) {
+                            listProducts.add(item1)
+                            Log.i("idAddProducts", "${item1.id}")
                         }
                     }
                 }
+            launch(Dispatchers.Main) {
+                delay(100)
                 val typeListAdapter = listProducts.let {
-                    ThisHikeProductsMenuAdapter(it){onItemClick(it)}
+                    ThisHikeProductsMenuAdapter(it) { onItemClick(it) }
                 }
                 binding.recyclerViewListEating.adapter = typeListAdapter
+
             }
         }
+
     }
 
     override fun onPause() {
@@ -90,6 +97,7 @@ class WatchingASingleMealFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun onItemClick(item: ThisHikeProducts) {
         val bundle = Bundle().apply {
             item.id.let { putInt("listTypeId", it) }

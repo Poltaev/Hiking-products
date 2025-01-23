@@ -18,25 +18,5 @@ class EquipmentListViewModel(private val hikeDao: HikeDao) : ViewModel() {
         return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentFlow()
     }
 
-    suspend  fun getAllEquipmentList(): List<Equipment> {
-        return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
-    }
 
-    suspend fun addEquipment(
-        id: Int,
-        name: String,
-        photo: String,
-        weight: Int,
-        theVolumeItem: Boolean,
-        equipmentInTheCampaign: Boolean
-    ) {
-        ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-            id = id,
-            name = name,
-            photo = photo,
-            weight = weight,
-            theVolumeItem = theVolumeItem,
-            equipmentInTheCampaign = equipmentInTheCampaign
-        )
-    }
 }
