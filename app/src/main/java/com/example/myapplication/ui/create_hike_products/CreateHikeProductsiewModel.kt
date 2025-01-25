@@ -138,6 +138,7 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                 }
             }
             removeUnusedProducts()
+            addThisHikeProductsToBackpack()
         }
     }
 
@@ -330,6 +331,44 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         listProducts.forEach {
             if (it.remainingWeight == 0) {
                 ThisHikeUseCase(hikeDao).deleteThisHikeProducts(it)
+            }
+        }
+    }
+    fun addThisHikeProductsToBackpack() {
+        viewModelScope.launch(Dispatchers.IO) {
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach {
+                    val listParticipant = ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
+                    val listParticipantMaxWeight = mutableListOf<Double>()
+                    val listParticipantWeight = mutableListOf<Double>()
+                    listParticipant.forEach {
+                        listParticipantMaxWeight.add(it.maximumPortableWeight.toDouble())
+                        listParticipantWeight.add(it.weightWithLoad.toDouble())
+                    }
+                    val theLightestBackpackPossible = mutableListOf<Double>()
+                    for (i in 0..listParticipant.size - 1) {
+                        val sum =
+                            ((listParticipantMaxWeight[i] - listParticipantWeight[i]) / listParticipantMaxWeight[i]) * 100
+                        theLightestBackpackPossible.add(sum)
+                    }
+                    val theLightestBackpackPossibleSort = theLightestBackpackPossible.sortedDescending()
+                    val returnIndexPartisipant = theLightestBackpackPossible.indexOf(theLightestBackpackPossibleSort[0])
+                    ThisHikeUseCase(hikeDao).insertThisHikeProductsParticipants(
+                        listParticipant[returnIndexPartisipant].id,
+                        it.id
+                    )
+                    ThisHikeUseCase(hikeDao).updateThisHikeParticipants(
+                        listParticipant[returnIndexPartisipant].id,
+                        listParticipant[returnIndexPartisipant].hikeId,
+                        listParticipant[returnIndexPartisipant].photo,
+                        listParticipant[returnIndexPartisipant].firstName,
+                        listParticipant[returnIndexPartisipant].lastName,
+                        listParticipant[returnIndexPartisipant].gender,
+                        listParticipant[returnIndexPartisipant].age,
+                        listParticipant[returnIndexPartisipant].maximumPortableWeight,
+                        listParticipant[returnIndexPartisipant].weightOfPersonalItems,
+                        listParticipant[returnIndexPartisipant].weightWithLoad + it.remainingWeight,
+                        listParticipant[returnIndexPartisipant].comment
+                    )
             }
         }
     }

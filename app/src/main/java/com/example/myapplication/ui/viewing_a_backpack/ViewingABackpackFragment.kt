@@ -70,7 +70,7 @@ class ViewingABackpackFragment : Fragment() {
                     }
                     viewModel.getAllListFoodFlow().collect { x ->
                         listIdProducts.forEach {
-                            for (y in 0..x.size) {
+                            for (y in 0..x.size-1) {
                                 if (it == x[y].id) listProducts.add(x[y])
                             }
                         }

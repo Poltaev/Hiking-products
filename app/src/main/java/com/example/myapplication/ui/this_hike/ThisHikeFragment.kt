@@ -16,10 +16,11 @@ import com.example.myapplication.dataBase.App
 import com.example.myapplication.databinding.FragmentThisHikeBinding
 import com.example.myapplication.ui.hike_archive.HikeArchiveViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class ThisHikeFragment : Fragment() {
-
+    lateinit var job: Job
     private var _binding: FragmentThisHikeBinding? = null
 
     private val binding get() = _binding!!
@@ -36,7 +37,7 @@ class ThisHikeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentThisHikeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -50,8 +51,8 @@ class ThisHikeFragment : Fragment() {
         viewModel.checkingTheAvailabilityOfProducts()
         viewModel.checkParticipants()
         viewModel.checkEquipment()
-        lifecycleScope.launch(Dispatchers.IO) {
-            if (viewModel.getAllThisHike().size != 0){
+        job =  lifecycleScope.launch(Dispatchers.IO) {
+            if (viewModel.getAllThisHike().size != 0) {
                 binding.textViewNameHike.text = viewModel.getAllThisHike()[0].name
             }
         }
@@ -81,7 +82,10 @@ class ThisHikeFragment : Fragment() {
             )
         }
     }
-
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
