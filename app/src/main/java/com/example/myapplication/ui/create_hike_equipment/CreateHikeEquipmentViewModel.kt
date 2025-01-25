@@ -1,25 +1,30 @@
 package com.example.myapplication.ui.create_hike_equipment
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.HikeDao
 import com.example.myapplication.dataBase.Participants
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.domain.ParticipantsEquipmentUseCase
 import com.example.myapplication.domain.ThisHikeUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
-class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao)  : ViewModel() {
-    suspend  fun getAllEquipmentFlow(): Flow<List<Equipment>> {
+class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
+    suspend fun getAllEquipmentFlow(): Flow<List<Equipment>> {
         return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentFlow()
     }
-    suspend  fun upDateEquipment(
+
+    suspend fun upDateEquipment(
         id: Int,
-        name:String,
+        name: String,
         photo: String,
         weight: Int,
         theVolumeItem: Boolean,
-        equipmentInTheCampaign: Boolean
+        equipmentInTheCampaign: Boolean,
     ) {
         return ParticipantsEquipmentUseCase(hikeDao).upDateEquipment(
             id = id,
@@ -30,34 +35,56 @@ class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao)  : ViewModel() 
             equipmentInTheCampaign = equipmentInTheCampaign
         )
     }
-    suspend  fun getAllEquipmentList(): List<Equipment> {
+
+    suspend fun getAllEquipmentList(): List<Equipment> {
         return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
     }
-    suspend  fun getAllParticipantList(): List<ThisHikeParticipants> {
-        return ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
-    }
-    suspend fun createHikeEquipment(
-        id: Int,
-        participantsId: Int,
-        name:String,
-        photo: String,
-        weight: Int,
-        partiallyAssembled: Boolean,
-        fullyAssembled: Boolean,
-        theVolumeItem: Boolean,
-        comment: String
-    ) {
-        return ThisHikeUseCase(hikeDao).insertThisHikeEquipment(
-            id = id,
-            participantsId = participantsId,
-            name = name,
-            photo = photo,
-            weight = weight,
-            partiallyAssembled = partiallyAssembled,
-            fullyAssembled = fullyAssembled,
-            theVolumeItem = theVolumeItem,
-            comment = comment
-        )
-    }
 
+    fun addEquipmentToBackpack() {
+        viewModelScope.launch(Dispatchers.IO) {
+            ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList().forEach {
+                if (it.equipmentInTheCampaign) {
+                    val listParticipant = ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
+                    val listParticipantMaxWeight = mutableListOf<Double>()
+                    val listParticipantWeight = mutableListOf<Double>()
+                    listParticipant.forEach {
+                        listParticipantMaxWeight.add(it.maximumPortableWeight.toDouble())
+                        listParticipantWeight.add(it.weightWithLoad.toDouble())
+                    }
+                    val theLightestBackpackPossible = mutableListOf<Double>()
+                    for (i in 0..listParticipant.size - 1) {
+                        val sum =
+                            ((listParticipantMaxWeight[i] - listParticipantWeight[i]) / listParticipantMaxWeight[i]) * 100
+                        theLightestBackpackPossible.add(sum)
+                    }
+                    val theLightestBackpackPossibleSort = theLightestBackpackPossible.sortedDescending()
+                    val returnIndexPartisipant = theLightestBackpackPossible.indexOf(theLightestBackpackPossibleSort[0])
+                    ThisHikeUseCase(hikeDao).insertThisHikeEquipment(
+                        it.id,
+                        listParticipant[returnIndexPartisipant].id,
+                        it.name,
+                        it.photo,
+                        it.weight,
+                        false,
+                        false,
+                        false,
+                        ""
+                    )
+                    ThisHikeUseCase(hikeDao).updateThisHikeParticipants(
+                        listParticipant[returnIndexPartisipant].id,
+                        listParticipant[returnIndexPartisipant].hikeId,
+                        listParticipant[returnIndexPartisipant].photo,
+                        listParticipant[returnIndexPartisipant].firstName,
+                        listParticipant[returnIndexPartisipant].lastName,
+                        listParticipant[returnIndexPartisipant].gender,
+                        listParticipant[returnIndexPartisipant].age,
+                        listParticipant[returnIndexPartisipant].maximumPortableWeight,
+                        listParticipant[returnIndexPartisipant].weightOfPersonalItems,
+                        listParticipant[returnIndexPartisipant].weightWithLoad + it.weight,
+                        listParticipant[returnIndexPartisipant].comment
+                    )
+                }
+            }
+        }
+    }
 }

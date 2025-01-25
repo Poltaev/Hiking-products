@@ -27,6 +27,7 @@ class CreateHikeParticipantViewModel(private val hikeDao: HikeDao) : ViewModel()
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         participationInTheCampaign: Boolean
     ) {
         return ParticipantsEquipmentUseCase(hikeDao).upDateParticipants(
@@ -38,6 +39,7 @@ class CreateHikeParticipantViewModel(private val hikeDao: HikeDao) : ViewModel()
             age = age,
             maximumPortableWeight = maximumPortableWeight,
             weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad =weightWithLoad,
             participationInTheCampaign = participationInTheCampaign
         )
     }
@@ -54,6 +56,7 @@ class CreateHikeParticipantViewModel(private val hikeDao: HikeDao) : ViewModel()
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         comment: String
     ) {
         return ThisHikeUseCase(hikeDao).insertThisHikeParticipants(
@@ -66,6 +69,7 @@ class CreateHikeParticipantViewModel(private val hikeDao: HikeDao) : ViewModel()
             age = age,
             maximumPortableWeight = maximumPortableWeight,
             weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad = weightWithLoad,
             comment = comment
         )
     }

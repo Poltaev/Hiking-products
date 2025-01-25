@@ -55,30 +55,7 @@ class CreateHikeEquipmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         checkAndUpDateTheList()
         binding.buttonFurther.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                val listParticipantId = mutableListOf<Int>()
-                viewModel.getAllParticipantList().forEach {
-                    listParticipantId.add(it.id)
-                }
-                var x = 0
-                viewModel.getAllEquipmentList().forEach {
-                    if (it.equipmentInTheCampaign) {
-                        if (x >= listParticipantId.size){ x = 0 }
-                            viewModel.createHikeEquipment(
-                                it.id,
-                                listParticipantId[x],
-                                it.name,
-                                it.photo,
-                                it.weight,
-                                false,
-                                false,
-                                false,
-                                ""
-                            )
-                        x ++
-                    }
-                }
-            }
+            viewModel.addEquipmentToBackpack()
             findNavController().navigate(
                 R.id.action_createHikeEquipmentFragment_to_createHikeProductsInListFragment
             )

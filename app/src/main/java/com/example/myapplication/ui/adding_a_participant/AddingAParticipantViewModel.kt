@@ -33,6 +33,7 @@ class AddingAParticipantViewModel(private val hikeDao: HikeDao) : ViewModel() {
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         participationInTheCampaign: Boolean
     ) {
         ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
@@ -44,6 +45,7 @@ class AddingAParticipantViewModel(private val hikeDao: HikeDao) : ViewModel() {
             age = age,
             maximumPortableWeight = maximumPortableWeight,
             weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad  = weightWithLoad,
             participationInTheCampaign = participationInTheCampaign
         )
     }

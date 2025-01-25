@@ -69,6 +69,7 @@ class CreateHikeParticipantFragment : Fragment() {
                             it.age,
                             it.maximumPortableWeight,
                             it.weightOfPersonalItems,
+                            it.weightWithLoad,
                             ""
                         )
                     }
@@ -122,6 +123,7 @@ class CreateHikeParticipantFragment : Fragment() {
                                 item.age,
                                 item.maximumPortableWeight,
                                 item.weightOfPersonalItems,
+                                item.weightWithLoad,
                                 false
                             )
                         }
@@ -136,6 +138,7 @@ class CreateHikeParticipantFragment : Fragment() {
                                 item.age,
                                 item.maximumPortableWeight,
                                 item.weightOfPersonalItems,
+                                item.weightWithLoad,
                                 true
                             )
                         }

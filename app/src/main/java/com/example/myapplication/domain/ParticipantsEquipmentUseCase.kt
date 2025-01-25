@@ -77,6 +77,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         participationInTheCampaign: Boolean
     ) {
         val participantsForLoad = Participants(
@@ -88,6 +89,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
             age = age,
             maximumPortableWeight = maximumPortableWeight,
             weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad = weightWithLoad,
             participationInTheCampaign = participationInTheCampaign
         )
         hikeDao.insertOneParticipant(participantsForLoad)
@@ -106,6 +108,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
         age: String,
         maximumPortableWeight: Int,
         weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         participationInTheCampaign: Boolean
     ) {
         val participants = Participants(
@@ -117,6 +120,7 @@ class ParticipantsEquipmentUseCase(private val hikeDao: HikeDao) {
             age = age,
             maximumPortableWeight = maximumPortableWeight,
             weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad = weightWithLoad,
             participationInTheCampaign = participationInTheCampaign
         )
         hikeDao.updateOneParticipant(participants)

@@ -23,7 +23,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
     suspend fun getAllThisHike(): List<ThisHike> {
         return ThisHikeUseCase(hikeDao).getAllListThisHike()
     }
-    suspend  fun getAllEquipmentList(): List<Equipment> {
+
+    suspend fun getAllEquipmentList(): List<Equipment> {
         return ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
     }
 
@@ -33,7 +34,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
         photo: String,
         weight: Int,
         theVolumeItem: Boolean,
-        equipmentInTheCampaign: Boolean
+        equipmentInTheCampaign: Boolean,
     ) {
         ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
             id = id,
@@ -45,9 +46,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
         )
     }
 
-    fun checkEquipment () {
+    fun checkEquipment() {
         viewModelScope.launch(Dispatchers.IO) {
-            val getListEquipment = ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
+            val getListEquipment =
+                ParticipantsEquipmentUseCase(hikeDao).getAllCollectionEquipmentList()
             if (getListEquipment.size == 0) {
 
 //                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -173,9 +175,11 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
             }
         }
     }
+
     fun checkParticipants() {
         viewModelScope.launch(Dispatchers.IO) {
-            val getListParticipants = ParticipantsEquipmentUseCase(hikeDao).getAllCollectionParticipantsList()
+            val getListParticipants =
+                ParticipantsEquipmentUseCase(hikeDao).getAllCollectionParticipantsList()
             if (getListParticipants.size == 0) {
 //                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
 //                    1,
@@ -186,6 +190,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
 //                    "17",
 //                    10000,
 //                    10000,
+                //                    10000,
 //                    false
 //
 //                )
@@ -197,6 +202,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Мужской",
                     "27",
                     25000,
+                    10000,
                     10000,
                     true
 
@@ -210,6 +216,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "27",
                     24000,
                     10000,
+                    10000,
                     true
 
                 )
@@ -221,6 +228,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Мужской",
                     "27",
                     23000,
+                    10000,
                     10000,
                     true
 
@@ -234,6 +242,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "28",
                     23000,
                     10000,
+                    10000,
                     true
 
                 )
@@ -245,6 +254,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Женский",
                     "22",
                     19000,
+                    10000,
                     10000,
                     true
 
@@ -258,6 +268,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "22",
                     19000,
                     10000,
+                    10000,
                     true
 
                 )
@@ -269,6 +280,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Женский",
                     "22",
                     19000,
+                    10000,
                     10000,
                     true
 
@@ -416,13 +428,13 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ProductsUseCase(hikeDao).loadListTypeOfProducts(
                     21,
                     1,
-                    "Перекусы",
+                    "Перекус",
                     "Орехи"
                 )
                 ProductsUseCase(hikeDao).loadListTypeOfProducts(
                     22,
                     1,
-                    "Перекусы",
+                    "Перекус",
                     "Сухофрукты"
                 )
                 ProductsUseCase(hikeDao).loadListTypeOfProducts(

@@ -151,6 +151,7 @@ class AddingAParticipantFragment : Fragment() {
                     age,
                     limitWeight,
                     weightOfPersonalItems,
+                    weightOfPersonalItems,
                     campaignParticipant
                 )
             }

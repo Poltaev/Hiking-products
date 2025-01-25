@@ -25,6 +25,8 @@ data class ThisHikeParticipants(
     val maximumPortableWeight : Int,
     @ColumnInfo(name = "weight_of_personal_items")
     val weightOfPersonalItems : Int,
+    @ColumnInfo(name = "weight_with_load")
+    val weightWithLoad : Int,
     @ColumnInfo(name = "comment")
     val comment : String
 )
