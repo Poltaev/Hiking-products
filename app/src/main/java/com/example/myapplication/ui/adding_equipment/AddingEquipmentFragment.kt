@@ -26,7 +26,7 @@ class AddingEquipmentFragment : Fragment() {
     private var id = 1
     private var name = "Name"
     private var photo = "Photo"
-    private var weight = 1022
+    private var weight = 1000
     private var theVolumeItem = false
     private var equipmentInTheCampaign = true
 
@@ -86,14 +86,14 @@ class AddingEquipmentFragment : Fragment() {
         }
         binding.enterName.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                name = " "
+                name
             } else {
                 name = text.toString()
             }
         }
         binding.enterWeight.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                weight = 0
+                weight
             } else {
                 weight = text.toString().toInt()
             }

@@ -30,8 +30,8 @@ class AddingAParticipantFragment : Fragment() {
     private var secondName = "Фамилия"
     private var gender = "Пол"
     private var age = "28"
-    private var limitWeight = 25767
-    private var weightOfPersonalItems = 10003
+    private var limitWeight = 25000
+    private var weightOfPersonalItems = 10000
     private var campaignParticipant = true
 
     private var _binding: FragmentAddingAParticipantBinding? = null
@@ -90,7 +90,7 @@ class AddingAParticipantFragment : Fragment() {
                 delay(100)
                 binding.textInputLayoutFirstName.editText?.setText(firstName)
                 binding.textInputLayoutSecondName.editText?.setText(secondName)
-                binding.textInputLayoutGender.editText?.setText(gender)
+                gender = binding.spinnerGender.selectedItem.toString()
                 binding.textInputLayoutAge.editText?.setText(age.toString())
                 binding.textInputLimitWeight.editText?.setText(limitWeight.toString())
                 binding.textInputWeightOfPersonalItems.editText?.setText(weightOfPersonalItems.toString())
@@ -98,42 +98,36 @@ class AddingAParticipantFragment : Fragment() {
         }
         binding.enterFirstName.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                firstName = " "
+                firstName
             } else {
                 firstName = text.toString()
             }
         }
         binding.enterSecondName.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                secondName = " "
+                secondName
             } else {
                 secondName = text.toString()
             }
         }
-        binding.enterGender.doOnTextChanged { text, _, _, _ ->
-            if (text == null){
-                gender = " "
-            } else {
-                gender = text.toString()
-            }
-        }
+
         binding.enterAge.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                age = " "
+                age
             } else {
                 age = text.toString()
             }
         }
         binding.enterLimitWeight.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                limitWeight = 0
+                limitWeight
             } else {
                 limitWeight = text.toString().toInt()
             }
         }
         binding.enterWeightOfPersonalItems.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                weightOfPersonalItems = 0
+                weightOfPersonalItems
             } else {
                 weightOfPersonalItems = text.toString().toInt()
             }
@@ -147,7 +141,7 @@ class AddingAParticipantFragment : Fragment() {
                     photo,
                     firstName,
                     secondName,
-                    gender,
+                    binding.spinnerGender.selectedItem.toString(),
                     age,
                     limitWeight,
                     weightOfPersonalItems,

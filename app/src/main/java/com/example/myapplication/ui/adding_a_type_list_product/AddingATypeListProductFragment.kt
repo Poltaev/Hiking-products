@@ -70,7 +70,7 @@ class AddingATypeListProductFragment : Fragment() {
         }
         binding.enterNameListProduct.doOnTextChanged { text, _, _, _ ->
             if (text == null) {
-                nameProductsList = " "
+                nameProductsList
             } else {
                 nameProductsList = text.toString()
             }

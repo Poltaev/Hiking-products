@@ -25,8 +25,8 @@ class ViewingTheProductFragment : Fragment() {
 
     private var id = 1
     private var name = "Имя"
-    private var weightForPerson = 1
-    private var packageWeight = 1
+    private var weightForPerson = 12
+    private var packageWeight = 123
     private var theVolumeItem = false
     private var weWillUseItInTheCurrentCampaign = false
 
@@ -91,21 +91,21 @@ class ViewingTheProductFragment : Fragment() {
         }
         binding.entertextInputName.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                name = " "
+                name
             } else {
                 name = text.toString()
             }
         }
         binding.entertextInputWeightOfOneServing.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                weightForPerson = 0
+                weightForPerson
             } else {
                 weightForPerson = text.toString().toInt()
             }
         }
         binding.entertextInputWeightPackage.doOnTextChanged { text, _, _, _ ->
             if (text == null){
-                packageWeight = 0
+                packageWeight
             } else {
                 packageWeight = text.toString().toInt()
             }

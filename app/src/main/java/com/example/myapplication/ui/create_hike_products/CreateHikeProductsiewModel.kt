@@ -71,13 +71,13 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                             idProduct = getIdProduct(idProduct, it)
                             idProduct = checkBanProducts(idProduct, idThisHikeProduct)
                             idProduct.shuffle()
-                            thisMealProducts = createProductsFromMenu(idProduct, thisMealProducts)
-                            idProduct.clear()
                             var couterProducts = 0
                             for (x in 1..numberOfDay) {
                                 if (couterProducts > thisMealProducts.size - 1) {
                                     couterProducts = 0
                                 }
+                                thisMealProducts.clear()
+                                thisMealProducts = createProductsFromMenu(idProduct, thisMealProducts)
                                 upDateThisHikeProductsForMenu(
                                     thisMealProducts,
                                     couterProducts,
@@ -99,6 +99,7 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                                 )
                                 couterProducts++
                             }
+                            idProduct.clear()
                             thisMealProducts.clear()
                         }
                     }

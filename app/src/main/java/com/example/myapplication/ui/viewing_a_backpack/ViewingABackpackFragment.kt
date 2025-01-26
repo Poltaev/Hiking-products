@@ -26,7 +26,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class ViewingABackpackFragment : Fragment() {
-    lateinit var job: Job
     private var _binding: FragmentViewingABackpackBinding? = null
     private var participantsId = 1
     private val binding get() = _binding!!
@@ -58,52 +57,17 @@ class ViewingABackpackFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch {
-            launch {
-                val listIdProducts = mutableListOf<Int>()
-                val listProducts = mutableListOf<ThisHikeProducts>()
-                viewModel.getAllProductsParticipantsFlow().collect {
-                    it.forEach {
-                        if (it.participantId == participantsId) {
-                            listIdProducts.add(it.productsId)
-                        }
-                    }
-                    viewModel.getAllListFoodFlow().collect { x ->
-                        listIdProducts.forEach {
-                            for (y in 0..x.size-1) {
-                                if (it == x[y].id) listProducts.add(x[y])
-                            }
-                        }
-                    }
-                    val typeListAdapter = listProducts.let {
-                        ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
-                    }
-                    binding.recyclerViewListEating.adapter = typeListAdapter
-                }
-            }
 
-            launch {
-                viewModel.getAllEquipmentFlow().collect {
-                    val listEquipment = mutableListOf<ThisHikeEquipment>()
-                    it.forEach {
-                        if (it.participantsId == participantsId) {
-                            listEquipment.add(it)
-                        }
-                    }
-                    val typeListAdapter = listEquipment.let {
-                        ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
-                    }
-                    binding.recyclerViewListEquipment.adapter = typeListAdapter
-                }
-            }
-
+        val typeListFoodAdapter = viewModel.getListFood(participantsId).let {
+            ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
         }
+        binding.recyclerViewListEating.adapter = typeListFoodAdapter
 
-    }
 
-    override fun onPause() {
-        super.onPause()
-        job.cancel()
+        val typeListEquipmentAdapter = viewModel.getListEquipment(participantsId).let {
+            ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
+        }
+        binding.recyclerViewListEquipment.adapter = typeListEquipmentAdapter
     }
 
     override fun onDestroyView() {

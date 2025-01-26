@@ -60,6 +60,7 @@
         android:layout_height="83dp"
         android:layout_marginTop="50dp"
         app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/black_transperent50"
         app:helperText="Введите название снаряжения"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +80,7 @@
         android:layout_height="83dp"
         android:layout_marginTop="150dp"
         app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/black_transperent50"
         app:helperText="Введите вес снаряжения в граммах"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +91,7 @@
             android:id="@+id/enterWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             android:textColor="@color/black"
             android:hint="Вес" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -24,7 +24,7 @@ class CreateHikeSetTheNumberOfDayFragment : Fragment() {
 
     private var numberOfSnaks = 0
     private var numberOfDay = 1
-    private var name = "name"
+    private var name = "Имя похода"
     private var _binding: FragmentCreateHikeSetTheNumberOfDayBinding? = null
 
     private val binding get() = _binding!!
@@ -52,7 +52,7 @@ class CreateHikeSetTheNumberOfDayFragment : Fragment() {
 
         binding.entertextInputName.doOnTextChanged { text, _, _, _ ->
             if (text == null) {
-                name = " "
+                name
             } else {
                 name = text.toString()
             }

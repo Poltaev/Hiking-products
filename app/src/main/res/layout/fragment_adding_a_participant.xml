@@ -57,6 +57,7 @@
         android:layout_width="328dp"
         android:layout_height="55dp"
         android:layout_marginTop="5dp"
+        android:textColorHint="@color/black_transperent50"
         app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +67,8 @@
             android:id="@+id/enterFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:hint="Имя" />
+            android:hint="Имя"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -76,6 +77,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="55dp"
         app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/black_transperent50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
@@ -88,23 +90,15 @@
             android:hint="Фамилия" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutGender"
-        android:layout_width="328dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="105dp"
-        app:boxBackgroundColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Spinner
+        android:id="@+id/spinnerGender"
+        android:layout_width="324dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="1dp"
+        android:entries="@array/gender_selection"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/enterGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:hint="Пол" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSecondName" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAge"
@@ -112,6 +106,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="155dp"
         app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/black_transperent50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhotoParticipant"
@@ -121,6 +116,7 @@
             android:id="@+id/enterAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             android:textColor="@color/black"
             android:hint="Возраст" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -131,6 +127,7 @@
         android:layout_height="90dp"
         android:layout_marginTop="206dp"
         app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/black_transperent50"
         app:helperText="Введите вернхнюю границу возможного веса рюкзака в граммах"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -142,6 +139,7 @@
             android:id="@+id/enterLimitWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             android:textColor="@color/black"
             android:hint="Предельный вес" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -152,6 +150,7 @@
         android:layout_height="90dp"
         android:layout_marginTop="300dp"
         app:boxBackgroundColor="@color/white"
+        android:textColorHint="@color/black_transperent50"
         app:helperText="Введите вес личных вещей учасника в граммах."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,6 +161,7 @@
             android:id="@+id/enterWeightOfPersonalItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             android:textColor="@color/black"
             android:hint="Вес личных вещей" />
     </com.google.android.material.textfield.TextInputLayout>
