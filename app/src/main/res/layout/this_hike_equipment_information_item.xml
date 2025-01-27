@@ -18,12 +18,13 @@
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
+
     <TextView
         android:id="@+id/textViewNameEquipment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Name Equipment"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageViewEquipment"
@@ -33,20 +34,19 @@
         android:id="@+id/textViewNameParticipants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Name Participants"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageViewEquipment"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/textViewWeightPackage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="Weight Package"
         app:layout_constraintStart_toEndOf="@+id/imageViewEquipment"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameEquipment" />

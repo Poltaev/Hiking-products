@@ -82,10 +82,17 @@ class CreateHikeParticipantsAdapter(
             }
 
             item?.let {
-                Glide
-                    .with(imageViewParticipants.context)
-                    .load(R.drawable.man1)
-                    .into(imageViewParticipants)
+                if (item.gender == "Мужской"){
+                    Glide
+                        .with(imageViewParticipants.context)
+                        .load(R.drawable.man1)
+                        .into(imageViewParticipants)
+                } else {
+                    Glide
+                        .with(imageViewParticipants.context)
+                        .load(R.drawable.woman)
+                        .into(imageViewParticipants)
+                }
             }
         }
 

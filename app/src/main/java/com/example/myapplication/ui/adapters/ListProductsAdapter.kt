@@ -42,10 +42,10 @@ class ListProductsAdapter(
                 textViewNameProducts.text = item.name
             }
             if (item != null) {
-                textViewWeightServing.text = item.weightForPerson.toString() + " г"
+                textViewWeightServing.text = "Вес порции: " + item.weightForPerson.toString() + " г"
             }
             if (item != null) {
-                textViewWeightPackage.text = item.packageWeight.toString() + " г"
+                textViewWeightPackage.text = "Вес упаковки: " + item.packageWeight.toString() + " г"
             }
 
             item?.let {

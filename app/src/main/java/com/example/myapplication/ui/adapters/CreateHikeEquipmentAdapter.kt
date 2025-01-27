@@ -52,7 +52,7 @@ class CreateHikeEquipmentAdapter(
                 textViewNameEquipment.text = item.name
             }
             if (item != null) {
-                textViewWeight.text = item.weight.toString() + " г."
+                textViewWeight.text = "Вес:" + item.weight.toString() + " г."
             }
 
 

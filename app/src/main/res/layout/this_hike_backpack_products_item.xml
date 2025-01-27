@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageViewProducts"
-        android:layout_width="60dp"
-        android:layout_height="54dp"
+        android:layout_width="62dp"
+        android:layout_height="95dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,39 +33,31 @@
         android:id="@+id/textViewNameParticipants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
         android:text="Name Participants"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewWeightOnePerson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
-        android:text="Weight OnePerson"
-        app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
 
     <TextView
         android:id="@+id/textViewWeightAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="58dp"
         android:text="Weight All"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
+
 
     <TextView
         android:id="@+id/textViewWeightPackage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="19dp"
         android:text="Weight Package"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
@@ -74,8 +66,8 @@
         android:id="@+id/textViewWeightRemains"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="39dp"
         android:text="Weight remains"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />

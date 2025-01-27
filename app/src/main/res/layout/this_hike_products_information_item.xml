@@ -7,15 +7,15 @@
 
     <ImageView
         android:id="@+id/imageViewProducts"
-        android:layout_width="60dp"
-        android:layout_height="54dp"
+        android:layout_width="68dp"
+        android:layout_height="105dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.011"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.012"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -33,8 +33,8 @@
         android:id="@+id/textViewNameParticipants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
         android:text="Name Participants"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         android:text="Weight OnePerson"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
@@ -54,28 +54,29 @@
         android:id="@+id/textViewWeightAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
         android:text="Weight All"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
+
 
     <TextView
         android:id="@+id/textViewWeightPackage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="Weight Package"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
 
     <TextView
-        android:id="@+id/textViewWeightRemains"
+        android:id="@+id/textViewWeightOneMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="58dp"
         android:text="Weight remains"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />

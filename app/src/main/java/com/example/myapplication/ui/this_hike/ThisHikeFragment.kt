@@ -51,9 +51,11 @@ class ThisHikeFragment : Fragment() {
         viewModel.checkingTheAvailabilityOfProducts()
         viewModel.checkParticipants()
         viewModel.checkEquipment()
-        job =  lifecycleScope.launch(Dispatchers.IO) {
+        job = lifecycleScope.launch(Dispatchers.IO) {
             if (viewModel.getAllThisHike().size != 0) {
-                binding.textViewNameHike.text = viewModel.getAllThisHike()[0].name
+                launch(Dispatchers.Default) {
+                    binding.textViewNameHike.text = viewModel.getAllThisHike()[0].name
+                }
             }
         }
         binding.buttonCreateNewButton.setOnClickListener {
@@ -82,10 +84,12 @@ class ThisHikeFragment : Fragment() {
             )
         }
     }
+
     override fun onPause() {
         super.onPause()
         job.cancel()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

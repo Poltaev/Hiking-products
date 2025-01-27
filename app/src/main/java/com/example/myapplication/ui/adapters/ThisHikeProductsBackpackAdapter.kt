@@ -60,16 +60,13 @@ class ThisHikeProductsBackpackAdapter(
                 textViewNameParticipants.text = item.name
             }
             if (item != null) {
-                textViewWeightPackage.text = item.packageWeight.toString() + " г."
+                textViewWeightPackage.text = "Вес упаковки: " + item.packageWeight.toString() + " г."
             }
             if (item != null) {
-                textViewWeightOnePerson.text = item.weightForPerson.toString() + " г."
+                textViewWeightAll.text = "Вес на весь поход: " + item.weightOnTheHike.toString() + " г."
             }
             if (item != null) {
-                textViewWeightAll.text = item.weightOnTheHike.toString() + " г."
-            }
-            if (item != null) {
-                textViewWeightRemains.text = item.remainingWeight.toString() + " г."
+                textViewWeightRemains.text = "Текущий остаток: " + item.remainingWeight.toString() + " г."
             }
 
             item?.let {

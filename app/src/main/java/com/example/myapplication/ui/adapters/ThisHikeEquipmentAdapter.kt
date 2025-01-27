@@ -59,7 +59,7 @@ class ThisHikeEquipmentAdapter(
                 textViewNameParticipants.text = item.name
             }
             if (item != null) {
-                textViewWeightPackage.text = item.weight.toString() + " г."
+                textViewWeightPackage.text = "Вес: " + item.weight.toString() + " г."
             }
 
 

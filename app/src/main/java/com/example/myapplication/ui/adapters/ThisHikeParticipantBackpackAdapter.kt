@@ -58,14 +58,21 @@ class ThisHikeParticipantAdapter(
         val item = response?.getOrNull(position)
         with(holder.binding) {
             if (item != null) {
-                textViewNameParticipant.text = item.firstName + item.lastName
+                textViewNameParticipant.text = item.firstName+ " " + item.lastName
             }
 
             item?.let {
-                Glide
-                    .with(imageViewParticipant.context)
-                    .load(R.drawable.tourism)
-                    .into(imageViewParticipant)
+                if (item.gender == "Мужской"){
+                    Glide
+                        .with(imageViewParticipant.context)
+                        .load(R.drawable.man1)
+                        .into(imageViewParticipant)
+                } else {
+                    Glide
+                        .with(imageViewParticipant.context)
+                        .load(R.drawable.woman)
+                        .into(imageViewParticipant)
+                }
             }
         }
 
