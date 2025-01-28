@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
 import com.example.myapplication.dataBase.products.ListTypeOfProducts
+import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.databinding.FragmentThisHikeListOfProductsBinding
 import com.example.myapplication.ui.adapters.ThisHikeEquipmentAdapter
@@ -50,7 +51,7 @@ class ThisHikeListOfProductsFragment : Fragment() {
             viewModel.getAllProductsFlow().collect {
                 val listProducts = it
                 val typeListAdapter = listProducts.let {
-                    ThisHikeProductsAdapter(it)
+                    ThisHikeProductsAdapter(it){onItemClick(it)}
                 }
                 binding.recyclerViewListProducts.adapter = typeListAdapter
             }
@@ -65,5 +66,13 @@ class ThisHikeListOfProductsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
+    private fun onItemClick(item: ThisHikeProducts) {
+        val bundle = Bundle().apply {
+            item.id.let { putInt("productTypeId", it) }
+        }
+        findNavController().navigate(
+            R.id.action_thisHikeListOfProductsFragment_to_passOnOneThingFragment,
+            bundle
+        )
+    }
 }

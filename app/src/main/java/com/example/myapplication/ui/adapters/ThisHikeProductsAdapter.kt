@@ -15,6 +15,7 @@ import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.Participants
 import com.example.myapplication.dataBase.products.ListTypeOfProducts
 import com.example.myapplication.dataBase.products.Products
+import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.databinding.CreateHikeAddProductItemBinding
 import com.example.myapplication.databinding.CreateHikeEquipmentItemBinding
@@ -28,7 +29,8 @@ import com.example.myapplication.databinding.TypeListProductForAddProductItemBin
 import com.example.myapplication.databinding.TypeListProductItemBinding
 
 class ThisHikeProductsAdapter(
-    private val data: List<ThisHikeProducts>
+    private val data: List<ThisHikeProducts>,
+    private val onClick: (ThisHikeProducts) -> Unit
 ) :
     RecyclerView.Adapter<ThisHikeProductsViewHolder>() {
 
@@ -76,7 +78,11 @@ class ThisHikeProductsAdapter(
                     .into(imageViewProducts)
             }
         }
-
+        holder.binding.root.setOnClickListener {
+            item?.let {
+                onClick(item)
+            }
+        }
     }
 }
 

@@ -57,6 +57,10 @@ class ThisHikeListOfParticipantsFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

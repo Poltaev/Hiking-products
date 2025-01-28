@@ -1,55 +1,36 @@
 package com.example.myapplication.ui.pass_on_one_thing
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.dataBase.HikeDao
+import com.example.myapplication.dataBase.thisHike.ThisHike
 import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.dataBase.thisHike.ThisHikeProductsParticipants
 import com.example.myapplication.domain.ThisHikeUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
 
-    fun getAllEquipment(): List<ThisHikeEquipment> {
-        var listEquipment = listOf<ThisHikeEquipment>()
-        viewModelScope.launch(Dispatchers.IO) {
-            listEquipment = ThisHikeUseCase(hikeDao).getAllListThisHikeEquipment()
-
-        }
-        return listEquipment
+    suspend fun getAllEquipment(): List<ThisHikeEquipment> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeEquipment()
     }
 
-    fun getAllListParticipant(): List<ThisHikeParticipants> {
-        var listParticipants = listOf<ThisHikeParticipants>()
-        viewModelScope.launch(Dispatchers.IO) {
-            listParticipants = ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
-
-        }
-        return listParticipants
+    suspend fun getAllListParticipant(): List<ThisHikeParticipants> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
     }
 
-    fun getListFood(): List<ThisHikeProducts> {
-        var listProducts = listOf<ThisHikeProducts>()
-        viewModelScope.launch(Dispatchers.IO) {
-            listProducts = ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
-        }
-        return listProducts
+    suspend fun getListFood(): List<ThisHikeProducts> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
     }
 
-    fun getListIdParticipant(productId: Int): MutableList<Int> {
-        val listIdParticipant = mutableListOf<Int>()
-        viewModelScope.launch(Dispatchers.IO) {
-            ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants().forEach {
-                if (it.productsId == productId) {
-                    listIdParticipant.add(it.participantId)
-                }
-            }
-        }
-        return listIdParticipant
+    suspend fun getProductsParticipants(): List<ThisHikeProductsParticipants> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants()
     }
 
     fun transferTheEquiopment(
@@ -57,10 +38,10 @@ class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
         partisipant: String,
         listParticipant: MutableList<String>,
     ) {
-        val allListParticipant = getAllListParticipant()
-        val indexPartisipant = listParticipant.indexOf(partisipant)
-        val idParticipant = allListParticipant[indexPartisipant].id
         viewModelScope.launch(Dispatchers.IO) {
+            val allListParticipant = getAllListParticipant()
+            val indexPartisipant = listParticipant.indexOf(partisipant)
+            val idParticipant = allListParticipant[indexPartisipant].id
             ThisHikeUseCase(hikeDao).getAllListThisHikeEquipment().forEach {
                 if (it.id == equipmentId) {
                     ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants().forEach { item ->
@@ -116,11 +97,12 @@ class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
         partisipant: String,
         listParticipant: MutableList<String>,
     ) {
-        val allListParticipant = getAllListParticipant()
-        val indexPartisipant = listParticipant.indexOf(partisipant)
-        val idParticipant = allListParticipant[indexPartisipant].id
-        reduceTheWeightOfTheCurrentParticipant(productId)
         viewModelScope.launch(Dispatchers.IO) {
+            val allListParticipant = getAllListParticipant()
+            val indexPartisipant = listParticipant.indexOf(partisipant)
+            val idParticipant = allListParticipant[indexPartisipant].id
+            reduceTheWeightOfTheCurrentParticipant(productId)
+            delay(100)
             ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants().forEach {
                 if (it.productsId == productId) {
                     ThisHikeUseCase(hikeDao).deleteThisHikeProductsParticipants(it)
@@ -131,10 +113,11 @@ class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 }
                 increaseTheParticipantWeight(productId, idParticipant)
             }
+
         }
     }
 
-    fun reduceTheWeightOfTheCurrentParticipant(productId: Int) {
+    suspend fun reduceTheWeightOfTheCurrentParticipant(productId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach { item ->
                 if (item.id == productId) {
@@ -165,7 +148,7 @@ class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
         }
     }
 
-    fun increaseTheParticipantWeight(productId: Int, idParticipant:Int) {
+    fun increaseTheParticipantWeight(productId: Int, idParticipant: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach { item2 ->
                 if (item2.id == productId) {

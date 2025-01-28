@@ -90,6 +90,9 @@
         <action
             android:id="@+id/action_listOfPurchasedProductsFragment_to_this_hike"
             app:destination="@id/this_hike" />
+        <action
+            android:id="@+id/action_thisHikeListOfProductsFragment_to_passOnOneThingFragment"
+            app:destination="@id/passOnOneThingFragment" />
     </fragment>
     <fragment
         android:id="@+id/thisHikeListOfParticipantsFragment"
@@ -261,6 +264,9 @@
         <action
             android:id="@+id/action_thisHikeListOfEquipmentFragment_to_this_hike"
             app:destination="@id/this_hike" />
+        <action
+            android:id="@+id/action_thisHikeListOfEquipmentFragment_to_passOnOneThingFragment"
+            app:destination="@id/passOnOneThingFragment" />
     </fragment>
     <fragment
         android:id="@+id/archiveHikeEquipmentFragment"

@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.App
+import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
+import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.databinding.FragmentThisHikeListOfEquipmentBinding
 import com.example.myapplication.databinding.FragmentThisHikeListOfProductsBinding
 import com.example.myapplication.ui.adapters.ListTypeProductsAdapter
@@ -49,7 +52,7 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
             viewModel.getAllThisHikeListEquipmentFlow().collect {
                 val listEquipment = it
                 val typeListAdapter = listEquipment.let {
-                    ThisHikeEquipmentAdapter(it)
+                    ThisHikeEquipmentAdapter(it){onItemClick(it)}
                 }
                 binding.recyclerViewListEquipment.adapter = typeListAdapter
             }
@@ -63,5 +66,14 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun onItemClick(item: ThisHikeEquipment) {
+        val bundle = Bundle().apply {
+            item.id.let { putInt("equipmentTypeId", it) }
+        }
+        findNavController().navigate(
+            R.id.action_thisHikeListOfEquipmentFragment_to_passOnOneThingFragment,
+            bundle
+        )
     }
 }

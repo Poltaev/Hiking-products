@@ -30,7 +30,8 @@ import com.example.myapplication.databinding.TypeListProductForAddProductItemBin
 import com.example.myapplication.databinding.TypeListProductItemBinding
 
 class ThisHikeEquipmentAdapter(
-    private val data: List<ThisHikeEquipment>
+    private val data: List<ThisHikeEquipment>,
+    private val onClick: (ThisHikeEquipment) -> Unit
 ) :
     RecyclerView.Adapter<ThisHikeEquipmentViewHolder>() {
 
@@ -70,7 +71,11 @@ class ThisHikeEquipmentAdapter(
                     .into(imageViewEquipment)
             }
         }
-
+        holder.binding.root.setOnClickListener {
+            item?.let {
+                onClick(item)
+            }
+        }
     }
 }
 
