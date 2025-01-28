@@ -115,13 +115,15 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                         idListTypeProduct.clear()
                         idProduct = checkBanProducts(idProduct, idThisHikeProduct)
                         idProduct.shuffle()
-                        thisMealProducts = createProductsFromMenu(idProduct, thisMealProducts)
-                        idProduct.clear()
+
+
                         var couterProducts = 0
                         for (x in 1..getNumberSnackList()) {
                             if (couterProducts > thisMealProducts.size - 1) {
                                 couterProducts = 0
                             }
+                            thisMealProducts.clear()
+                            thisMealProducts = createProductsFromMenu(idProduct, thisMealProducts)
                             upDateThisHikeProductsForMenu(
                                 thisMealProducts,
                                 couterProducts,
@@ -135,7 +137,8 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                             couterProducts++
                         }
                     }
-                    thisMealProducts.clear()
+                    idProduct.clear()
+
                 }
             }
             removeUnusedProducts()

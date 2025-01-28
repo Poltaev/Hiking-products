@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
 
@@ -101,8 +102,9 @@ class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
             val allListParticipant = getAllListParticipant()
             val indexPartisipant = listParticipant.indexOf(partisipant)
             val idParticipant = allListParticipant[indexPartisipant].id
-            reduceTheWeightOfTheCurrentParticipant(productId)
-            delay(100)
+            runBlocking {
+                reduceTheWeightOfTheCurrentParticipant(productId)
+            }
             ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants().forEach {
                 if (it.productsId == productId) {
                     ThisHikeUseCase(hikeDao).deleteThisHikeProductsParticipants(it)
