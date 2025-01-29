@@ -50,6 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Разгрузить от общего груза"
+        android:visibility="invisible"
+        android:clickable="false"
         android:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

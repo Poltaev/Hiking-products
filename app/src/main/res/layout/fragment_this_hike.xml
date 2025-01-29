@@ -8,9 +8,9 @@
 
     <Button
         android:id="@+id/buttonMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="16dp"
         android:text="Меню"
         android:backgroundTint="@color/teal_200"
@@ -19,9 +19,9 @@
 
     <Button
         android:id="@+id/buttonBackpacks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="12dp"
         android:backgroundTint="@color/teal_200"
         android:text="Рюкзаки"
@@ -30,9 +30,9 @@
 
     <Button
         android:id="@+id/buttonProducts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
         android:layout_marginBottom="16dp"
         android:text="Продукты"
         android:backgroundTint="@color/teal_200"
@@ -41,18 +41,18 @@
 
     <Button
         android:id="@+id/buttonEquipment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
         android:layout_marginBottom="12dp"
-        android:text="Сняряжение"
         android:backgroundTint="@color/teal_200"
+        android:text="Сняряжение"
         app:layout_constraintBottom_toTopOf="@+id/buttonProducts"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonCreateNewButton"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Создать новый поход"

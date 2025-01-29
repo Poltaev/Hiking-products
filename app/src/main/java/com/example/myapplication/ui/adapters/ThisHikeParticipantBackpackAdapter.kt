@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.ui.graphics.Color
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
@@ -58,11 +59,40 @@ class ThisHikeParticipantAdapter(
         val item = response?.getOrNull(position)
         with(holder.binding) {
             if (item != null) {
-                textViewNameParticipant.text = item.firstName+ " " + item.lastName
+                textViewNameParticipant.text = item.firstName + " " + item.lastName
+            }
+            if (item != null) {
+                textViewMaxWeight.text = "Max вес: " + item.maximumPortableWeight.toString() + " г."
+            }
+            if (item != null) {
+                textViewWeightOfPersonalItem.text =
+                    "Личные вещи: " + item.weightOfPersonalItems.toString() + " г."
+            }
+            if (item != null) {
+                textViewCurrentWeight.text =
+                    "Текущий вес: " + item.weightWithLoad.toString() + " г."
+                if (item.weightWithLoad < item.maximumPortableWeight - 2000) textViewCurrentWeight.setTextColor(
+                    ContextCompat.getColor(
+                        holder.binding.textViewCurrentWeight.context,
+                        R.color.green
+                    )
+                )
+                if (item.weightWithLoad >= item.maximumPortableWeight - 2000 && item.weightWithLoad < item.maximumPortableWeight) textViewCurrentWeight.setTextColor(
+                    ContextCompat.getColor(
+                        holder.binding.textViewCurrentWeight.context,
+                        R.color.yellow
+                    )
+                )
+                if (item.weightWithLoad >= item.maximumPortableWeight) textViewCurrentWeight.setTextColor(
+                    ContextCompat.getColor(
+                        holder.binding.textViewCurrentWeight.context,
+                        R.color.red
+                    )
+                )
             }
 
             item?.let {
-                if (item.gender == "Мужской"){
+                if (item.gender == "Мужской") {
                     Glide
                         .with(imageViewParticipant.context)
                         .load(R.drawable.man1)
