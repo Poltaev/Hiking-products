@@ -10,9 +10,9 @@
         android:id="@+id/imageView3"
         android:layout_width="168dp"
         android:layout_height="127dp"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="28dp"
         android:src="@drawable/hamburger"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +23,8 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/teal_200"
         android:text="Изменить фото"
+        android:visibility="invisible"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -96,8 +98,8 @@
 
     <Button
         android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@color/teal_200"
@@ -107,19 +109,19 @@
 
     <Button
         android:id="@+id/buttonAddInTypeOfMeal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_width="349dp"
+        android:layout_height="51dp"
         android:layout_marginBottom="88dp"
         android:backgroundTint="@color/teal_200"
         android:text="Добавить в список продуктов"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@color/teal_200"

@@ -21,36 +21,35 @@
 
     <Button
         android:id="@+id/buttonShangeListFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/teal_200"
         android:text="Изменить список"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddFood"
-        app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonAddFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="48dp"
         android:backgroundTint="@color/teal_200"
         android:text="Добавить продукт в список"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonDeleteListProducts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/teal_200"
         android:text="Удалить список"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddFood"
         app:layout_constraintVertical_bias="1.0" />

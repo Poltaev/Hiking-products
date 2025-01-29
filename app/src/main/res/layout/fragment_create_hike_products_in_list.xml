@@ -41,9 +41,9 @@
 
     <Button
         android:id="@+id/buttonFurther"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@color/teal_200"
         android:text="Далее"
@@ -52,9 +52,9 @@
 
     <Button
         android:id="@+id/buttonCreateAHike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="@color/teal_200"
         android:text="Создать поход"

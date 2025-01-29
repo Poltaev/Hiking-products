@@ -296,11 +296,6 @@
             app:destination="@id/createHikeProductsInListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createHikeListProductsFragment"
-        android:name="com.example.myapplication.ui.create_hike_list_products.CreateHikeListProductsFragment"
-        android:label="Выбрать используемые типы продуктов"
-        tools:layout="@layout/fragment_create_hike_list_products" />
-    <fragment
         android:id="@+id/createHikeProductsInListFragment"
         android:name="com.example.myapplication.ui.create_hike_products.CreateHikeProductsFragment"
         android:label="Выбрать продукты"
