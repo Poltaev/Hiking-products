@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.myapplication.dataBase.HikeDao
 import com.example.myapplication.dataBase.products.ListTypeOfProducts
 import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
+import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.domain.ProductsUseCase
 import com.example.myapplication.domain.ThisHikeUseCase
 import kotlinx.coroutines.flow.Flow
@@ -11,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 class ThisHikeListOfEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
     suspend fun getAllThisHikeListEquipmentFlow(): Flow<List<ThisHikeEquipment>> {
         return ThisHikeUseCase(hikeDao).getAllThisHikeEquipmentFlow()
+    }
+    suspend fun getAllThisHikeListParticipant(): List<ThisHikeParticipants> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
     }
 
 }

@@ -31,6 +31,7 @@ import com.example.myapplication.databinding.TypeListProductItemBinding
 
 class ThisHikeEquipmentAdapter(
     private val data: List<ThisHikeEquipment>,
+    private val dataNameParticipant: List<String>,
     private val onClick: (ThisHikeEquipment) -> Unit
 ) :
     RecyclerView.Adapter<ThisHikeEquipmentViewHolder>() {
@@ -52,12 +53,15 @@ class ThisHikeEquipmentAdapter(
     override fun onBindViewHolder(holder: ThisHikeEquipmentViewHolder, position: Int) {
         val response = data
         val item = response?.getOrNull(position)
+        val responseNamePartisipant = dataNameParticipant
+        val item1 = responseNamePartisipant?.getOrNull(position)
+
         with(holder.binding) {
             if (item != null) {
                 textViewNameEquipment.text = item.name
             }
             if (item != null) {
-                textViewNameParticipants.text = item.name
+                textViewNameParticipants.text = "Несет: " + item1
             }
             if (item != null) {
                 textViewWeightPackage.text = "Вес: " + item.weight.toString() + " г."

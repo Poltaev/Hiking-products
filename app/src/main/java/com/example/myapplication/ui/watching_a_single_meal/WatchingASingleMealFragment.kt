@@ -24,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class WatchingASingleMealFragment : Fragment() {
     lateinit var job: Job
@@ -59,31 +60,44 @@ class WatchingASingleMealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listIdProducts = mutableListOf<Int>()
+        val nameParticipant = mutableListOf<String>()
         val listProducts = mutableListOf<ThisHikeProducts>()
-        job = lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.getAllMenuList().forEach {
-                Log.i("id", "${id}")
-                if (it.mealIntakeId == id) {
-                    listIdProducts.add(it.productsId)
-                    Log.i("idAdd", "${it.productsId}")
+        job = lifecycleScope.launch {
+            runBlocking(Dispatchers.IO) {
+                viewModel.getAllMenuList().forEach {
+                    if (it.mealIntakeId == id) {
+                        listIdProducts.add(it.productsId)
+                    }
                 }
             }
+            runBlocking(Dispatchers.IO) {
                 viewModel.getAllListFood().forEach { item1 ->
                     listIdProducts.forEach {
                         if (item1.id == it) {
                             listProducts.add(item1)
-                            Log.i("idAddProducts", "${item1.id}")
                         }
                     }
                 }
-            launch(Dispatchers.Main) {
-                delay(100)
-                val typeListAdapter = listProducts.let {
-                    ThisHikeProductsMenuAdapter(it) { onItemClick(it) }
-                }
-                binding.recyclerViewListEating.adapter = typeListAdapter
-
             }
+            runBlocking(Dispatchers.IO) {
+                val item = viewModel.getAllProductsParticipant()
+                listProducts.forEach { itemProduct ->
+                    item.forEach { itemProductParticipant ->
+                        if (itemProduct.id == itemProductParticipant.productsId) {
+                            val participantList = viewModel.getAllPartisipant()
+                            participantList.forEach { itemParticipant ->
+                                if (itemProductParticipant.participantId == itemParticipant.id) {
+                                    nameParticipant.add(itemParticipant.firstName + " " + itemParticipant.lastName)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            val typeListAdapter = listProducts.let {
+                ThisHikeProductsMenuAdapter(it, nameParticipant) { onItemClick(it) }
+            }
+            binding.recyclerViewListEating.adapter = typeListAdapter
         }
 
     }

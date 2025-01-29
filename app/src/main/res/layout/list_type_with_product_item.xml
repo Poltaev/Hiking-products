@@ -31,8 +31,8 @@
 
     <TextView
         android:id="@+id/textViewWeightServing"
-        android:layout_width="46dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:text="10 г"
@@ -41,8 +41,8 @@
 
     <TextView
         android:id="@+id/textViewWeightPackage"
-        android:layout_width="61dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
         android:text="1000 г"

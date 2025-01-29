@@ -18,8 +18,10 @@ import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.databinding.FragmentThisHikeListOfProductsBinding
 import com.example.myapplication.ui.adapters.ThisHikeEquipmentAdapter
 import com.example.myapplication.ui.adapters.ThisHikeProductsAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ThisHikeListOfProductsFragment : Fragment() {
     lateinit var job: Job
@@ -27,7 +29,7 @@ class ThisHikeListOfProductsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: ThisHikeListOfProductsViewModel by viewModels{
+    private val viewModel: ThisHikeListOfProductsViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
@@ -38,7 +40,7 @@ class ThisHikeListOfProductsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentThisHikeListOfProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -50,10 +52,27 @@ class ThisHikeListOfProductsFragment : Fragment() {
         job = lifecycleScope.launch {
             viewModel.getAllProductsFlow().collect {
                 val listProducts = it
+                val nameParticipant = mutableListOf<String>()
+                runBlocking(Dispatchers.IO) {
+                    val item = viewModel.getAllProductsParticipant()
+                    listProducts.forEach { itemProduct ->
+                        item.forEach { itemProductParticipant ->
+                            if (itemProduct.id == itemProductParticipant.productsId) {
+                                val participantList = viewModel.getAllPartisipant()
+                                participantList.forEach { itemParticipant ->
+                                    if (itemProductParticipant.participantId == itemParticipant.id) {
+                                        nameParticipant.add(itemParticipant.firstName + " " + itemParticipant.lastName)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 val typeListAdapter = listProducts.let {
-                    ThisHikeProductsAdapter(it){onItemClick(it)}
+                    ThisHikeProductsAdapter(it, nameParticipant) { onItemClick(it) }
                 }
                 binding.recyclerViewListProducts.adapter = typeListAdapter
+
             }
         }
     }
@@ -62,10 +81,12 @@ class ThisHikeListOfProductsFragment : Fragment() {
         super.onPause()
         job.cancel()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun onItemClick(item: ThisHikeProducts) {
         val bundle = Bundle().apply {
             item.id.let { putInt("productTypeId", it) }

@@ -19,8 +19,10 @@ import com.example.myapplication.databinding.FragmentThisHikeListOfProductsBindi
 import com.example.myapplication.ui.adapters.ListTypeProductsAdapter
 import com.example.myapplication.ui.adapters.ThisHikeEquipmentAdapter
 import com.example.myapplication.ui.this_hike_list_of_products.ThisHikeListOfProductsViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ThisHikeListOfEquipmentFragment : Fragment() {
     lateinit var job: Job
@@ -28,7 +30,7 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: ThisHikeListOfEquipmentViewModel by viewModels{
+    private val viewModel: ThisHikeListOfEquipmentViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
@@ -39,7 +41,7 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentThisHikeListOfEquipmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -51,22 +53,37 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
         job = lifecycleScope.launch {
             viewModel.getAllThisHikeListEquipmentFlow().collect {
                 val listEquipment = it
+                val nameParticipant = mutableListOf<String>()
+                runBlocking(Dispatchers.IO) {
+                    val listParticipant = viewModel.getAllThisHikeListParticipant()
+                    listEquipment.forEach {
+                        listParticipant.forEach { item ->
+                            if (it.participantsId == item.id) {
+                                nameParticipant.add(item.firstName + " " + item.lastName)
+                            }
+                        }
+                    }
+                }
                 val typeListAdapter = listEquipment.let {
-                    ThisHikeEquipmentAdapter(it){onItemClick(it)}
+                    ThisHikeEquipmentAdapter(it, nameParticipant) { onItemClick(it) }
                 }
                 binding.recyclerViewListEquipment.adapter = typeListAdapter
+
             }
         }
 
     }
+
     override fun onPause() {
         super.onPause()
         job.cancel()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun onItemClick(item: ThisHikeEquipment) {
         val bundle = Bundle().apply {
             item.id.let { putInt("equipmentTypeId", it) }

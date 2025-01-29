@@ -30,7 +30,8 @@ import com.example.myapplication.databinding.TypeListProductItemBinding
 
 class ThisHikeProductsMenuAdapter(
     private val data: List<ThisHikeProducts>,
-    private val onClick: (ThisHikeProducts) -> Unit,
+    private val dataNameParticipant: List<String>,
+    private val onClick: (ThisHikeProducts) -> Unit
 ) :
     RecyclerView.Adapter<ThisHikeProductsMenuViewHolder>() {
 
@@ -51,12 +52,14 @@ class ThisHikeProductsMenuAdapter(
     override fun onBindViewHolder(holder: ThisHikeProductsMenuViewHolder, position: Int) {
         val response = data
         val item = response?.getOrNull(position)
+        val responseNamePartisipant = dataNameParticipant
+        val item1 = responseNamePartisipant?.getOrNull(position)
         with(holder.binding) {
             if (item != null) {
                 textViewNameProducts.text = item.name
             }
             if (item != null) {
-                textViewNameParticipants.text = item.name
+                textViewNameParticipants.text = "Несет: " + item1
             }
             if (item != null) {
                 textViewWeightPackage.text = "Вес упаковки: " + item.packageWeight.toString() + " г."
