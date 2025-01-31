@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 
 class ThisHikeListOfParticipantsViewModel(private val hikeDao: HikeDao) : ViewModel() {
-    suspend fun getAllParticipantsFlow(): Flow<List<ThisHikeParticipants>> {
-        return ThisHikeUseCase(hikeDao).getAllThisHikeParticipantsFlow()
+    suspend fun getAllParticipants(): List<ThisHikeParticipants> {
+        return ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
     }
 }

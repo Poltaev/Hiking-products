@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -25,10 +26,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.math.log
 
 class WatchingASingleMealFragment : Fragment() {
     lateinit var job: Job
     private var _binding: FragmentWatchingASingleMealBinding? = null
+    private val listProducts = mutableListOf<ThisHikeProducts>()
     private var id = 1
     private val binding get() = _binding!!
 
@@ -61,7 +64,7 @@ class WatchingASingleMealFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val listIdProducts = mutableListOf<Int>()
         val nameParticipant = mutableListOf<String>()
-        val listProducts = mutableListOf<ThisHikeProducts>()
+
         job = lifecycleScope.launch {
             runBlocking(Dispatchers.IO) {
                 viewModel.getAllMenuList().forEach {
@@ -98,6 +101,70 @@ class WatchingASingleMealFragment : Fragment() {
                 ThisHikeProductsMenuAdapter(it, nameParticipant) { onItemClick(it) }
             }
             binding.recyclerViewListEating.adapter = typeListAdapter
+            binding.buttonEatAMeal.setOnClickListener {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    listProducts.forEach {
+                        viewModel.upDateProducts(
+                            it.id,
+                            it.name,
+                            it.weightForPerson,
+                            it.packageWeight,
+                            it.theWeightOfOneMeal,
+                            it.weightOnTheHike,
+                            it.remainingWeight - it.theWeightOfOneMeal,
+                            it.partiallyAssembled,
+                            it.fullyAssembled,
+                            it.theVolumeItem,
+                            it.comment
+                        )
+                    }
+                    listProducts.forEach {
+                        if (it.remainingWeight - it.theWeightOfOneMeal <= 0) {
+                            viewModel.getAllProductsParticipant()
+                                .forEach { itemParticipantProduct ->
+                                    if (it.id == itemParticipantProduct.productsId) {
+                                        viewModel.deleteParticipantProducts(itemParticipantProduct)
+                                        viewModel.getAllPartisipant().forEach { itemParticipant ->
+                                            if (itemParticipantProduct.participantId == itemParticipant.id) {
+                                                viewModel.upDateParticipant(
+                                                    itemParticipant.id,
+                                                    itemParticipant.hikeId,
+                                                    itemParticipant.photo,
+                                                    itemParticipant.firstName,
+                                                    itemParticipant.lastName,
+                                                    itemParticipant.gender,
+                                                    itemParticipant.age,
+                                                    itemParticipant.maximumPortableWeight,
+                                                    itemParticipant.weightOfPersonalItems,
+                                                    itemParticipant.weightWithLoad - it.theWeightOfOneMeal,
+                                                    itemParticipant.comment
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            viewModel.getAllThisHikeProductsMealList().forEach { itemProductMeal ->
+                                if (it.id == itemProductMeal.productsId) {
+                                    viewModel.deleteMealProducts(itemProductMeal)
+                                    viewModel.getAllThisHikeMealIntakeSheet().forEach { itemMeal ->
+                                        if (itemMeal.id == itemProductMeal.mealIntakeId) {
+                                            viewModel.deleteMealProducts(itemMeal)
+                                        }
+                                    }
+                                }
+                            }
+                            viewModel.deleteProducts(it)
+                        }
+                    }
+                }
+                val toast = Toast.makeText(
+                    requireContext().applicationContext,
+                    "Еда съедена, милорд!",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+                binding.buttonEatAMeal.isClickable = false
+            }
         }
 
     }
@@ -116,9 +183,5 @@ class WatchingASingleMealFragment : Fragment() {
         val bundle = Bundle().apply {
             item.id.let { putInt("listTypeId", it) }
         }
-//        findNavController().navigate(
-//            R.id.action_viewTheMenuFragment_to_watchingASingleMealFragment,
-//            bundle
-//        )
     }
 }

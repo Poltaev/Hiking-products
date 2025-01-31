@@ -17,6 +17,7 @@ import com.example.myapplication.databinding.FragmentThisHikeBinding
 import com.example.myapplication.ui.hike_archive.HikeArchiveViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ThisHikeFragment : Fragment() {
@@ -51,11 +52,10 @@ class ThisHikeFragment : Fragment() {
         viewModel.checkingTheAvailabilityOfProducts()
         viewModel.checkParticipants()
         viewModel.checkEquipment()
-        job = lifecycleScope.launch(Dispatchers.IO) {
-            if (viewModel.getAllThisHike().size != 0) {
-                launch(Dispatchers.Default) {
-                    binding.textViewNameHike.text = viewModel.getAllThisHike()[0].name
-                }
+        job = lifecycleScope.launch(Dispatchers.Default) {
+            val thisHike = async(Dispatchers.IO) { viewModel.getAllThisHike() }
+            if (thisHike.await().size != 0) {
+                    binding.textViewNameHike.text = thisHike.await()[0].name
             }
         }
         binding.buttonCreateNewButton.setOnClickListener {

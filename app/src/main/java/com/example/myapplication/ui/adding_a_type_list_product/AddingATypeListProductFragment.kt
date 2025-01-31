@@ -78,7 +78,7 @@ class AddingATypeListProductFragment : Fragment() {
         binding.buttonSave.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 val typeOfProductsList = viewModel.getAllListTypeOfProductsList()
-                val id = typeOfProductsList.size + 1
+                val id = typeOfProductsList[typeOfProductsList.size - 1].id + 1
                 typeOfMeal = binding.spinnerTypeMenu.selectedItem.toString()
                 viewModel.addListTypeOfProducts(
                     id,

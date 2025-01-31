@@ -17,7 +17,9 @@ import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.databinding.FragmentThisHikeListOfParticipantsBinding
 import com.example.myapplication.ui.adapters.ThisHikeParticipantAdapter
 import com.example.myapplication.ui.adapters.ThisHikeProductsAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ThisHikeListOfParticipantsFragment : Fragment() {
@@ -46,14 +48,13 @@ class ThisHikeListOfParticipantsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch {
-            viewModel.getAllParticipantsFlow().collect {
-                val listProducts = it
-                val typeListAdapter = listProducts.let {
-                    ThisHikeParticipantAdapter(it) { onItemClick(it) }
-                }
-                binding.recyclerViewListEquipmentParticipants.adapter = typeListAdapter
+        job = lifecycleScope.launch(Dispatchers.Default) {
+
+            val listProducts = async { viewModel.getAllParticipants() }
+            val typeListAdapter = listProducts.await().let {
+                ThisHikeParticipantAdapter(it) { onItemClick(it) }
             }
+            binding.recyclerViewListEquipmentParticipants.adapter = typeListAdapter
         }
     }
 
@@ -61,6 +62,7 @@ class ThisHikeListOfParticipantsFragment : Fragment() {
         super.onPause()
         job.cancel()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

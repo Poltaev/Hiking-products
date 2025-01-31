@@ -287,6 +287,12 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             thisMealProducts[couterProducts].weightForPerson * numberOfParticipants
         val weightOnTheHike =
             thisMealProducts[couterProducts].weightOnTheHike + theWeightOfOneMeal
+        Log.i("thisMealProducts[couterProducts].name","${thisMealProducts[couterProducts].name}")
+        Log.i("weightOnTheHike","${weightOnTheHike}")
+        Log.i("thisMealProducts[couterProducts].weightOnTheHike","${thisMealProducts[couterProducts].weightOnTheHike}")
+        Log.i("theWeightOfOneMeal","${theWeightOfOneMeal}")
+        Log.i("thisMealProducts[couterProducts].weightForPerson","${thisMealProducts[couterProducts].weightForPerson}")
+        Log.i("numberOfParticipants","${numberOfParticipants}")
         ThisHikeUseCase(hikeDao).updateThisHikeProducts(
             thisMealProducts[couterProducts].id,
             thisMealProducts[couterProducts].name,

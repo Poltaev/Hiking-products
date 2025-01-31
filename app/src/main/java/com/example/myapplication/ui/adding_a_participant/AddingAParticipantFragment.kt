@@ -135,7 +135,7 @@ class AddingAParticipantFragment : Fragment() {
         binding.buttonAddParticipant.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 val listParticipant = viewModel.getAllParticipantsList()
-                val id = listParticipant.size + 1
+                val id = listParticipant[listParticipant.size - 1].id + 1
                 viewModel.addParticipants(
                     id,
                     photo,

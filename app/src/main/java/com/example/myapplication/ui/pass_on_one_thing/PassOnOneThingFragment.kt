@@ -64,9 +64,11 @@ class PassOnOneThingFragment : Fragment() {
             if (productId != 0) {
                 viewModel.getListFood().forEach {
                     if (it.id == productId) {
-                        binding.textViewNameEquipment.text = it.name
-                        binding.imageViewPhoto.setImageResource(R.drawable.hamburger)
-                        binding.textViewWeight.text = "Вес продукта: ${it.remainingWeight} г."
+                        launch(Dispatchers.Default) {
+                            binding.textViewNameEquipment.text = it.name
+                            binding.imageViewPhoto.setImageResource(R.drawable.hamburger)
+                            binding.textViewWeight.text = "Вес продукта: ${it.remainingWeight} г."
+                        }
                         val listIdParticipant = mutableListOf<Int>()
                         viewModel.getProductsParticipants().forEach {
                             if (it.productsId == productId) {

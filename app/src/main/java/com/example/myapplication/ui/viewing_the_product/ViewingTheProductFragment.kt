@@ -113,7 +113,7 @@ class ViewingTheProductFragment : Fragment() {
         binding.buttonSave.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 val listProducts = viewModel.getAllProductsList()
-                val id = listProducts.size + 1
+                val id = listProducts[listProducts.size - 1].id + 1
                 viewModel.addProducts(
                     id,
                     name,

@@ -102,7 +102,7 @@ class AddingEquipmentFragment : Fragment() {
         binding.buttonAddEquipment.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 val listEquipment = viewModel.getAllEquipmentList()
-                val id = listEquipment.size + 1
+                val id = listEquipment[listEquipment.size - 1].id + 1
                 viewModel.addEquipment(
                     id,
                     name,
