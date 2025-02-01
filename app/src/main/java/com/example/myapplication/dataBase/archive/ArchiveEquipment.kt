@@ -10,7 +10,7 @@ data class ArchiveEquipment(
     @ColumnInfo(name = "id")
     val id : Int,
     @ColumnInfo(name = "hikeId")
-    val hikeId : Int,
+    val participantId : Int,
     @ColumnInfo(name = "name")
     val name : String,
     @ColumnInfo(name = "photo")

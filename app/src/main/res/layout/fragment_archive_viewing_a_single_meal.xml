@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.archive_hike_participant.ArchiveHikeParticipantFragment">
+    tools:context=".ui.view_the_menu.ViewTheMenuFragment">
 
     <TextView
         android:id="@+id/textViewHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Список участников"
+        android:text="Продукты в приеме пищи"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewListEquipmentParticipants"
+        android:id="@+id/recyclerViewListEating"
         android:layout_width="362dp"
         android:layout_height="508dp"
         android:orientation="vertical"
@@ -29,5 +29,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.382" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

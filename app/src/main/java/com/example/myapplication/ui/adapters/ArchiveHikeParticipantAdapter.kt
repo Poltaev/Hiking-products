@@ -14,12 +14,14 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.dataBase.Equipment
 import com.example.myapplication.dataBase.Participants
+import com.example.myapplication.dataBase.archive.ArchiveParticipants
 import com.example.myapplication.dataBase.products.ListTypeOfProducts
 import com.example.myapplication.dataBase.products.Products
 import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
 import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
+import com.example.myapplication.databinding.ArchiveBackpackPaticipantItemBinding
 import com.example.myapplication.databinding.BackpackPaticipantItemBinding
 import com.example.myapplication.databinding.CreateHikeAddProductItemBinding
 import com.example.myapplication.databinding.CreateHikeEquipmentItemBinding
@@ -34,27 +36,27 @@ import com.example.myapplication.databinding.ThisHikeProductsInformationItemBind
 import com.example.myapplication.databinding.TypeListProductForAddProductItemBinding
 import com.example.myapplication.databinding.TypeListProductItemBinding
 
-class ThisHikeParticipantAdapter(
-    private val data: List<ThisHikeParticipants>,
-    private val onClick: (ThisHikeParticipants) -> Unit,
+class ArchiveHikeParticipantAdapter(
+    private val data: List<ArchiveParticipants>,
+    private val onClick: (ArchiveParticipants) -> Unit
 ) :
-    RecyclerView.Adapter<ThisHikeParticipantViewHolder>() {
+    RecyclerView.Adapter<ArchiveHikeParticipantViewHolder>() {
 
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): ThisHikeParticipantViewHolder {
+    ): ArchiveHikeParticipantViewHolder {
 
-        val binding = BackpackPaticipantItemBinding.inflate(LayoutInflater.from(parent.context))
-        return ThisHikeParticipantViewHolder(binding)
+        val binding = ArchiveBackpackPaticipantItemBinding.inflate(LayoutInflater.from(parent.context))
+        return ArchiveHikeParticipantViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    override fun onBindViewHolder(holder: ThisHikeParticipantViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ArchiveHikeParticipantViewHolder, position: Int) {
         val response = data
         val item = response?.getOrNull(position)
         with(holder.binding) {
@@ -114,5 +116,5 @@ class ThisHikeParticipantAdapter(
     }
 }
 
-class ThisHikeParticipantViewHolder(val binding: BackpackPaticipantItemBinding) :
+class ArchiveHikeParticipantViewHolder(val binding: ArchiveBackpackPaticipantItemBinding) :
     RecyclerView.ViewHolder(binding.root)

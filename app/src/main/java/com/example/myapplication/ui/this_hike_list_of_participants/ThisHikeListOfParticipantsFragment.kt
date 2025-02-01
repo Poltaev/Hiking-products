@@ -50,8 +50,8 @@ class ThisHikeListOfParticipantsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         job = lifecycleScope.launch(Dispatchers.Default) {
 
-            val listProducts = async { viewModel.getAllParticipants() }
-            val typeListAdapter = listProducts.await().let {
+            val listParticipant = async { viewModel.getAllParticipants() }
+            val typeListAdapter = listParticipant.await().let {
                 ThisHikeParticipantAdapter(it) { onItemClick(it) }
             }
             binding.recyclerViewListEquipmentParticipants.adapter = typeListAdapter

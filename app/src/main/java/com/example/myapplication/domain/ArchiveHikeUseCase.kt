@@ -88,7 +88,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun insertArchiveEquipment(
         id: Int,
-        hikeId: Int,
+        participantId: Int,
         name: String,
         photo: String,
         weight: Int,
@@ -97,7 +97,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
     ) {
         val archiveEquipment = ArchiveEquipment(
             id = id,
-            hikeId = hikeId,
+            participantId = participantId,
             name = name,
             photo = photo,
             weight = weight,
@@ -113,7 +113,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
 
     suspend fun updateArchiveEquipment(
         id: Int,
-        hikeId: Int,
+        participantId: Int,
         name: String,
         photo: String,
         weight: Int,
@@ -122,7 +122,7 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
     ) {
         val archiveEquipment = ArchiveEquipment(
             id = id,
-            hikeId = hikeId,
+            participantId = participantId,
             name = name,
             photo = photo,
             weight = weight,

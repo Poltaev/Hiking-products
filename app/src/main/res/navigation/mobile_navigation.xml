@@ -198,6 +198,9 @@
         <action
             android:id="@+id/action_viewingPeopleFromTheArchiveFragment_to_viewingAHikeFragment"
             app:destination="@id/archiveHikeViewingFragment" />
+        <action
+            android:id="@+id/action_archiveHikeParticipantFragment_to_archiveViewingABackpackFragment"
+            app:destination="@id/archiveViewingABackpackFragment" />
     </fragment>
     <fragment
         android:id="@+id/archiveHikeMenuFragment"
@@ -207,6 +210,9 @@
         <action
             android:id="@+id/action_viewingTheMenuInTheArchiveFragment_to_viewingAHikeFragment"
             app:destination="@id/archiveHikeViewingFragment" />
+        <action
+            android:id="@+id/action_archiveHikeMenuFragment_to_archiveViewingASingleMealFragment"
+            app:destination="@id/archiveViewingASingleMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/listProductFragment"
@@ -343,5 +349,15 @@
             android:id="@+id/action_passOnOneThingFragment_to_viewingABackpackFragment"
             app:destination="@id/viewingABackpackFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/archiveViewingASingleMealFragment"
+        android:name="com.example.myapplication.ui.archive_viewing_a_single_meal.ArchiveViewingASingleMealFragment"
+        android:label="fragment_archive_viewing_a_single_meal"
+        tools:layout="@layout/fragment_archive_viewing_a_single_meal" />
+    <fragment
+        android:id="@+id/archiveViewingABackpackFragment"
+        android:name="com.example.myapplication.ui.archive_viewing_backpack.ArchiveViewingABackpackFragment"
+        android:label="fragment_archive_viewing_a_backpack"
+        tools:layout="@layout/fragment_archive_viewing_a_backpack" />
 
 </navigation>
