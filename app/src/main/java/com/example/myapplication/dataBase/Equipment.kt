@@ -17,6 +17,12 @@ data class Equipment(
     val weight : Int,
     @ColumnInfo(name = "the_volume_item")
     val theVolumeItem : Boolean,
+    @ColumnInfo(name = "theSoleOwner")
+    val theSoleOwner : Boolean,
+    @ColumnInfo(name = "nameOwner")
+    val nameOwner : String,
+    @ColumnInfo(name = "idOwner")
+    val idOwner : Int,
     @ColumnInfo(name = "equipment_in_the_campaign")
     val equipmentInTheCampaign : Boolean
 

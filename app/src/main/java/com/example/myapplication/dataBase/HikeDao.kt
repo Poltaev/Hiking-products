@@ -9,6 +9,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.example.myapplication.dataBase.archive.ArchiveEquipment
 import com.example.myapplication.dataBase.archive.ArchiveHike
+import com.example.myapplication.dataBase.archive.ArchiveHikeListIdProductsInMeal
 import com.example.myapplication.dataBase.archive.ArchiveHikeMealIntakeSheet
 import com.example.myapplication.dataBase.archive.ArchiveHikeProductsMealList
 import com.example.myapplication.dataBase.archive.ArchiveHikeProductsParticipants
@@ -23,6 +24,7 @@ import com.example.myapplication.dataBase.products.Products
 import com.example.myapplication.dataBase.products.StoregeWithList
 import com.example.myapplication.dataBase.thisHike.ThisHike
 import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
+import com.example.myapplication.dataBase.thisHike.ThisHikeListIdProductsInMeal
 import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
@@ -32,6 +34,38 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HikeDao {
+    // ArchiveHikeListIdProductsInMeal
+    @Query("SELECT * FROM ThisHikeListIdProductsInMeal")
+    fun getAllArchiveHikeListIdProductsInMealFlow(): Flow<List<ArchiveHikeListIdProductsInMeal>>
+
+    @Query("SELECT * FROM ThisHikeListIdProductsInMeal")
+    fun getAllArchiveHikeListIdProductsInMeal(): List<ArchiveHikeListIdProductsInMeal>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertArchiveHikeListIdProductsInMeal(ahisHikeListIdProductsInMeal: ArchiveHikeListIdProductsInMeal)
+
+    @Delete
+    suspend fun deleteArchiveHikeListIdProductsInMeal(archiveHikeListIdProductsInMeal: ArchiveHikeListIdProductsInMeal)
+
+    @Update
+    suspend fun updateArchiveHikeListIdProductsInMeal(archiveHikeListIdProductsInMeal: ArchiveHikeListIdProductsInMeal)
+
+    // ThisHikeListIdProductsInMeal
+    @Query("SELECT * FROM ThisHikeListIdProductsInMeal")
+    fun getAllThisHikeListIdProductsInMealFlow(): Flow<List<ThisHikeListIdProductsInMeal>>
+
+    @Query("SELECT * FROM ThisHikeListIdProductsInMeal")
+    fun getAllThisHikeListIdProductsInMeal(): List<ThisHikeListIdProductsInMeal>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal: ThisHikeListIdProductsInMeal)
+
+    @Delete
+    suspend fun deleteThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal: ThisHikeListIdProductsInMeal)
+
+    @Update
+    suspend fun updateThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal: ThisHikeListIdProductsInMeal)
+
     // ThisHike
     @Query("SELECT * FROM ThisHike")
     fun getAllThisHikeFlow(): Flow<List<ThisHike>>

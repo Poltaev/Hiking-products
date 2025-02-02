@@ -28,13 +28,17 @@ class ViewingTheProductFragment : Fragment() {
     private var weightForPerson = 12
     private var packageWeight = 123
     private var theVolumeItem = false
+    private var theSoleOwner = false
+    private var nameOwner = "NameAll"
+    private var idOwner = 0
+    private var useTheWholePackInOneMeal = false
     private var weWillUseItInTheCurrentCampaign = false
 
     private var _binding: FragmentViewingTheProductBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: ViewingTheProductViewModel by viewModels{
+    private val viewModel: ViewingTheProductViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val hikeDao = (requireContext().applicationContext as App).db.hikeDao()
@@ -49,9 +53,10 @@ class ViewingTheProductFragment : Fragment() {
             id = it.getInt("productsId")
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentViewingTheProductBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -90,21 +95,21 @@ class ViewingTheProductFragment : Fragment() {
             )
         }
         binding.entertextInputName.doOnTextChanged { text, _, _, _ ->
-            if (text == null){
+            if (text == null) {
                 name
             } else {
                 name = text.toString()
             }
         }
         binding.entertextInputWeightOfOneServing.doOnTextChanged { text, _, _, _ ->
-            if (text == null){
+            if (text == null) {
                 weightForPerson
             } else {
                 weightForPerson = text.toString().toInt()
             }
         }
         binding.entertextInputWeightPackage.doOnTextChanged { text, _, _, _ ->
-            if (text == null){
+            if (text == null) {
                 packageWeight
             } else {
                 packageWeight = text.toString().toInt()
@@ -120,6 +125,10 @@ class ViewingTheProductFragment : Fragment() {
                     weightForPerson,
                     packageWeight,
                     theVolumeItem,
+                    theSoleOwner,
+                    nameOwner,
+                    idOwner,
+                    useTheWholePackInOneMeal,
                     weWillUseItInTheCurrentCampaign
                 )
             }

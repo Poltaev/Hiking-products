@@ -102,6 +102,9 @@ class CreateHikeEquipmentFragment : Fragment() {
                                 item.photo,
                                 item.weight,
                                 item.theVolumeItem,
+                                item.theSoleOwner,
+                                item.nameOwner,
+                                item.idOwner,
                                 false
                             )
                         }
@@ -113,6 +116,9 @@ class CreateHikeEquipmentFragment : Fragment() {
                                 item.photo,
                                 item.weight,
                                 item.theVolumeItem,
+                                item.theSoleOwner,
+                                item.nameOwner,
+                                item.idOwner,
                                 true
                             )
                         }

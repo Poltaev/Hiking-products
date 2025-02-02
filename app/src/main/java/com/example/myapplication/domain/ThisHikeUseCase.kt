@@ -11,6 +11,7 @@ import com.example.myapplication.dataBase.archive.ArchiveProducts
 import com.example.myapplication.dataBase.archive.ArchiveStorage
 import com.example.myapplication.dataBase.thisHike.ThisHike
 import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
+import com.example.myapplication.dataBase.thisHike.ThisHikeListIdProductsInMeal
 import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
@@ -19,7 +20,48 @@ import com.example.myapplication.dataBase.thisHike.ThisHikeProductsParticipants
 import kotlinx.coroutines.flow.Flow
 
 class ThisHikeUseCase(private val hikeDao: HikeDao) {
+    // ThisHikeListIdProductsInMeal
+    suspend fun getAllThisHikeListIdProductsInMealFlow(): Flow<List<ThisHikeListIdProductsInMeal>> {
+        return hikeDao.getAllThisHikeListIdProductsInMealFlow()
+    }
 
+    suspend fun getAllThisHikeListIdProductsInMeal(): List<ThisHikeListIdProductsInMeal> {
+        return hikeDao.getAllThisHikeListIdProductsInMeal()
+    }
+
+    suspend fun insertThisHikeListIdProductsInMeal(
+        id: Int,
+        idMeal: Int,
+        idProductsInMeal: Int,
+        nameProducts: String
+    ) {
+        val thisHikeListIdProductsInMeal = ThisHikeListIdProductsInMeal(
+            id = id,
+            idMeal = idMeal,
+            idProductsInMeal = idProductsInMeal,
+            nameProducts = nameProducts
+        )
+        hikeDao.insertThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal)
+    }
+
+    suspend fun deleteThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal: ThisHikeListIdProductsInMeal) {
+        hikeDao.deleteThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal)
+    }
+
+    suspend fun updateThisHikeListIdProductsInMeal(
+        id: Int,
+        idMeal: Int,
+        idProductsInMeal: Int,
+        nameProducts: String
+    ) {
+        val thisHikeListIdProductsInMeal = ThisHikeListIdProductsInMeal(
+            id = id,
+            idMeal = idMeal,
+            idProductsInMeal = idProductsInMeal,
+            nameProducts = nameProducts
+        )
+        hikeDao.updateThisHikeListIdProductsInMeal(thisHikeListIdProductsInMeal)
+    }
 
     // ThisHike
     suspend fun getAllThisHikeFlow(): Flow<List<ThisHike>> {
@@ -84,6 +126,10 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         comment: String,
     ) {
         val thisHikeProducts = ThisHikeProducts(
@@ -97,6 +143,10 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             comment = comment
         )
         hikeDao.insertThisHikeProducts(thisHikeProducts)
@@ -117,6 +167,10 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         comment: String,
     ) {
         val thisHikeProducts = ThisHikeProducts(
@@ -130,6 +184,10 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             comment = comment
         )
         hikeDao.updateThisHikeProducts(thisHikeProducts)
@@ -153,6 +211,9 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
         comment: String,
     ) {
         val thisHikeEquipment = ThisHikeEquipment(
@@ -164,6 +225,9 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
             comment = comment
         )
         hikeDao.insertThisHikeEquipment(thisHikeEquipment)
@@ -182,6 +246,9 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
         comment: String,
     ) {
         val thisHikeEquipment = ThisHikeEquipment(
@@ -193,6 +260,9 @@ class ThisHikeUseCase(private val hikeDao: HikeDao) {
             partiallyAssembled = partiallyAssembled,
             fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
             comment = comment
         )
         hikeDao.updateThisHikeEquipment(thisHikeEquipment)

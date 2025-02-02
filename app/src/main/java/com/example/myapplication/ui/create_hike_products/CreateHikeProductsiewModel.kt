@@ -33,6 +33,10 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         weightForPerson: Int,
         packageWeight: Int,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean,
     ) {
         return ProductsUseCase(hikeDao).upDateProducts(
@@ -41,6 +45,10 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
     }
@@ -170,6 +178,10 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                     0,
                     false,
                     false,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     ""
                 )
@@ -304,6 +316,10 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             thisMealProducts[couterProducts].partiallyAssembled,
             thisMealProducts[couterProducts].fullyAssembled,
             thisMealProducts[couterProducts].theVolumeItem,
+            thisMealProducts[couterProducts].theSoleOwner,
+            thisMealProducts[couterProducts].nameOwner,
+            thisMealProducts[couterProducts].idOwner,
+            thisMealProducts[couterProducts].useTheWholePackInOneMeal,
             thisMealProducts[couterProducts].comment
         )
     }

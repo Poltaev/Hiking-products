@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.myapplication.dataBase.archive.ArchiveEquipment
 import com.example.myapplication.dataBase.archive.ArchiveHike
+import com.example.myapplication.dataBase.archive.ArchiveHikeListIdProductsInMeal
 import com.example.myapplication.dataBase.archive.ArchiveHikeMealIntakeSheet
 import com.example.myapplication.dataBase.archive.ArchiveHikeProductsMealList
 import com.example.myapplication.dataBase.archive.ArchiveHikeProductsParticipants
@@ -17,6 +18,7 @@ import com.example.myapplication.dataBase.products.Products
 import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.myapplication.dataBase.thisHike.ThisHike
 import com.example.myapplication.dataBase.thisHike.ThisHikeEquipment
+import com.example.myapplication.dataBase.thisHike.ThisHikeListIdProductsInMeal
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.dataBase.thisHike.ThisHikeProductsMealList
@@ -39,13 +41,16 @@ import com.example.myapplication.dataBase.thisHike.ThisHikeProductsParticipants
         ArchiveHikeMealIntakeSheet::class,
         ArchiveHikeProductsParticipants::class,
         ArchiveHikeProductsMealList::class,
+        ArchiveHikeListIdProductsInMeal::class,
         ThisHike::class,
         ThisHikeProducts::class,
         ThisHikeEquipment::class,
         ThisHikeParticipants::class,
         ThisHikeMealIntakeSheet::class,
         ThisHikeProductsMealList::class,
-        ThisHikeProductsParticipants::class
+        ThisHikeProductsParticipants::class,
+        ThisHikeListIdProductsInMeal::class
+
     ],
     version = 1
 )

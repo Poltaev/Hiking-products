@@ -25,6 +25,10 @@ class ViewingTheProductViewModel(private val hikeDao: HikeDao) : ViewModel() {
         weightForPerson: Int,
         packageWeight: Int,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean
     ) {
         ProductsUseCase(hikeDao).loadProducts(
@@ -33,6 +37,10 @@ class ViewingTheProductViewModel(private val hikeDao: HikeDao) : ViewModel() {
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
     }

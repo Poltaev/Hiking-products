@@ -21,8 +21,20 @@ data class ArchiveProducts(
     val weightOnTheHike : Int,
     @ColumnInfo(name = "remaining_weight")
     val remainingWeight : Int,
+    @ColumnInfo(name = "partially_assembled")
+    val partiallyAssembled : Boolean,
+    @ColumnInfo(name = "fully_assembled")
+    val fullyAssembled : Boolean,
     @ColumnInfo(name = "the_volume_item")
     val theVolumeItem : Boolean,
+    @ColumnInfo(name = "theSoleOwner")
+    val theSoleOwner : Boolean,
+    @ColumnInfo(name = "nameOwner")
+    val nameOwner : String,
+    @ColumnInfo(name = "idOwner")
+    val idOwner : Int,
+    @ColumnInfo(name = "useTheWholePackInOneMeal")
+    val useTheWholePackInOneMeal : Boolean,
     @ColumnInfo(name = "comment")
     val comment : String
 )

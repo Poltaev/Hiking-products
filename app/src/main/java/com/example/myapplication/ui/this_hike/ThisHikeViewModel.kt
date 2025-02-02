@@ -43,6 +43,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     650,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -51,6 +54,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     575,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -59,6 +65,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     685,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -67,6 +76,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     545,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -75,6 +87,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     1780,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -83,6 +98,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     371,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -91,6 +109,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     2240,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -99,6 +120,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     2650,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -107,6 +131,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     2477,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -115,6 +142,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     1780,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -123,6 +153,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     535,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -131,6 +164,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     1780,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -139,6 +175,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     2450,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
@@ -147,6 +186,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Photo",
                     2300,
                     false,
+                    false,
+                    "nameAll",
+                    0,
                     true
                 )
 
@@ -447,6 +489,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     60,
                     800,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -458,6 +504,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Каша кукурузная",
                     60,
                     800,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -471,6 +521,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     60,
                     800,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -482,6 +536,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Каша пшенная",
                     60,
                     800,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -495,6 +553,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     60,
                     800,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -506,6 +568,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Изюм",
                     12,
                     12,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -519,6 +585,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     15,
                     15,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -530,6 +600,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Чернослив",
                     15,
                     15,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -543,6 +617,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     15,
                     180,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -555,6 +633,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     27,
                     270,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -566,6 +648,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Галеты",
                     2,
                     14,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -583,6 +669,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     25,
                     1000,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -594,6 +684,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Сушки",
                     30,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -611,6 +705,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     25,
                     180,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -622,6 +720,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Плавленый сыр",
                     25,
                     180,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -635,6 +737,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     25,
                     180,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -646,6 +752,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Чай",
                     1,
                     25,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -663,6 +773,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     1,
                     50,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -674,6 +788,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Какао",
                     10,
                     250,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -687,6 +805,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     33,
                     300,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -698,6 +820,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Разводные супы",
                     2,
                     2,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -711,6 +837,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     5,
                     15,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -722,6 +852,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Вяленное мясо",
                     5,
                     15,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -743,6 +877,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     25,
                     450,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -758,6 +896,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Конфеты батончики",
                     25,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -775,6 +917,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     25,
                     450,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -790,6 +936,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Сникерс",
                     25,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -807,6 +957,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     30,
                     90,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -822,6 +976,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Тульский пряник",
                     60,
                     180,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -839,6 +997,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     2,
                     2,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -850,6 +1012,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Куриный",
                     2,
                     2,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -863,6 +1029,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     2,
                     2,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -874,6 +1044,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Сухари",
                     10,
                     300,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -891,6 +1065,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     60,
                     338,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -907,6 +1085,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     5,
                     50,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -918,6 +1100,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Лапша",
                     6,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -931,6 +1117,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     70,
                     800,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -942,6 +1132,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Рис",
                     70,
                     800,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -955,6 +1149,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     70,
                     800,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -966,6 +1164,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Булгур",
                     70,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -979,6 +1181,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     70,
                     450,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -990,6 +1196,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Вафли",
                     30,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -1003,6 +1213,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     20,
                     20,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -1014,6 +1228,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Миндаль",
                     20,
                     20,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -1027,6 +1245,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     20,
                     20,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -1038,6 +1260,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Сушеные яблоки",
                     20,
                     20,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -1051,6 +1277,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     20,
                     20,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -1062,6 +1292,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Цукаты",
                     20,
                     20,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -1075,6 +1309,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     20,
                     20,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -1086,6 +1324,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Хмели-сунели",
                     2,
                     20,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )
@@ -1099,6 +1341,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     20,
                     900,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -1111,6 +1357,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     5,
                     450,
                     false,
+                    false,
+                    "nameAll",
+                    0,
+                    false,
                     true
                 )
                 ProductsUseCase(hikeDao).loadListProducts(
@@ -1122,6 +1372,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "Перец",
                     5,
                     450,
+                    false,
+                    false,
+                    "nameAll",
+                    0,
                     false,
                     true
                 )

@@ -24,6 +24,9 @@ class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
         photo: String,
         weight: Int,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
         equipmentInTheCampaign: Boolean,
     ) {
         return ParticipantsEquipmentUseCase(hikeDao).upDateEquipment(
@@ -32,6 +35,9 @@ class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
             photo = photo,
             weight = weight,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
             equipmentInTheCampaign = equipmentInTheCampaign
         )
     }
@@ -68,6 +74,9 @@ class CreateHikeEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
                         false,
                         false,
                         false,
+                        false,
+                        "nameAll",
+                        0,
                         ""
                     )
                     ThisHikeUseCase(hikeDao).updateThisHikeParticipants(

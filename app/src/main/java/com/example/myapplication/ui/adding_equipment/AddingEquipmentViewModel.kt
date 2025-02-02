@@ -28,6 +28,9 @@ class AddingEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
         photo: String,
         weight: Int,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
         equipmentInTheCampaign: Boolean
 
     ) {
@@ -37,6 +40,9 @@ class AddingEquipmentViewModel(private val hikeDao: HikeDao) : ViewModel() {
             photo = photo,
             weight = weight,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
             equipmentInTheCampaign = equipmentInTheCampaign
 
         )

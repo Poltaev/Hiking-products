@@ -86,6 +86,9 @@ class PassOnOneThingViewModel(private val hikeDao: HikeDao) : ViewModel() {
                         it.partiallyAssembled,
                         it.fullyAssembled,
                         it.theVolumeItem,
+                        it.theSoleOwner,
+                        it.nameOwner,
+                        it.idOwner,
                         it.comment
                     )
                 }

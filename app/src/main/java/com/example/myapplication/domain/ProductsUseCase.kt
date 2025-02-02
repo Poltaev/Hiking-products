@@ -137,6 +137,10 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
         weightForPerson: Int,
         packageWeight: Int,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean
     ) {
         val ProductsForLoad = Products(
@@ -145,6 +149,10 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
         hikeDao.insertOneProducts(ProductsForLoad)
@@ -160,6 +168,10 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
         weightForPerson: Int,
         packageWeight: Int,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         weWillUseItInTheCurrentCampaign: Boolean
     ) {
         val products = Products(
@@ -168,6 +180,10 @@ class ProductsUseCase(private val hikeDao: HikeDao) {
             weightForPerson = weightForPerson,
             packageWeight = packageWeight,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             weWillUseItInTheCurrentCampaign = weWillUseItInTheCurrentCampaign
         )
         hikeDao.updateOneProducts(products)

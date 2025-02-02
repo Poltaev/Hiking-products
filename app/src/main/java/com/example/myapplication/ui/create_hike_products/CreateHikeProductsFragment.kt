@@ -112,6 +112,10 @@ class CreateHikeProductsFragment : Fragment() {
                                 item.weightForPerson,
                                 item.packageWeight,
                                 item.theVolumeItem,
+                                item.theSoleOwner,
+                                item.nameOwner,
+                                item.idOwner,
+                                item.useTheWholePackInOneMeal,
                                 false
                             )
                         }
@@ -123,6 +127,10 @@ class CreateHikeProductsFragment : Fragment() {
                                 item.weightForPerson,
                                 item.packageWeight,
                                 item.theVolumeItem,
+                                item.theSoleOwner,
+                                item.nameOwner,
+                                item.idOwner,
+                                item.useTheWholePackInOneMeal,
                                 true
                             )
                         }

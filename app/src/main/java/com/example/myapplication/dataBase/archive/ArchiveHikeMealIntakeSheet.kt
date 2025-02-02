@@ -12,5 +12,9 @@ data class ArchiveHikeMealIntakeSheet(
     @ColumnInfo(name = "hikeId")
     val hikeId : Int,
     @ColumnInfo(name = "name")
-    val name : String
+    val name : String,
+    @ColumnInfo(name = "numberOfday")
+    val numberOfday: Int,
+    @ColumnInfo(name = "typeMeal")
+    val typeMeal: String
 )

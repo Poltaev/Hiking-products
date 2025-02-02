@@ -52,7 +52,7 @@ class ThisHikeFragment : Fragment() {
         viewModel.checkingTheAvailabilityOfProducts()
         viewModel.checkParticipants()
         viewModel.checkEquipment()
-        job = lifecycleScope.launch(Dispatchers.Default) {
+        job = lifecycleScope.launch(Dispatchers.Main) {
             val thisHike = async(Dispatchers.IO) { viewModel.getAllThisHike() }
             if (thisHike.await().size != 0) {
                     binding.textViewNameHike.text = thisHike.await()[0].name

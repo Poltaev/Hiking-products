@@ -28,6 +28,9 @@ class AddingEquipmentFragment : Fragment() {
     private var photo = "Photo"
     private var weight = 1000
     private var theVolumeItem = false
+    private var theSoleOwner = false
+    private var nameOwner = "NameAll"
+    private var idOwner = 0
     private var equipmentInTheCampaign = true
 
     private var _binding: FragmentAddingEquipmentBinding? = null
@@ -109,6 +112,9 @@ class AddingEquipmentFragment : Fragment() {
                     photo,
                     weight,
                     theVolumeItem,
+                    theSoleOwner,
+                    nameOwner,
+                    idOwner,
                     equipmentInTheCampaign
                 )
             }

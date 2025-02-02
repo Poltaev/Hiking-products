@@ -3,6 +3,7 @@ package com.example.myapplication.domain
 import com.example.myapplication.dataBase.HikeDao
 import com.example.myapplication.dataBase.archive.ArchiveEquipment
 import com.example.myapplication.dataBase.archive.ArchiveHike
+import com.example.myapplication.dataBase.archive.ArchiveHikeListIdProductsInMeal
 import com.example.myapplication.dataBase.archive.ArchiveHikeMealIntakeSheet
 import com.example.myapplication.dataBase.archive.ArchiveHikeProductsMealList
 import com.example.myapplication.dataBase.archive.ArchiveHikeProductsParticipants
@@ -10,10 +11,52 @@ import com.example.myapplication.dataBase.archive.ArchiveParticipants
 import com.example.myapplication.dataBase.archive.ArchiveProducts
 import com.example.myapplication.dataBase.archive.ArchiveStorage
 import com.example.myapplication.dataBase.products.Products
+import com.example.myapplication.dataBase.thisHike.ThisHikeListIdProductsInMeal
 import kotlinx.coroutines.flow.Flow
 
 class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
+    // ArchiveHikeListIdProductsInMeal
+    suspend fun getAllArchiveHikeListIdProductsInMealFlow(): Flow<List<ArchiveHikeListIdProductsInMeal>> {
+        return hikeDao.getAllArchiveHikeListIdProductsInMealFlow()
+    }
 
+    suspend fun getAllArchiveHikeListIdProductsInMeal(): List<ArchiveHikeListIdProductsInMeal> {
+        return hikeDao.getAllArchiveHikeListIdProductsInMeal()
+    }
+
+    suspend fun insertArchiveHikeListIdProductsInMeal(
+        id: Int,
+        idMeal: Int,
+        idProductsInMeal: Int,
+        nameProducts: String
+    ) {
+        val archiveHikeListIdProductsInMeal = ArchiveHikeListIdProductsInMeal(
+            id = id,
+            idMeal = idMeal,
+            idProductsInMeal = idProductsInMeal,
+            nameProducts = nameProducts
+        )
+        hikeDao.insertArchiveHikeListIdProductsInMeal(archiveHikeListIdProductsInMeal)
+    }
+
+    suspend fun deleteArchiveHikeListIdProductsInMeal(archiveHikeListIdProductsInMeal: ArchiveHikeListIdProductsInMeal) {
+        hikeDao.deleteArchiveHikeListIdProductsInMeal(archiveHikeListIdProductsInMeal)
+    }
+
+    suspend fun updateArchiveHikeListIdProductsInMeal(
+        id: Int,
+        idMeal: Int,
+        idProductsInMeal: Int,
+        nameProducts: String
+    ) {
+        val archiveHikeListIdProductsInMeal = ArchiveHikeListIdProductsInMeal(
+            id = id,
+            idMeal = idMeal,
+            idProductsInMeal = idProductsInMeal,
+            nameProducts = nameProducts
+        )
+        hikeDao.updateArchiveHikeListIdProductsInMeal(archiveHikeListIdProductsInMeal)
+    }
     // ArchiveProducts
     suspend fun getAllArchiveProductsFlow(): Flow<List<ArchiveProducts>> {
         return hikeDao.getAllArchiveProductsFlow()
@@ -31,8 +74,14 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         theWeightOfOneMeal: Int,
         weightOnTheHike: Int,
         remainingWeight: Int,
+        partiallyAssembled: Boolean,
+        fullyAssembled: Boolean,
         theVolumeItem: Boolean,
-        comment: String,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
+        comment: String
     ) {
         val archiveProducts = ArchiveProducts(
             id = id,
@@ -42,7 +91,13 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             theWeightOfOneMeal = theWeightOfOneMeal,
             weightOnTheHike = weightOnTheHike,
             remainingWeight = remainingWeight,
+            partiallyAssembled = partiallyAssembled,
+            fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             comment = comment
         )
         hikeDao.insertArchiveProducts(archiveProducts)
@@ -61,6 +116,12 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         weightOnTheHike: Int,
         remainingWeight: Int,
         theVolumeItem: Boolean,
+        partiallyAssembled: Boolean,
+        fullyAssembled: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         comment: String,
     ) {
         val archiveProducts = ArchiveProducts(
@@ -72,6 +133,12 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             weightOnTheHike = weightOnTheHike,
             remainingWeight = remainingWeight,
             theVolumeItem = theVolumeItem,
+            partiallyAssembled = partiallyAssembled,
+            fullyAssembled = fullyAssembled,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
+            useTheWholePackInOneMeal = useTheWholePackInOneMeal,
             comment = comment
         )
         hikeDao.updateOneArchiveProducts(archiveProducts)
@@ -92,7 +159,12 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         name: String,
         photo: String,
         weight: Int,
+        partiallyAssembled: Boolean,
+        fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
         comment: String,
     ) {
         val archiveEquipment = ArchiveEquipment(
@@ -101,7 +173,12 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             name = name,
             photo = photo,
             weight = weight,
+            partiallyAssembled = partiallyAssembled,
+            fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
             comment = comment
         )
         hikeDao.insertArchiveEquipment(archiveEquipment)
@@ -117,7 +194,12 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         name: String,
         photo: String,
         weight: Int,
+        partiallyAssembled: Boolean,
+        fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
         comment: String,
     ) {
         val archiveEquipment = ArchiveEquipment(
@@ -126,7 +208,12 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             name = name,
             photo = photo,
             weight = weight,
+            partiallyAssembled = partiallyAssembled,
+            fullyAssembled = fullyAssembled,
             theVolumeItem = theVolumeItem,
+            theSoleOwner = theSoleOwner,
+            nameOwner = nameOwner,
+            idOwner = idOwner,
             comment = comment
         )
         hikeDao.updateArchiveEquipment(archiveEquipment)
@@ -149,6 +236,9 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         lastName: String,
         gender: String,
         age: String,
+        maximumPortableWeight: Int,
+        weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         comment: String,
     ) {
         val archiveParticipants = ArchiveParticipants(
@@ -159,6 +249,9 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             lastName = lastName,
             gender = gender,
             age = age,
+            maximumPortableWeight = maximumPortableWeight,
+            weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad = weightWithLoad,
             comment = comment,
 
             )
@@ -177,6 +270,9 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
         lastName: String,
         gender: String,
         age: String,
+        maximumPortableWeight: Int,
+        weightOfPersonalItems: Int,
+        weightWithLoad: Int,
         comment: String,
     ) {
         val archiveParticipants = ArchiveParticipants(
@@ -187,6 +283,9 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
             lastName = lastName,
             gender = gender,
             age = age,
+            maximumPortableWeight = maximumPortableWeight,
+            weightOfPersonalItems = weightOfPersonalItems,
+            weightWithLoad = weightWithLoad,
             comment = comment,
 
             )
@@ -287,12 +386,16 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
     suspend fun insertArchiveHikeMealIntakeSheet(
         id: Int,
         hikeId: Int,
-        name: String
+        name: String,
+        numberOfday: Int,
+        typeMeal: String
     ) {
         val archiveHikeMealIntakeSheet = ArchiveHikeMealIntakeSheet(
             id = id,
             hikeId = hikeId,
-            name = name
+            name = name,
+            numberOfday = numberOfday,
+            typeMeal = typeMeal
         )
         hikeDao.insertArchiveHikeMealIntakeSheet(archiveHikeMealIntakeSheet)
     }
@@ -304,12 +407,16 @@ class ArchiveHikeUseCase(private val hikeDao: HikeDao) {
     suspend fun updateArchiveHikeMealIntakeSheet(
         id: Int,
         hikeId: Int,
-        name: String
+        name: String,
+        numberOfday: Int,
+        typeMeal: String
     ) {
         val archiveHikeMealIntakeSheet = ArchiveHikeMealIntakeSheet(
             id = id,
             hikeId = hikeId,
-            name = name
+            name = name,
+            numberOfday = numberOfday,
+            typeMeal = typeMeal
         )
         hikeDao.updateArchiveHikeMealIntakeSheet(archiveHikeMealIntakeSheet)
     }

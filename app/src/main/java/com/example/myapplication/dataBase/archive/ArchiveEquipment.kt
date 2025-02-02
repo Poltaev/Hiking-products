@@ -17,8 +17,18 @@ data class ArchiveEquipment(
     val photo : String,
     @ColumnInfo(name = "weight")
     val weight : Int,
+    @ColumnInfo(name = "partially_assembled")
+    val partiallyAssembled : Boolean,
+    @ColumnInfo(name = "fully_assembled")
+    val fullyAssembled : Boolean,
     @ColumnInfo(name = "the_volume_item")
     val theVolumeItem : Boolean,
+    @ColumnInfo(name = "theSoleOwner")
+    val theSoleOwner : Boolean,
+    @ColumnInfo(name = "nameOwner")
+    val nameOwner : String,
+    @ColumnInfo(name = "idOwner")
+    val idOwner : Int,
     @ColumnInfo(name = "comment")
     val comment : String
 )

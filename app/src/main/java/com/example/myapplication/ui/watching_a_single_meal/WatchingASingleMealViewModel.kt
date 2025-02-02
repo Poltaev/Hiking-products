@@ -36,6 +36,10 @@ class WatchingASingleMealViewModel(private val hikeDao: HikeDao) : ViewModel() {
         partiallyAssembled: Boolean,
         fullyAssembled: Boolean,
         theVolumeItem: Boolean,
+        theSoleOwner: Boolean,
+        nameOwner: String,
+        idOwner: Int,
+        useTheWholePackInOneMeal: Boolean,
         comment: String
     ) {
          ThisHikeUseCase(hikeDao).updateThisHikeProducts(
@@ -49,6 +53,10 @@ class WatchingASingleMealViewModel(private val hikeDao: HikeDao) : ViewModel() {
              partiallyAssembled = partiallyAssembled,
              fullyAssembled = fullyAssembled,
              theVolumeItem = theVolumeItem,
+             theSoleOwner = theSoleOwner,
+             nameOwner = nameOwner,
+             idOwner = idOwner,
+             useTheWholePackInOneMeal = useTheWholePackInOneMeal,
              comment = comment
         )
     }
