@@ -10,6 +10,7 @@ import com.example.myapplication.dataBase.products.StoregeWithList
 import kotlinx.coroutines.flow.Flow
 
 class ProductsUseCase(private val hikeDao: HikeDao) {
+
     // ListProducts
     suspend fun getAllListProductsFlow(): Flow<List<ListProducts>> {
         return hikeDao.getAllListProductsFlow()

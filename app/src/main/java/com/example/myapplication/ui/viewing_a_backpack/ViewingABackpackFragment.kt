@@ -22,12 +22,15 @@ import com.example.myapplication.ui.adapters.ThisHikeParticipantAdapter
 import com.example.myapplication.ui.adapters.ThisHikeProductsBackpackAdapter
 import com.example.myapplication.ui.adapters.ThisHikeProductsMenuAdapter
 import com.example.myapplication.ui.watching_a_single_meal.WatchingASingleMealViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ViewingABackpackFragment : Fragment() {
     private var _binding: FragmentViewingABackpackBinding? = null
     private var participantsId = 1
+    lateinit var job: Job
     private val binding get() = _binding!!
 
     private val viewModel: ViewingABackpackViewModel by viewModels {
@@ -57,17 +60,24 @@ class ViewingABackpackFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        job = lifecycleScope.launch(Dispatchers.Main) {
+            val listProduct = lifecycleScope.async { viewModel.getListFood(participantsId) }
+            val typeListFoodAdapter = listProduct.await().let {
+                ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
+            }
+            binding.recyclerViewListEating.adapter = typeListFoodAdapter
 
-        val typeListFoodAdapter = viewModel.getListFood(participantsId).let {
-            ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
+            val listEquipment = lifecycleScope.async { viewModel.getListEquipment(participantsId) }
+            val typeListEquipmentAdapter = listEquipment.await().let {
+                ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
+            }
+            binding.recyclerViewListEquipment.adapter = typeListEquipmentAdapter
         }
-        binding.recyclerViewListEating.adapter = typeListFoodAdapter
+    }
 
-
-        val typeListEquipmentAdapter = viewModel.getListEquipment(participantsId).let {
-            ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
-        }
-        binding.recyclerViewListEquipment.adapter = typeListEquipmentAdapter
+    override fun onPause() {
+        super.onPause()
+        job.cancel()
     }
 
     override fun onDestroyView() {

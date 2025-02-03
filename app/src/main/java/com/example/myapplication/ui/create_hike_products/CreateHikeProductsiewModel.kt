@@ -85,7 +85,8 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                                     couterProducts = 0
                                 }
                                 thisMealProducts.clear()
-                                thisMealProducts = createProductsFromMenu(idProduct, thisMealProducts)
+                                thisMealProducts =
+                                    createProductsFromMenu(idProduct, thisMealProducts)
                                 upDateThisHikeProductsForMenu(
                                     thisMealProducts,
                                     couterProducts,
@@ -299,12 +300,6 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             thisMealProducts[couterProducts].weightForPerson * numberOfParticipants
         val weightOnTheHike =
             thisMealProducts[couterProducts].weightOnTheHike + theWeightOfOneMeal
-        Log.i("thisMealProducts[couterProducts].name","${thisMealProducts[couterProducts].name}")
-        Log.i("weightOnTheHike","${weightOnTheHike}")
-        Log.i("thisMealProducts[couterProducts].weightOnTheHike","${thisMealProducts[couterProducts].weightOnTheHike}")
-        Log.i("theWeightOfOneMeal","${theWeightOfOneMeal}")
-        Log.i("thisMealProducts[couterProducts].weightForPerson","${thisMealProducts[couterProducts].weightForPerson}")
-        Log.i("numberOfParticipants","${numberOfParticipants}")
         ThisHikeUseCase(hikeDao).updateThisHikeProducts(
             thisMealProducts[couterProducts].id,
             thisMealProducts[couterProducts].name,
@@ -333,6 +328,44 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             idMealList,
             thisMealProducts[couterProducts].id
         )
+        addListIdProductsInMeal(idMealList, thisMealProducts, couterProducts)
+    }
+
+    private suspend fun addListIdProductsInMeal(
+        idMealList: Int,
+        thisMealProducts: MutableList<ThisHikeProducts>,
+        couterProducts: Int,
+    ) {
+        if (ThisHikeUseCase(hikeDao).getAllThisHikeListIdProductsInMeal().size == 0) {
+            var nameProducts = ""
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach {
+                if (it.id == thisMealProducts[couterProducts].id) {
+                    nameProducts = it.name
+                }
+            }
+            Log.i("nameProducts", "${nameProducts}")
+            ThisHikeUseCase(hikeDao).insertThisHikeListIdProductsInMeal(
+                1,
+                idMealList,
+                thisMealProducts[couterProducts].id,
+                nameProducts
+            )
+        } else {
+            var nameProducts = ""
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach {
+                if (it.id == thisMealProducts[couterProducts].id) {
+                    nameProducts = it.name
+                }
+            }
+            ThisHikeUseCase(hikeDao).insertThisHikeListIdProductsInMeal(
+                ThisHikeUseCase(hikeDao).getAllThisHikeListIdProductsInMeal().last().id + 1,
+                idMealList,
+                thisMealProducts[couterProducts].id,
+                nameProducts
+            )
+        }
+
+
     }
 
     private suspend fun addThisHikeSnackMealList(
@@ -350,6 +383,50 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             counterList[counterListSnack - 1].id,
             thisMealProducts[couterProducts].id
         )
+        addListIdProductsInMealSnack(
+            counterListSnack,
+            thisMealProducts,
+            couterProducts,
+            counterList
+        )
+    }
+
+    private suspend fun addListIdProductsInMealSnack(
+        counterListSnack: Int,
+        thisMealProducts: MutableList<ThisHikeProducts>,
+        couterProducts: Int,
+        counterList: MutableList<ThisHikeMealIntakeSheet>,
+    ) {
+        if (ThisHikeUseCase(hikeDao).getAllThisHikeListIdProductsInMeal().size == 0) {
+            var nameProducts = ""
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach {
+                if (it.id == thisMealProducts[couterProducts].id) {
+                    nameProducts = it.name
+                }
+            }
+            Log.i("nameProducts", "${nameProducts}")
+            ThisHikeUseCase(hikeDao).insertThisHikeListIdProductsInMeal(
+                1,
+                counterList[counterListSnack - 1].id,
+                thisMealProducts[couterProducts].id,
+                nameProducts
+            )
+        } else {
+            var nameProducts = ""
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach {
+                if (it.id == thisMealProducts[couterProducts].id) {
+                    nameProducts = it.name
+                }
+            }
+            ThisHikeUseCase(hikeDao).insertThisHikeListIdProductsInMeal(
+                ThisHikeUseCase(hikeDao).getAllThisHikeListIdProductsInMeal().last().id + 1,
+                counterList[counterListSnack - 1].id,
+                thisMealProducts[couterProducts].id,
+                nameProducts
+            )
+        }
+
+
     }
 
     private suspend fun removeUnusedProducts() {
@@ -360,41 +437,43 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             }
         }
     }
+
     fun addThisHikeProductsToBackpack() {
         viewModelScope.launch(Dispatchers.IO) {
             ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach {
-                    val listParticipant = ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
-                    val listParticipantMaxWeight = mutableListOf<Double>()
-                    val listParticipantWeight = mutableListOf<Double>()
-                    listParticipant.forEach {
-                        listParticipantMaxWeight.add(it.maximumPortableWeight.toDouble())
-                        listParticipantWeight.add(it.weightWithLoad.toDouble())
-                    }
-                    val theLightestBackpackPossible = mutableListOf<Double>()
-                    for (i in 0..listParticipant.size - 1) {
-                        val sum =
-                            ((listParticipantMaxWeight[i] - listParticipantWeight[i]) / listParticipantMaxWeight[i]) * 100
-                        theLightestBackpackPossible.add(sum)
-                    }
-                    val theLightestBackpackPossibleSort = theLightestBackpackPossible.sortedDescending()
-                    val returnIndexPartisipant = theLightestBackpackPossible.indexOf(theLightestBackpackPossibleSort[0])
-                    ThisHikeUseCase(hikeDao).insertThisHikeProductsParticipants(
-                        listParticipant[returnIndexPartisipant].id,
-                        it.id
-                    )
-                    ThisHikeUseCase(hikeDao).updateThisHikeParticipants(
-                        listParticipant[returnIndexPartisipant].id,
-                        listParticipant[returnIndexPartisipant].hikeId,
-                        listParticipant[returnIndexPartisipant].photo,
-                        listParticipant[returnIndexPartisipant].firstName,
-                        listParticipant[returnIndexPartisipant].lastName,
-                        listParticipant[returnIndexPartisipant].gender,
-                        listParticipant[returnIndexPartisipant].age,
-                        listParticipant[returnIndexPartisipant].maximumPortableWeight,
-                        listParticipant[returnIndexPartisipant].weightOfPersonalItems,
-                        listParticipant[returnIndexPartisipant].weightWithLoad + it.remainingWeight,
-                        listParticipant[returnIndexPartisipant].comment
-                    )
+                val listParticipant = ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
+                val listParticipantMaxWeight = mutableListOf<Double>()
+                val listParticipantWeight = mutableListOf<Double>()
+                listParticipant.forEach {
+                    listParticipantMaxWeight.add(it.maximumPortableWeight.toDouble())
+                    listParticipantWeight.add(it.weightWithLoad.toDouble())
+                }
+                val theLightestBackpackPossible = mutableListOf<Double>()
+                for (i in 0..listParticipant.size - 1) {
+                    val sum =
+                        ((listParticipantMaxWeight[i] - listParticipantWeight[i]) / listParticipantMaxWeight[i]) * 100
+                    theLightestBackpackPossible.add(sum)
+                }
+                val theLightestBackpackPossibleSort = theLightestBackpackPossible.sortedDescending()
+                val returnIndexPartisipant =
+                    theLightestBackpackPossible.indexOf(theLightestBackpackPossibleSort[0])
+                ThisHikeUseCase(hikeDao).insertThisHikeProductsParticipants(
+                    listParticipant[returnIndexPartisipant].id,
+                    it.id
+                )
+                ThisHikeUseCase(hikeDao).updateThisHikeParticipants(
+                    listParticipant[returnIndexPartisipant].id,
+                    listParticipant[returnIndexPartisipant].hikeId,
+                    listParticipant[returnIndexPartisipant].photo,
+                    listParticipant[returnIndexPartisipant].firstName,
+                    listParticipant[returnIndexPartisipant].lastName,
+                    listParticipant[returnIndexPartisipant].gender,
+                    listParticipant[returnIndexPartisipant].age,
+                    listParticipant[returnIndexPartisipant].maximumPortableWeight,
+                    listParticipant[returnIndexPartisipant].weightOfPersonalItems,
+                    listParticipant[returnIndexPartisipant].weightWithLoad + it.remainingWeight,
+                    listParticipant[returnIndexPartisipant].comment
+                )
             }
         }
     }

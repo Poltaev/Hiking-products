@@ -67,9 +67,9 @@ class WatchingASingleMealFragment : Fragment() {
 
         job = lifecycleScope.launch {
             runBlocking(Dispatchers.IO) {
-                viewModel.getAllMenuList().forEach {
-                    if (it.mealIntakeId == id) {
-                        listIdProducts.add(it.productsId)
+                viewModel.getAllThisHikeListIdProductsInMeal().forEach {
+                    if (it.idMeal == id) {
+                        listIdProducts.add(it.idProductsInMeal)
                     }
                 }
             }
@@ -104,22 +104,30 @@ class WatchingASingleMealFragment : Fragment() {
             binding.buttonEatAMeal.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.IO) {
                     listProducts.forEach {
+                        var thisProduct = it
+                        runBlocking {
+                            viewModel.getAllListFood().forEach { item ->
+                                if (it.id == item.id) {
+                                    thisProduct = item
+                                }
+                            }
+                        }
                         viewModel.upDateProducts(
-                            it.id,
-                            it.name,
-                            it.weightForPerson,
-                            it.packageWeight,
-                            it.theWeightOfOneMeal,
-                            it.weightOnTheHike,
-                            it.remainingWeight - it.theWeightOfOneMeal,
-                            it.partiallyAssembled,
-                            it.fullyAssembled,
-                            it.theVolumeItem,
-                            it.theSoleOwner,
-                            it.nameOwner,
-                            it.idOwner,
-                            it.useTheWholePackInOneMeal,
-                            it.comment
+                            thisProduct.id,
+                            thisProduct.name,
+                            thisProduct.weightForPerson,
+                            thisProduct.packageWeight,
+                            thisProduct.theWeightOfOneMeal,
+                            thisProduct.weightOnTheHike,
+                            thisProduct.remainingWeight - thisProduct.theWeightOfOneMeal,
+                            thisProduct.partiallyAssembled,
+                            thisProduct.fullyAssembled,
+                            thisProduct.theVolumeItem,
+                            thisProduct.theSoleOwner,
+                            thisProduct.nameOwner,
+                            thisProduct.idOwner,
+                            thisProduct.useTheWholePackInOneMeal,
+                            thisProduct.comment
                         )
                     }
                     listProducts.forEach {
@@ -127,36 +135,46 @@ class WatchingASingleMealFragment : Fragment() {
                             viewModel.getAllProductsParticipant()
                                 .forEach { itemParticipantProduct ->
                                     if (it.id == itemParticipantProduct.productsId) {
-                                        viewModel.deleteParticipantProducts(itemParticipantProduct)
-                                        viewModel.getAllPartisipant().forEach { itemParticipant ->
-                                            if (itemParticipantProduct.participantId == itemParticipant.id) {
-                                                viewModel.upDateParticipant(
-                                                    itemParticipant.id,
-                                                    itemParticipant.hikeId,
-                                                    itemParticipant.photo,
-                                                    itemParticipant.firstName,
-                                                    itemParticipant.lastName,
-                                                    itemParticipant.gender,
-                                                    itemParticipant.age,
-                                                    itemParticipant.maximumPortableWeight,
-                                                    itemParticipant.weightOfPersonalItems,
-                                                    itemParticipant.weightWithLoad - it.theWeightOfOneMeal,
-                                                    itemParticipant.comment
-                                                )
+                                        viewModel.deleteParticipantProducts(
+                                            itemParticipantProduct
+                                        )
+                                        viewModel.getAllPartisipant()
+                                            .forEach { itemParticipant ->
+                                                if (itemParticipantProduct.participantId == itemParticipant.id) {
+                                                    viewModel.upDateParticipant(
+                                                        itemParticipant.id,
+                                                        itemParticipant.hikeId,
+                                                        itemParticipant.photo,
+                                                        itemParticipant.firstName,
+                                                        itemParticipant.lastName,
+                                                        itemParticipant.gender,
+                                                        itemParticipant.age,
+                                                        itemParticipant.maximumPortableWeight,
+                                                        itemParticipant.weightOfPersonalItems,
+                                                        itemParticipant.weightWithLoad - it.theWeightOfOneMeal,
+                                                        itemParticipant.comment
+                                                    )
+                                                }
                                             }
-                                        }
                                     }
                                 }
-                            viewModel.getAllThisHikeProductsMealList().forEach { itemProductMeal ->
-                                if (it.id == itemProductMeal.productsId) {
-                                    viewModel.deleteMealProducts(itemProductMeal)
-                                    viewModel.getAllThisHikeMealIntakeSheet().forEach { itemMeal ->
-                                        if (itemMeal.id == itemProductMeal.mealIntakeId) {
-                                            viewModel.deleteMealProducts(itemMeal)
-                                        }
+                            viewModel.getAllThisHikeProductsMealList()
+                                .forEach { itemProductMeal ->
+                                    if (it.id == itemProductMeal.productsId) {
+                                        viewModel.deleteMealProducts(itemProductMeal)
+                                        viewModel.getAllThisHikeMealIntakeSheet()
+                                            .forEach { itemMeal ->
+                                                if (itemMeal.id == itemProductMeal.mealIntakeId) {
+                                                    viewModel.deleteMealProducts(itemMeal)
+                                                }
+                                            }
                                     }
                                 }
-                            }
+                            viewModel.deleteProducts(it)
+                        }
+                    }
+                    viewModel.getAllListFood().forEach {
+                        if (it.remainingWeight == 0) {
                             viewModel.deleteProducts(it)
                         }
                     }

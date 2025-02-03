@@ -315,7 +315,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
             if (getListProductStorage.size == 0) {
                 ProductsUseCase(hikeDao).loadProductStorage(
                     1,
-                    "Первое и единственное хранилище"
+                    "Первое вариант меню"
                 )
             }
         }

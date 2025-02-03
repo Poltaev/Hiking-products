@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ThisHikeListOfParticipantsFragment : Fragment() {
     lateinit var job: Job
@@ -48,9 +49,11 @@ class ThisHikeListOfParticipantsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch(Dispatchers.Default) {
-
-            val listParticipant = async { viewModel.getAllParticipants() }
+        job = lifecycleScope.launch(Dispatchers.Main) {
+            runBlocking(Dispatchers.IO) {
+                viewModel.upDateParticipant()
+            }
+            val listParticipant = async(Dispatchers.IO) { viewModel.getAllParticipants() }
             val typeListAdapter = listParticipant.await().let {
                 ThisHikeParticipantAdapter(it) { onItemClick(it) }
             }
