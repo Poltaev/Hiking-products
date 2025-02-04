@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -28,19 +29,24 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         viewBinding = true
     }
 }
-
+kotlin {
+    jvmToolchain(11)
+}
 dependencies {
-
+    // firebase
+    implementation(libs.firebase.analytics)
+    implementation(platform(libs.firebase.bom))
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -58,7 +64,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.activity)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.rxjava2)
     // ресайкл вью (прокручиваемый список)
     implementation(libs.androidx.recyclerview)

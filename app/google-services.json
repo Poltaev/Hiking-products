@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "865919956650",
+    "project_id": "hike-menu-calculator",
+    "storage_bucket": "hike-menu-calculator.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865919956650:android:4a6ddb934c62def42142d3",
+        "android_client_info": {
+          "package_name": "com.example.hike_menu_calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVHHk12r0Ma_JtdGTpbupwblGSK_YfrUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
