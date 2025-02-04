@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "com.example.hike_menu_calculator"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
+        applicationId = "com.example.hike_menu_calculator"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
