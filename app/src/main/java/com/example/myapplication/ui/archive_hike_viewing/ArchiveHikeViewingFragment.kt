@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -58,6 +59,32 @@ class ArchiveHikeViewingFragment : Fragment() {
                 if (archiveHike.id == id) {
                     binding.textViewNameHike.text = archiveHike.name
                 }
+            }
+            binding.buttonDeleteIt.setOnClickListener {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewModel.deleteAcrhiveHike(id)
+                }
+                val toast = Toast.makeText(
+                    requireContext().applicationContext,
+                    "Поход из архива удален",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+                binding.buttonDeleteIt.isEnabled = false
+                binding.buttonMoveItThisHike.isEnabled = false
+            }
+            binding.buttonMoveItThisHike.setOnClickListener {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewModel.moveItThisHike(id)
+                }
+                val toast = Toast.makeText(
+                    requireContext().applicationContext,
+                    "Поход передан в текущий, предыдущий удален",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+                binding.buttonDeleteIt.isEnabled = false
+                binding.buttonMoveItThisHike.isEnabled = false
             }
             binding.buttonMenu.setOnClickListener {
                 val bundle = Bundle().apply {

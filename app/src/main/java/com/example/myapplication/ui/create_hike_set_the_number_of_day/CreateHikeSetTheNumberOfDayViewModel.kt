@@ -57,6 +57,10 @@ class CreateHikeSetTheNumberOfDayViewModel(private val hikeDao: HikeDao) : ViewM
         listThisHikeProductsParticipants.forEach {
             deleteThisHikeProductsParticipants(it)
         }
+       val listIdProduct = ThisHikeUseCase(hikeDao).getAllThisHikeListIdProductsInMeal()
+        listIdProduct.forEach {
+            ThisHikeUseCase(hikeDao).deleteThisHikeListIdProductsInMeal(it)
+        }
     }
 
     suspend fun getAllThisHikeList(): List<ThisHike> {

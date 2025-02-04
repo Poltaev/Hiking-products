@@ -71,7 +71,12 @@ class CreateHikeProductsFragment : Fragment() {
                 runBlocking(Dispatchers.IO) {
                     viewModel.transferTheTripToTheArchive()
                 }
-
+                val toast = Toast.makeText(
+                    requireContext().applicationContext,
+                    "Поход передан в архив",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
                 findNavController().navigate(
                     R.id.action_createHikeProductsInListFragment_to_this_hike
                 )

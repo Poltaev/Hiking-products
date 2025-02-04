@@ -62,17 +62,43 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         idNewMeal: MutableList<Int>,
         idNewProducts: MutableList<Int>,
     ) {
-        for (indexParticipant in 0..ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet().size - 1) {
+        for (indexMeal in 0..ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet().size - 1) {
             ThisHikeUseCase(hikeDao).getAllListThisHikeProductsMealList()
                 .forEach { meal ->
-                    if (meal.mealIntakeId == ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet()[indexParticipant].id) {
+                    if (meal.mealIntakeId == ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet()[indexMeal].id) {
                         ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach { product ->
                             if (meal.productsId == product.id) {
                                 val indexProduct =
                                     ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
                                         .indexOf(product)
+                                var counter = 0
+                                ThisHikeUseCase(hikeDao).getAllThisHikeListIdProductsInMeal().forEach { idProductsInMeal ->
+                                    if (idProductsInMeal.idMeal == meal.mealIntakeId){
+                                        if (idProductsInMeal.idProductsInMeal == product.id){
+                                            counter ++
+                                        }
+                                    }
+                                }
+                                for (x in 1 .. counter){
+                                    if (ArchiveHikeUseCase(hikeDao).getAllArchiveHikeListIdProductsInMeal().size == 0) {
+                                        ArchiveHikeUseCase(hikeDao).insertArchiveHikeListIdProductsInMeal(
+                                            1,
+                                            idNewMeal[indexMeal],
+                                            idNewProducts[indexProduct],
+                                            product.name
+                                        )
+                                    } else {
+                                        val idProductsMeal = ArchiveHikeUseCase(hikeDao).getAllArchiveHikeListIdProductsInMeal().last().id + 1
+                                        ArchiveHikeUseCase(hikeDao).insertArchiveHikeListIdProductsInMeal(
+                                            idProductsMeal,
+                                            idNewMeal[indexMeal],
+                                            idNewProducts[indexProduct],
+                                            product.name
+                                        )
+                                    }
+                                }
                                 ArchiveHikeUseCase(hikeDao).insertArchiveHikeProductsMealList(
-                                    idNewMeal[indexParticipant],
+                                    idNewMeal[indexMeal],
                                     idNewProducts[indexProduct]
                                 )
                             }

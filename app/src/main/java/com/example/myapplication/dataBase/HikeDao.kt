@@ -35,10 +35,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface HikeDao {
     // ArchiveHikeListIdProductsInMeal
-    @Query("SELECT * FROM ThisHikeListIdProductsInMeal")
+    @Query("SELECT * FROM ArchiveHikeListIdProductsInMeal")
     fun getAllArchiveHikeListIdProductsInMealFlow(): Flow<List<ArchiveHikeListIdProductsInMeal>>
 
-    @Query("SELECT * FROM ThisHikeListIdProductsInMeal")
+    @Query("SELECT * FROM ArchiveHikeListIdProductsInMeal")
     fun getAllArchiveHikeListIdProductsInMeal(): List<ArchiveHikeListIdProductsInMeal>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

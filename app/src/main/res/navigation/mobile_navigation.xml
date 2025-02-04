@@ -352,12 +352,12 @@
     <fragment
         android:id="@+id/archiveViewingASingleMealFragment"
         android:name="com.example.myapplication.ui.archive_viewing_a_single_meal.ArchiveViewingASingleMealFragment"
-        android:label="fragment_archive_viewing_a_single_meal"
+        android:label="Прием пищи"
         tools:layout="@layout/fragment_archive_viewing_a_single_meal" />
     <fragment
         android:id="@+id/archiveViewingABackpackFragment"
         android:name="com.example.myapplication.ui.archive_viewing_backpack.ArchiveViewingABackpackFragment"
-        android:label="fragment_archive_viewing_a_backpack"
+        android:label="Просмотр рюкзака"
         tools:layout="@layout/fragment_archive_viewing_a_backpack" />
 
 </navigation>
