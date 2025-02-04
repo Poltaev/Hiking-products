@@ -3,7 +3,7 @@ package com.example.myapplication.dataBase.archive
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class ArchiveHikeWithProductsEquipmrntParticipants(
+data class ArchiveHikeWithProductsParticipants(
     @Embedded
     val hike: ArchiveHike,
     @Relation(
@@ -12,12 +12,6 @@ data class ArchiveHikeWithProductsEquipmrntParticipants(
         entityColumn = "hikeId"
     )
     val listParticipants: List<ArchiveParticipants>,
-    @Relation(
-        entity = ArchiveEquipment::class,
-        parentColumn = "id",
-        entityColumn = "hikeId"
-    )
-    val listEquipment: List<ArchiveEquipment>,
     @Relation(
         entity = ArchiveHikeMealIntakeSheet::class,
         parentColumn = "id",

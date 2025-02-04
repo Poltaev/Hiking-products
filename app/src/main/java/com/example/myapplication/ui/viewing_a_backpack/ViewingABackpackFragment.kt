@@ -61,13 +61,13 @@ class ViewingABackpackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         job = lifecycleScope.launch(Dispatchers.Main) {
-            val listProduct = lifecycleScope.async { viewModel.getListFood(participantsId) }
+            val listProduct = lifecycleScope.async(Dispatchers.IO) { viewModel.getListFood(participantsId) }
             val typeListFoodAdapter = listProduct.await().let {
                 ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
             }
             binding.recyclerViewListEating.adapter = typeListFoodAdapter
 
-            val listEquipment = lifecycleScope.async { viewModel.getListEquipment(participantsId) }
+            val listEquipment = lifecycleScope.async(Dispatchers.IO) { viewModel.getListEquipment(participantsId) }
             val typeListEquipmentAdapter = listEquipment.await().let {
                 ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
             }

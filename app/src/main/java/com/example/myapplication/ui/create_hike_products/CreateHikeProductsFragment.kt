@@ -24,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class CreateHikeProductsFragment : Fragment() {
     private var typeMeal = listOf("Завтрак", "Обед", "Ужин", "Перекус", "Специи")
@@ -54,21 +55,27 @@ class CreateHikeProductsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkAndUpDateTheList()
-        binding.buttonCreateAHike.setOnClickListener {
-            viewModel.createAHikeProducts(typeMeal)
-            val toast = Toast.makeText(
-                requireContext().applicationContext,
-                "Продукты в поход добавлены",
-                Toast.LENGTH_SHORT
-            )
-            toast.show()
-            binding.buttonCreateAHike.isEnabled = false
-        }
+        lifecycleScope.launch(Dispatchers.Main) {
+            binding.buttonCreateAHike.setOnClickListener {
+                viewModel.createAHikeProducts(typeMeal)
+                val toast = Toast.makeText(
+                    requireContext().applicationContext,
+                    "Продукты в поход добавлены",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+                binding.buttonCreateAHike.isEnabled = false
+            }
 
-        binding.buttonFurther.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_createHikeProductsInListFragment_to_this_hike
-            )
+            binding.buttonFurther.setOnClickListener {
+                runBlocking(Dispatchers.IO) {
+                    viewModel.transferTheTripToTheArchive()
+                }
+
+                findNavController().navigate(
+                    R.id.action_createHikeProductsInListFragment_to_this_hike
+                )
+            }
         }
     }
 

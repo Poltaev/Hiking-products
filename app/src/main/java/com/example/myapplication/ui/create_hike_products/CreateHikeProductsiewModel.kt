@@ -14,14 +14,295 @@ import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.myapplication.dataBase.thisHike.ThisHikeParticipants
 import com.example.myapplication.dataBase.thisHike.ThisHikeProducts
 import com.example.myapplication.dataBase.thisHike.ThisHikeProductsMealList
+import com.example.myapplication.domain.ArchiveHikeUseCase
 import com.example.myapplication.domain.ParticipantsEquipmentUseCase
 import com.example.myapplication.domain.ProductsUseCase
 import com.example.myapplication.domain.ThisHikeUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
+
+    suspend fun transferTheTripToTheArchive() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val idArchiveHike: Int
+            val idNewParticipant: MutableList<Int>
+            val idNewMeal: MutableList<Int>
+            val idNewProducts: MutableList<Int>
+            if (ArchiveHikeUseCase(hikeDao).getAllListArchiveStorage().size == 0) {
+                ArchiveHikeUseCase(hikeDao).insertArchiveStorage(
+                    1,
+                    "Первое и единственное хранилище"
+                )
+            }
+            runBlocking(Dispatchers.IO) {
+                idArchiveHike = addArchiveHike()
+            }
+            runBlocking(Dispatchers.IO) {
+                idNewParticipant = addArchiveHikeParticipant(idArchiveHike)
+            }
+            runBlocking(Dispatchers.IO) {
+                idNewMeal = addArchiveHikeMeal(idArchiveHike)
+            }
+            runBlocking(Dispatchers.IO) {
+                idNewProducts = addArchiveHikeProducts()
+            }
+            runBlocking(Dispatchers.IO) {
+                addArchiveHikeProductsParticipant(idNewParticipant, idNewProducts)
+            }
+            runBlocking(Dispatchers.IO) {
+                addArchiveHikeProductsMeal(idNewMeal, idNewProducts)
+            }
+        }
+    }
+
+    suspend fun addArchiveHikeProductsMeal(
+        idNewMeal: MutableList<Int>,
+        idNewProducts: MutableList<Int>,
+    ) {
+        for (indexParticipant in 0..ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet().size - 1) {
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProductsMealList()
+                .forEach { meal ->
+                    if (meal.mealIntakeId == ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet()[indexParticipant].id) {
+                        ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach { product ->
+                            if (meal.productsId == product.id) {
+                                val indexProduct =
+                                    ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
+                                        .indexOf(product)
+                                ArchiveHikeUseCase(hikeDao).insertArchiveHikeProductsMealList(
+                                    idNewMeal[indexParticipant],
+                                    idNewProducts[indexProduct]
+                                )
+                            }
+                        }
+                    }
+                }
+        }
+    }
+
+    suspend fun addArchiveHikeProductsParticipant(
+        idNewParticipant: MutableList<Int>,
+        idNewProducts: MutableList<Int>,
+    ) {
+        for (indexParticipant in 0..ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants().size - 1) {
+            ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants()
+                .forEach { productParticipant ->
+                    if (productParticipant.participantId == ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()[indexParticipant].id) {
+                        ThisHikeUseCase(hikeDao).getAllListThisHikeProducts().forEach { product ->
+                            if (productParticipant.productsId == product.id) {
+                                val indexProduct =
+                                    ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
+                                        .indexOf(product)
+                                ArchiveHikeUseCase(hikeDao).insertArchiveHikeProductsParticipants(
+                                    idNewParticipant[indexParticipant],
+                                    idNewProducts[indexProduct]
+                                )
+                            }
+                        }
+
+                    }
+                }
+        }
+    }
+
+    suspend fun addArchiveHikeProducts(): MutableList<Int> {
+        val idNewProducts = mutableListOf<Int>()
+        ThisHikeUseCase(hikeDao).getAllListThisHikeProducts()
+            .forEach { products ->
+                if (ArchiveHikeUseCase(hikeDao).getAllListArchiveProducts().size == 0) {
+                    ArchiveHikeUseCase(hikeDao).insertArchiveProducts(
+                        1,
+                        products.name,
+                        products.weightForPerson,
+                        products.packageWeight,
+                        products.theWeightOfOneMeal,
+                        products.weightOnTheHike,
+                        products.remainingWeight,
+                        products.partiallyAssembled,
+                        products.fullyAssembled,
+                        products.theVolumeItem,
+                        products.theSoleOwner,
+                        products.nameOwner,
+                        products.idOwner,
+                        products.useTheWholePackInOneMeal,
+                        products.comment
+
+                    )
+                    idNewProducts.add(1)
+                } else {
+                    val newId = ArchiveHikeUseCase(hikeDao).getAllListArchiveProducts()
+                        .last().id + 1
+                    ArchiveHikeUseCase(hikeDao).insertArchiveProducts(
+                        newId,
+                        products.name,
+                        products.weightForPerson,
+                        products.packageWeight,
+                        products.theWeightOfOneMeal,
+                        products.weightOnTheHike,
+                        products.remainingWeight,
+                        products.partiallyAssembled,
+                        products.fullyAssembled,
+                        products.theVolumeItem,
+                        products.theSoleOwner,
+                        products.nameOwner,
+                        products.idOwner,
+                        products.useTheWholePackInOneMeal,
+                        products.comment
+                    )
+                    idNewProducts.add(
+                        newId
+                    )
+                }
+            }
+        return idNewProducts
+    }
+
+    suspend fun addArchiveHikeMeal(idArchiveHike: Int): MutableList<Int> {
+        val idNewMeal = mutableListOf<Int>()
+        ThisHikeUseCase(hikeDao).getAllListThisHikeMealIntakeSheet()
+            .forEach { meal ->
+                if (ArchiveHikeUseCase(hikeDao).getAllListArchiveHikeMealIntakeSheet().size == 0) {
+                    ArchiveHikeUseCase(hikeDao).insertArchiveHikeMealIntakeSheet(
+                        1,
+                        idArchiveHike,
+                        meal.name,
+                        meal.numberOfday,
+                        meal.typeMeal
+                    )
+                    idNewMeal.add(1)
+                } else {
+                    val newId = ArchiveHikeUseCase(hikeDao).getAllListArchiveHikeMealIntakeSheet()
+                        .last().id + 1
+                    ArchiveHikeUseCase(hikeDao).insertArchiveHikeMealIntakeSheet(
+                        newId,
+                        idArchiveHike,
+                        meal.name,
+                        meal.numberOfday,
+                        meal.typeMeal
+                    )
+                    idNewMeal.add(
+                        newId
+                    )
+                }
+            }
+        return idNewMeal
+    }
+
+    suspend fun addArchiveHikeParticipant(idArchiveHike: Int): MutableList<Int> {
+        val idNewParticipant = mutableListOf<Int>()
+        ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
+            .forEach { thisHikeParticipants ->
+                if (ArchiveHikeUseCase(hikeDao).getAllListArchiveParticipants().size == 0) {
+                    ArchiveHikeUseCase(hikeDao).insertArchiveParticipants(
+                        1,
+                        idArchiveHike,
+                        thisHikeParticipants.photo,
+                        thisHikeParticipants.firstName,
+                        thisHikeParticipants.lastName,
+                        thisHikeParticipants.gender,
+                        thisHikeParticipants.age,
+                        thisHikeParticipants.maximumPortableWeight,
+                        thisHikeParticipants.weightOfPersonalItems,
+                        thisHikeParticipants.weightWithLoad,
+                        thisHikeParticipants.comment
+                    )
+                    addEquiopment(thisHikeParticipants.id, 1)
+                    idNewParticipant.add(1)
+                } else {
+                    val newId = ArchiveHikeUseCase(hikeDao).getAllListArchiveParticipants()
+                        .last().id + 1
+                    ArchiveHikeUseCase(hikeDao).insertArchiveParticipants(
+                        newId,
+                        idArchiveHike,
+                        thisHikeParticipants.photo,
+                        thisHikeParticipants.firstName,
+                        thisHikeParticipants.lastName,
+                        thisHikeParticipants.gender,
+                        thisHikeParticipants.age,
+                        thisHikeParticipants.maximumPortableWeight,
+                        thisHikeParticipants.weightOfPersonalItems,
+                        thisHikeParticipants.weightWithLoad,
+                        thisHikeParticipants.comment
+                    )
+                    addEquiopment(
+                        thisHikeParticipants.id,
+                        newId
+                    )
+                    idNewParticipant.add(
+                        newId
+                    )
+                }
+            }
+        return idNewParticipant
+    }
+
+    suspend fun addArchiveHike(): Int {
+        val idArchiveHike: Int
+        if (ArchiveHikeUseCase(hikeDao).getAllListArchiveHike().size == 0) {
+            ArchiveHikeUseCase(hikeDao).insertArchiveHike(
+                1,
+                1,
+                ThisHikeUseCase(hikeDao).getAllListThisHike()[0].name,
+                ThisHikeUseCase(hikeDao).getAllListThisHike()[0].numberOfDay,
+                ThisHikeUseCase(hikeDao).getAllListThisHike()[0].numberOfSnacksInDay
+            )
+            idArchiveHike = 1
+        } else {
+            val newId = ArchiveHikeUseCase(hikeDao).getAllListArchiveHike().last().id + 1
+            ArchiveHikeUseCase(hikeDao).insertArchiveHike(
+                newId,
+                1,
+                ThisHikeUseCase(hikeDao).getAllListThisHike()[0].name,
+                ThisHikeUseCase(hikeDao).getAllListThisHike()[0].numberOfDay,
+                ThisHikeUseCase(hikeDao).getAllListThisHike()[0].numberOfSnacksInDay
+            )
+            idArchiveHike = newId
+        }
+        return idArchiveHike
+    }
+
+    suspend fun addEquiopment(idThisHikeParticipant: Int, idArchiveHikePaticipant: Int) {
+        ThisHikeUseCase(hikeDao).getAllListThisHikeEquipment().forEach {
+            if (idThisHikeParticipant == it.participantsId) {
+                if (ArchiveHikeUseCase(hikeDao).getAllListArchiveEquipment().size == 0) {
+                    ArchiveHikeUseCase(hikeDao).insertArchiveEquipment(
+                        1,
+                        idArchiveHikePaticipant,
+                        it.name,
+                        it.photo,
+                        it.weight,
+                        it.partiallyAssembled,
+                        it.fullyAssembled,
+                        it.theVolumeItem,
+                        it.theSoleOwner,
+                        it.nameOwner,
+                        it.idOwner,
+                        it.comment
+                    )
+                } else {
+                    val newId =
+                        ArchiveHikeUseCase(hikeDao).getAllListArchiveEquipment().last().id + 1
+                    ArchiveHikeUseCase(hikeDao).insertArchiveEquipment(
+                        newId,
+                        idArchiveHikePaticipant,
+                        it.name,
+                        it.photo,
+                        it.weight,
+                        it.partiallyAssembled,
+                        it.fullyAssembled,
+                        it.theVolumeItem,
+                        it.theSoleOwner,
+                        it.nameOwner,
+                        it.idOwner,
+                        it.comment
+                    )
+                }
+            }
+        }
+
+    }
 
     suspend fun getAllProductsFlow(): Flow<List<Products>> {
         return ProductsUseCase(hikeDao).getAllProductsFlow()

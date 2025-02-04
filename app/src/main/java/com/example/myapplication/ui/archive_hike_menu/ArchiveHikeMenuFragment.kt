@@ -2,6 +2,7 @@ package com.example.myapplication.ui.archive_hike_menu
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.myapplication.dataBase.App
 import com.example.myapplication.dataBase.archive.ArchiveHikeMealIntakeSheet
 import com.example.myapplication.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.myapplication.databinding.FragmentArchiveHikeMenuBinding
+import com.example.myapplication.databinding.FragmentViewingPeopleFromTheArchiveBinding
 import com.example.myapplication.ui.adapters.ArchiveHikeMenuAdapter
 import com.example.myapplication.ui.adapters.ThisHikeMenuAdapter
 import kotlinx.coroutines.Dispatchers
@@ -44,10 +46,17 @@ class ArchiveHikeMenuFragment : Fragment() {
             id = it.getInt("archiveHike")
         }
     }
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentArchiveHikeMenuBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch {
+        job = lifecycleScope.launch(Dispatchers.Main) {
             val chackListMenu = mutableListOf<ArchiveHikeMealIntakeSheet>()
             val listMenu = async(Dispatchers.IO) { viewModel.getAllMenuFlow() }
             listMenu.await().forEach {

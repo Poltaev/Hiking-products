@@ -9,7 +9,7 @@ data class ArchiveEquipment(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id : Int,
-    @ColumnInfo(name = "hikeId")
+    @ColumnInfo(name = "participantId")
     val participantId : Int,
     @ColumnInfo(name = "name")
     val name : String,

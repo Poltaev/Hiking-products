@@ -2,6 +2,7 @@ package com.example.myapplication.ui.hike_archive
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,11 +49,14 @@ class HikeArchiveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch(Dispatchers.Default) {
+        job = lifecycleScope.launch(Dispatchers.Main) {
             val archiveHike = async(Dispatchers.IO) { viewModel.getAllArchiveHike() }
-            archiveHike.await().let {
-                StorageArchiveAdapterAdapter(it) { onItemClick(it) }
+            val listArchiveHike = archiveHike.await()
+            listArchiveHike.let {
+                val adapter = StorageArchiveAdapterAdapter(it) { onItemClick(it) }
+                binding.recyclerViewArchive.adapter = adapter
             }
+
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.myapplication.ui.archive_hike_equipment
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,7 +60,7 @@ class ArchiveHikeEquipmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch {
+        job = lifecycleScope.launch(Dispatchers.Main) {
             viewModel.getAllArchiveHikeListEquipmentFlow().collect {
                 val listEquipment = mutableListOf<ArchiveEquipment>()
                 val nameParticipant = mutableListOf<String>()
