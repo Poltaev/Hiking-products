@@ -15,6 +15,7 @@ import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.Equipment
 import com.example.hike_menu_calculator.databinding.FragmentEquipmentListBinding
 import com.example.hike_menu_calculator.ui.adapters.ListEquipmentAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -50,7 +51,9 @@ class EquipmentListFragment : Fragment() {
                 val getEquipmentList = it
                 val EquipmentAdapter =
                     getEquipmentList.let { ListEquipmentAdapter(it) { onItemClick(it) } }
-                binding.recyclerViewEquipment.adapter = EquipmentAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewEquipment.adapter = EquipmentAdapter
+                }
             }
         }
         binding.buttonAddEquipment.setOnClickListener {

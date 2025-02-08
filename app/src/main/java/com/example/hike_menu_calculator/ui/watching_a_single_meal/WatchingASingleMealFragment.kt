@@ -91,7 +91,9 @@ class WatchingASingleMealFragment : Fragment() {
             val typeListAdapter = listProducts.let {
                 ThisHikeProductsMenuAdapter(it, nameParticipant) { onItemClick(it) }
             }
-            binding.recyclerViewListEating.adapter = typeListAdapter
+            launch(Dispatchers.Main) {
+                binding.recyclerViewListEating.adapter = typeListAdapter
+            }
             binding.buttonEatAMeal.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.IO) {
                     listProducts.forEach {

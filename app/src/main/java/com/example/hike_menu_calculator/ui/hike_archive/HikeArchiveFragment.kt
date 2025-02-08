@@ -51,7 +51,9 @@ class HikeArchiveFragment : Fragment() {
             val listArchiveHike = archiveHike.await()
             listArchiveHike.let {
                 val adapter = StorageArchiveAdapterAdapter(it) { onItemClick(it) }
-                binding.recyclerViewArchive.adapter = adapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewArchive.adapter = adapter
+                }
             }
 
         }

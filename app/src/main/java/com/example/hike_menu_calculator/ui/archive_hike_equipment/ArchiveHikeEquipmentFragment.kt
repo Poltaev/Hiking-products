@@ -87,7 +87,9 @@ class ArchiveHikeEquipmentFragment : Fragment() {
                 val typeListAdapter = listEquipment.let {
                     ArchiveHikeEquipmentAdapter(it, nameParticipant)
                 }
-                binding.recyclerViewListEquipment.adapter = typeListAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewListEquipment.adapter = typeListAdapter
+                }
 
             }
         }

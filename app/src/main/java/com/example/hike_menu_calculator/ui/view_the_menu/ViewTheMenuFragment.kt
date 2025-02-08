@@ -16,6 +16,7 @@ import com.example.hike_menu_calculator.dataBase.thisHike.ThisHikeMealIntakeShee
 
 import com.example.hike_menu_calculator.databinding.FragmentViewTheMenuBinding
 import com.example.hike_menu_calculator.ui.adapters.ThisHikeMenuAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -50,7 +51,9 @@ class ViewTheMenuFragment : Fragment() {
                 val typeListAdapter = listMenu.let {
                     ThisHikeMenuAdapter(it){onItemClick(it)}
                 }
-                binding.recyclerViewListMenu.adapter = typeListAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewListMenu.adapter = typeListAdapter
+                }
             }
         }
     }

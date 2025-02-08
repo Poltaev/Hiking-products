@@ -63,7 +63,10 @@ class ThisHikeListOfEquipmentFragment : Fragment() {
                 val typeListAdapter = listEquipment.let {
                     ThisHikeEquipmentAdapter(it, nameParticipant) { onItemClick(it) }
                 }
-                binding.recyclerViewListEquipment.adapter = typeListAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewListEquipment.adapter = typeListAdapter
+
+                }
 
             }
         }

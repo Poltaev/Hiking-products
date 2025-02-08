@@ -87,7 +87,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
                     5,
-                    "Горелка Яр",
+                    "Горелка",
                     "Photo",
                     371,
                     false,
@@ -194,24 +194,12 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
             val getListParticipants =
                 ParticipantsEquipmentUseCase(hikeDao).getAllCollectionParticipantsList()
             if (getListParticipants.size == 0) {
-//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-//                    1,
-//                    "Photo",
-//                    "Для добавления",
-//                    "участника",
-//                    "нажмите сюда, или на кнопку",
-//                    "17",
-//                    10000,
-//                    10000,
-                //                    10000,
-//                    false
-//
-//                )
+
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     1,
                     "Photo",
-                    "Ярослав",
-                    "Клюкин",
+                    "Иван",
+                    "Иванов",
                     "Мужской",
                     "27",
                     25000,
@@ -223,8 +211,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     2,
                     "Photo",
-                    "Данила",
-                    "Дайбов",
+                    "Петр",
+                    "Петров",
                     "Мужской",
                     "27",
                     24000,
@@ -236,8 +224,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     3,
                     "Photo",
-                    "Павел",
-                    "Почикаев",
+                    "Олег",
+                    "Олегов",
                     "Мужской",
                     "27",
                     23000,
@@ -249,8 +237,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     4,
                     "Photo",
-                    "Евгений",
-                    "Полтаев",
+                    "Виталий",
+                    "Витальев",
                     "Мужской",
                     "28",
                     23000,
@@ -262,8 +250,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     5,
                     "Photo",
-                    "Елизавета",
-                    "Хлобостова",
+                    "Оксана",
+                    "Оксановна",
                     "Женский",
                     "22",
                     19000,
@@ -275,8 +263,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     6,
                     "Photo",
-                    "Софья",
-                    "Арзамасцева",
+                    "Анастасия",
+                    "Анастасьева",
                     "Женский",
                     "22",
                     19000,
@@ -288,8 +276,8 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
                     7,
                     "Photo",
-                    "Анна",
-                    "Хурина",
+                    "Виктория",
+                    "Ольговна",
                     "Женский",
                     "22",
                     19000,

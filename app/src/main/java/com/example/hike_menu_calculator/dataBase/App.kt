@@ -9,9 +9,10 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        db = Room.inMemoryDatabaseBuilder(
+        db = Room.databaseBuilder(
             applicationContext,
-            AppDataBase::class.java
+            AppDataBase::class.java,
+            name = "db"
         ).build()
     }
 }

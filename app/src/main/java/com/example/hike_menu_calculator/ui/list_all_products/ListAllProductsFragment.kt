@@ -15,6 +15,7 @@ import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.products.Products
 import com.example.hike_menu_calculator.databinding.FragmentListAllProductsBinding
 import com.example.hike_menu_calculator.ui.adapters.ListProductsAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -54,7 +55,9 @@ class ListAllProductsFragment : Fragment() {
                 val getProductList = it
                 val ProductAdapter =
                     getProductList.let { ListProductsAdapter(it) { onItemClick(it) } }
-                binding.recyclerViewListProducts.adapter = ProductAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewListProducts.adapter = ProductAdapter
+                }
             }
         }
     }

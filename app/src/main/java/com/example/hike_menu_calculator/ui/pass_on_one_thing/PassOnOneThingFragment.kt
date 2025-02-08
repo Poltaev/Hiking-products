@@ -57,7 +57,7 @@ class PassOnOneThingFragment : Fragment() {
             if (productId != 0) {
                 viewModel.getListFood().forEach {
                     if (it.id == productId) {
-                        launch(Dispatchers.Default) {
+                        launch(Dispatchers.Main) {
                             binding.textViewNameEquipment.text = it.name
                             binding.imageViewPhoto.setImageResource(R.drawable.hamburger)
                             binding.textViewWeight.text = "Вес продукта: ${it.remainingWeight} г."
@@ -71,8 +71,10 @@ class PassOnOneThingFragment : Fragment() {
                         val listParticipant = viewModel.getAllListParticipant()
                         listParticipant.forEach {
                             if (it.id == listIdParticipant[0]) {
-                                binding.textViewNameParticipants.text =
-                                    "Несет: ${it.firstName + " " + it.lastName}"
+                                launch(Dispatchers.Main) {
+                                    binding.textViewNameParticipants.text =
+                                        "Несет: ${it.firstName + " " + it.lastName}"
+                                }
                             }
                         }
                     }
@@ -81,17 +83,22 @@ class PassOnOneThingFragment : Fragment() {
             if (equipmentId != 0) {
                 viewModel.getAllEquipment().forEach {
                     if (it.id == equipmentId) {
-                        launch(Dispatchers.Default) {
+                        launch(Dispatchers.Main) {
                             binding.textViewNameEquipment.text = it.name
                             binding.imageViewPhoto.setImageResource(R.drawable.tent)
                             binding.textViewWeight.text = "Вес снаряжения: ${it.weight} г."
+                        }
                             val listParticipant = viewModel.getAllListParticipant()
                             val idParticipant = it.participantsId
                             listParticipant.forEach {
-                                if (it.id == idParticipant) binding.textViewNameParticipants.text =
-                                    "Несет: ${it.firstName + " " + it.lastName}"
+                                if (it.id == idParticipant) {
+                                    launch(Dispatchers.Main) {
+                                        binding.textViewNameParticipants.text =
+                                            "Несет: ${it.firstName + " " + it.lastName}"
+                                    }
+                                }
                             }
-                        }
+
                     }
                 }
             }
@@ -99,7 +106,7 @@ class PassOnOneThingFragment : Fragment() {
             viewModel.getAllListParticipant().forEach {
                 listParticipant.add(it.firstName + " " + it.lastName)
             }
-            launch(Dispatchers.Default) {
+            launch(Dispatchers.Main) {
                 val adapter = ArrayAdapter(
                     requireContext().applicationContext,
                     android.R.layout.simple_spinner_item, listParticipant
@@ -131,7 +138,10 @@ class PassOnOneThingFragment : Fragment() {
                     )
                     toast.show()
                 }
-                binding.buttonTransferTheEquipment.isEnabled = false
+                launch(Dispatchers.Main) {
+                    binding.buttonTransferTheEquipment.isEnabled = false
+                }
+
             }
         }
     }

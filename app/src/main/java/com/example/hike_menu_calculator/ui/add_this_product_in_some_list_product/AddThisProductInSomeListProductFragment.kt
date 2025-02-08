@@ -83,8 +83,10 @@ class AddThisProductInSomeListProductFragment : Fragment() {
             val listProduct = viewModel.getAllProductList()
             listProduct.forEach {
                 if (it.id == id) {
-                    binding.textViewHeadingNameList.text =
-                        "Продукт для добавления: " + it.name
+                    launch(Dispatchers.Main) {
+                        binding.textViewHeadingNameList.text =
+                            "Продукт для добавления: " + it.name
+                    }
                 }
             }
         }

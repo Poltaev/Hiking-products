@@ -56,7 +56,7 @@ class ArchiveViewingASingleMealFragment : Fragment() {
         val listIdProducts = mutableListOf<Int>()
         val nameParticipant = mutableListOf<String>()
 
-        job = lifecycleScope.launch {
+        job = lifecycleScope.launch(Dispatchers.Main) {
             runBlocking(Dispatchers.IO) {
                 viewModel.getAllMenuList().forEach {
                     if (it.mealIntakeId == id) {

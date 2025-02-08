@@ -52,7 +52,7 @@ class ArchiveHikeViewingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        job = lifecycleScope.launch(Dispatchers.Default) {
+        job = lifecycleScope.launch(Dispatchers.Main) {
 
             val archiveHike = async(Dispatchers.IO) { viewModel.getAllArchiveHike() }
             archiveHike.await().forEach { archiveHike ->

@@ -15,6 +15,7 @@ import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.products.ListTypeOfProducts
 import com.example.hike_menu_calculator.databinding.FragmentTypeFoodListBinding
 import com.example.hike_menu_calculator.ui.adapters.ListTypeProductsAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -54,7 +55,10 @@ class FoodListFragment : Fragment() {
                 val typeListAdapter = listTypeList.let {
                     ListTypeProductsAdapter(it) { onItemClick(it) }
                 }
-                binding.recyclerViewTypeListProducts.adapter = typeListAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewTypeListProducts.adapter = typeListAdapter
+                }
+
             }
         }
         binding.buttonAddList.setOnClickListener {
@@ -68,7 +72,7 @@ class FoodListFragment : Fragment() {
         }
         binding.buttonAddFood.setOnClickListener {
             val bundle = Bundle().apply {
-               putInt("productsId", 9999)
+                putInt("productsId", 9999)
             }
             findNavController().navigate(
                 R.id.action_type_food_list_to_viewingTheProductFragment,

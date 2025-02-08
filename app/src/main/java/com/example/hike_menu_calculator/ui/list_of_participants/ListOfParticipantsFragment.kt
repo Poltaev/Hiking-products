@@ -15,6 +15,7 @@ import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.Participants
 import com.example.hike_menu_calculator.databinding.FragmentListOfParticipantsBinding
 import com.example.hike_menu_calculator.ui.adapters.ListParticipantsAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -53,7 +54,9 @@ class ListOfParticipantsFragment : Fragment() {
                 val getParticipantsList = it
                 val ParticipantsAdapter =
                     getParticipantsList.let { ListParticipantsAdapter(it) { onItemClick(it) } }
-                binding.recyclerViewParticipants.adapter = ParticipantsAdapter
+                launch(Dispatchers.Main) {
+                    binding.recyclerViewParticipants.adapter = ParticipantsAdapter
+                }
             }
         }
         binding.buttonAddParticipants.setOnClickListener {
