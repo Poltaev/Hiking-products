@@ -11,7 +11,7 @@ import com.example.hike_menu_calculator.dataBase.products.Products
 import com.example.hike_menu_calculator.databinding.CreateHikeAddProductItemBinding
 
 class CreateHikeProductsAdapter(
-    private val data: List<Products>,
+     var data: List<Products>,
     private val onClick: (Products) -> Unit,
 ) :
     RecyclerView.Adapter<CreateHikeProductsViewHolder>() {

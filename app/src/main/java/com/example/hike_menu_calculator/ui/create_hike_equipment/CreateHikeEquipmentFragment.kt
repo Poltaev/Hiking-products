@@ -10,13 +10,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import com.example.hike_menu_calculator.R
 import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.Equipment
+import com.example.hike_menu_calculator.dataBase.Participants
 import com.example.hike_menu_calculator.databinding.FragmentCreateHikeEquipmentBinding
 import com.example.hike_menu_calculator.ui.adapters.CreateHikeEquipmentAdapter
+import com.example.hike_menu_calculator.ui.adapters.CreateHikeParticipantsAdapter
+import com.example.hike_menu_calculator.ui.create_hike_participant.CreateParticipantDiffUtilCallback
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -27,6 +32,10 @@ class CreateHikeEquipmentFragment : Fragment() {
     private var _binding: FragmentCreateHikeEquipmentBinding? = null
 
     private val binding get() = _binding!!
+
+    private var adapter: CreateHikeEquipmentAdapter? = null
+
+    private var listEquipment = listOf<Equipment>()
 
     private val viewModel: CreateHikeEquipmentViewModel by viewModels {
         object : ViewModelProvider.Factory {
@@ -48,7 +57,12 @@ class CreateHikeEquipmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkAndUpDateTheList()
+        job = lifecycleScope.launch(Dispatchers.Main) {
+            val listEquipments = async(Dispatchers.IO) { viewModel.getAllEquipmentList() }
+            listEquipment = listEquipments.await()
+            adapter = CreateHikeEquipmentAdapter(listEquipment) { onItemClick(it) }
+            binding.recyclerViewListEquipment.adapter = adapter
+        }
         binding.buttonFurther.setOnClickListener {
             viewModel.addEquipmentToBackpack()
             findNavController().navigate(
@@ -68,60 +82,56 @@ class CreateHikeEquipmentFragment : Fragment() {
         _binding = null
     }
 
-    private fun checkAndUpDateTheList() {
-        job = lifecycleScope.launch {
-            delay(100)
-            viewModel.getAllEquipmentFlow().collect {
-                val getEquipmentList = it
-                val EquipmentAdapter =
-                    getEquipmentList.let {
-                        CreateHikeEquipmentAdapter(
-                            it
-                        ) { onItemClick(it) }
+    private fun onItemClick(item: Equipment) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val listEquipments = viewModel.getAllEquipmentList()
+            listEquipments.forEach {
+                if (item.id == it.id) {
+                    if (it.equipmentInTheCampaign) {
+                        viewModel.upDateEquipment(
+                            item.id,
+                            item.name,
+                            item.photo,
+                            item.weight,
+                            item.theVolumeItem,
+                            item.theSoleOwner,
+                            item.nameOwner,
+                            item.idOwner,
+                            false
+                        )
+                    } else {
+                        viewModel.upDateEquipment(
+                            item.id,
+                            item.name,
+                            item.photo,
+                            item.weight,
+                            item.theVolumeItem,
+                            item.theSoleOwner,
+                            item.nameOwner,
+                            item.idOwner,
+                            true
+                        )
                     }
-                binding.recyclerViewListEquipment.adapter = EquipmentAdapter
+                }
+            }
+            val newListEquipment = viewModel.getAllEquipmentList()
+            launch(Dispatchers.Main) {
+                upDateList(newListEquipment)
             }
         }
     }
 
-    private fun onItemClick(item: Equipment) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val listEquipment = viewModel.getAllEquipmentList()
-            listEquipment.forEach {
-                if (item.id == it.id) {
-                    if (it.equipmentInTheCampaign) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            viewModel.upDateEquipment(
-                                item.id,
-                                item.name,
-                                item.photo,
-                                item.weight,
-                                item.theVolumeItem,
-                                item.theSoleOwner,
-                                item.nameOwner,
-                                item.idOwner,
-                                false
-                            )
-                        }
-                    } else {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            viewModel.upDateEquipment(
-                                item.id,
-                                item.name,
-                                item.photo,
-                                item.weight,
-                                item.theVolumeItem,
-                                item.theSoleOwner,
-                                item.nameOwner,
-                                item.idOwner,
-                                true
-                            )
-                        }
-                    }
-                }
-            }
+    private fun upDateList(newElement: List<Equipment>) {
+        val result = DiffUtil.calculateDiff(
+            CreateEquipmentDiffUtilCallback(
+                oldElement = listEquipment,
+                newElement = newElement
+            )
+        )
+        adapter?.let { adapter ->
+            adapter.data = newElement
+            result.dispatchUpdatesTo(adapter)
         }
-        job.cancel()
-        checkAndUpDateTheList()
+        listEquipment = newElement
     }
 }

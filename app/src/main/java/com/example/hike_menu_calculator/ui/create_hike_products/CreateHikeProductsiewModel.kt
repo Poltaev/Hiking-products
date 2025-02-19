@@ -568,10 +568,14 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         idProduct: MutableList<Int>,
         idThisHikeProduct: MutableList<Int>,
     ): MutableList<Int> {
+        val listRemovedIdProducts = mutableListOf<Int>()
         idProduct.forEach {
             if (idThisHikeProduct.contains(it) == false) {
-                idProduct.remove(it)
+                listRemovedIdProducts.add(it)
             }
+        }
+        listRemovedIdProducts.forEach {
+            idProduct.remove(it)
         }
         return idProduct
     }

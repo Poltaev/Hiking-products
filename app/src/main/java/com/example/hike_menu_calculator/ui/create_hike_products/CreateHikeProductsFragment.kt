@@ -11,13 +11,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import com.example.hike_menu_calculator.R
 import com.example.hike_menu_calculator.dataBase.App
+import com.example.hike_menu_calculator.dataBase.Participants
 import com.example.hike_menu_calculator.dataBase.products.Products
 import com.example.hike_menu_calculator.databinding.FragmentCreateHikeProductsInListBinding
+import com.example.hike_menu_calculator.ui.adapters.CreateHikeParticipantsAdapter
 import com.example.hike_menu_calculator.ui.adapters.CreateHikeProductsAdapter
+import com.example.hike_menu_calculator.ui.create_hike_participant.CreateParticipantDiffUtilCallback
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -25,6 +30,10 @@ import kotlinx.coroutines.runBlocking
 class CreateHikeProductsFragment : Fragment() {
     private var typeMeal = listOf("Завтрак", "Обед", "Ужин", "Перекус", "Специи")
     lateinit var job: Job
+
+    private var adapter: CreateHikeProductsAdapter? = null
+
+    private var listProduct = listOf<Products>()
 
     private var _binding: FragmentCreateHikeProductsInListBinding? = null
 
@@ -50,7 +59,12 @@ class CreateHikeProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkAndUpDateTheList()
+        job = lifecycleScope.launch(Dispatchers.Main) {
+            val listProducts = async(Dispatchers.IO) { viewModel.getAllProductsList() }
+            listProduct = listProducts.await()
+            adapter = CreateHikeProductsAdapter(listProduct) { onItemClick(it) }
+            binding.recyclerViewListProducts.adapter = adapter
+        }
         lifecycleScope.launch(Dispatchers.Main) {
             binding.buttonCreateAHike.setOnClickListener {
                 viewModel.createAHikeProducts(typeMeal)
@@ -90,63 +104,59 @@ class CreateHikeProductsFragment : Fragment() {
         _binding = null
     }
 
-    private fun checkAndUpDateTheList() {
-        job = lifecycleScope.launch {
-            delay(100)
-            viewModel.getAllProductsFlow().collect {
-                delay(100)
-                val getProductsList = it
-                val ProductsAdapter =
-                    getProductsList.let {
-                        CreateHikeProductsAdapter(
-                            it
-                        ) { onItemClick(it) }
+
+    private fun onItemClick(item: Products) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val listProducts = viewModel.getAllProductsList()
+            listProducts.forEach {
+                if (item.id == it.id) {
+                    if (it.weWillUseItInTheCurrentCampaign) {
+                        viewModel.upDateProducts(
+                            item.id,
+                            item.name,
+                            item.weightForPerson,
+                            item.packageWeight,
+                            item.theVolumeItem,
+                            item.theSoleOwner,
+                            item.nameOwner,
+                            item.idOwner,
+                            item.useTheWholePackInOneMeal,
+                            false
+                        )
+                    } else {
+                        viewModel.upDateProducts(
+                            item.id,
+                            item.name,
+                            item.weightForPerson,
+                            item.packageWeight,
+                            item.theVolumeItem,
+                            item.theSoleOwner,
+                            item.nameOwner,
+                            item.idOwner,
+                            item.useTheWholePackInOneMeal,
+                            true
+                        )
                     }
-                binding.recyclerViewListProducts.adapter = ProductsAdapter
+                }
+            }
+            val newListProducts = viewModel.getAllProductsList()
+            launch(Dispatchers.Main) {
+                upDateList(newListProducts)
             }
         }
     }
 
-    private fun onItemClick(item: Products) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val listProduct = viewModel.getAllProductsList()
-            listProduct.forEach {
-                if (item.id == it.id) {
-                    if (it.weWillUseItInTheCurrentCampaign) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            viewModel.upDateProducts(
-                                item.id,
-                                item.name,
-                                item.weightForPerson,
-                                item.packageWeight,
-                                item.theVolumeItem,
-                                item.theSoleOwner,
-                                item.nameOwner,
-                                item.idOwner,
-                                item.useTheWholePackInOneMeal,
-                                false
-                            )
-                        }
-                    } else {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            viewModel.upDateProducts(
-                                item.id,
-                                item.name,
-                                item.weightForPerson,
-                                item.packageWeight,
-                                item.theVolumeItem,
-                                item.theSoleOwner,
-                                item.nameOwner,
-                                item.idOwner,
-                                item.useTheWholePackInOneMeal,
-                                true
-                            )
-                        }
-                    }
-                }
-            }
+    private fun upDateList(newElement: List<Products>) {
+        val result = DiffUtil.calculateDiff(
+            CreateProductDiffUtilCallback(
+                oldElement = listProduct,
+                newElement = newElement
+            )
+        )
+        adapter?.let { adapter ->
+            adapter.data = newElement
+            result.dispatchUpdatesTo(adapter)
         }
-        job.cancel()
-        checkAndUpDateTheList()
+        listProduct = newElement
     }
 }
