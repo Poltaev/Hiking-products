@@ -19,6 +19,7 @@ roomRuntime = "2.6.1"
 activity = "1.10.0"
 glide = "4.16.0"
 recyclerview = "1.4.0"
+coreTelecom = "1.0.0-beta01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationFragmentKtx" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+androidx-core-telecom = { group = "androidx.core", name = "core-telecom", version.ref = "coreTelecom" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -2,6 +2,7 @@ package com.example.hike_menu_calculator.ui.create_hike_participant
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import com.example.hike_menu_calculator.R
 import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.Participants
@@ -17,14 +19,20 @@ import com.example.hike_menu_calculator.databinding.FragmentCreateHikeParticipan
 import com.example.hike_menu_calculator.ui.adapters.CreateHikeParticipantsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class CreateHikeParticipantFragment : Fragment() {
 
     lateinit var job: Job
 
     private var _binding: FragmentCreateHikeParticipantBinding? = null
+
+    private var adapter: CreateHikeParticipantsAdapter? = null
+
+    private var listParticipant = listOf<Participants>()
 
     private val binding get() = _binding!!
 
@@ -49,10 +57,15 @@ class CreateHikeParticipantFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkAndUpDateTheList()
+        job = lifecycleScope.launch(Dispatchers.Main) {
+            val listParticipants = async(Dispatchers.IO) { viewModel.getAllParticipantsList() }
+            listParticipant = listParticipants.await()
+            adapter = CreateHikeParticipantsAdapter(listParticipant) { onItemClick(it) }
+            binding.recyclerViewListParticipant.adapter = adapter
+        }
+
         binding.buttonFurther.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
-                val listParticipant = viewModel.getAllParticipantsList()
                 listParticipant.forEach {
                     if (it.participationInTheCampaign) {
                         viewModel.createHikeParticipant(
@@ -87,29 +100,14 @@ class CreateHikeParticipantFragment : Fragment() {
         _binding = null
     }
 
-    private fun checkAndUpDateTheList() {
-        job = lifecycleScope.launch {
-            viewModel.getAllParticipantFlow().collect {
-                delay(100)
-                val getParticipantList = it
-                val ParticipantsAdapter =
-                    getParticipantList.let {
-                        CreateHikeParticipantsAdapter(
-                            it
-                        ) { onItemClick(it) }
-                    }
-                binding.recyclerViewListParticipant.adapter = ParticipantsAdapter
-            }
-        }
-    }
 
     private fun onItemClick(item: Participants) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val listParticipant = viewModel.getAllParticipantsList()
-            listParticipant.forEach {
-                if (item.id == it.id) {
-                    if (it.participationInTheCampaign) {
-                        lifecycleScope.launch(Dispatchers.IO) {
+            val listParticipants = viewModel.getAllParticipantsList()
+            runBlocking {
+                listParticipants.forEach {
+                    if (item.id == it.id) {
+                        if (it.participationInTheCampaign) {
                             viewModel.upDateParticipant(
                                 item.id,
                                 item.photo,
@@ -122,9 +120,8 @@ class CreateHikeParticipantFragment : Fragment() {
                                 item.weightWithLoad,
                                 false
                             )
-                        }
-                    } else {
-                        lifecycleScope.launch(Dispatchers.IO) {
+
+                        } else {
                             viewModel.upDateParticipant(
                                 item.id,
                                 item.photo,
@@ -141,8 +138,24 @@ class CreateHikeParticipantFragment : Fragment() {
                     }
                 }
             }
-            job.cancel()
-            checkAndUpDateTheList()
+            val newListParticipant = viewModel.getAllParticipantsList()
+            launch(Dispatchers.Main) {
+                upDateList(newListParticipant)
+            }
         }
+    }
+
+    private fun upDateList(newElement: List<Participants>) {
+        val result = DiffUtil.calculateDiff(
+            CreateParticipantDiffUtilCallback(
+                oldElement = listParticipant,
+                newElement = newElement
+            )
+        )
+        adapter?.let { adapter ->
+            adapter.data = newElement
+            result.dispatchUpdatesTo(adapter)
+        }
+        listParticipant = newElement
     }
 }
