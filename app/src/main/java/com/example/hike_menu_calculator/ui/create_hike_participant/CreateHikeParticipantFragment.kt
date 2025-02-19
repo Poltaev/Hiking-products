@@ -141,6 +141,7 @@ class CreateHikeParticipantFragment : Fragment() {
             val newListParticipant = viewModel.getAllParticipantsList()
             launch(Dispatchers.Main) {
                 upDateList(newListParticipant)
+
             }
         }
     }
