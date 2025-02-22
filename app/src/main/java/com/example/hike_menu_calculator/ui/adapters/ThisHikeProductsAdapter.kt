@@ -48,10 +48,10 @@ class ThisHikeProductsAdapter(
                 textViewWeightOnePerson.text = "Вес порции: " + item.weightForPerson.toString() + " г."
             }
             if (item != null) {
-                textViewWeightAll.text = "Вес на весь поход: " + item.weightOnTheHike.toString() + " г."
+                textViewWeightAll.text = "Общий вес: " + item.weightOnTheHike.toString() + " г."
             }
             if (item != null) {
-                textViewWeightOneMeal.text = "Расход на 1 прием пищи: " + item.theWeightOfOneMeal.toString() + " г."
+                textViewWeightOneMeal.text = "1 прием пищи: " + item.theWeightOfOneMeal.toString() + " г."
             }
 
             item?.let {

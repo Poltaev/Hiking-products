@@ -12,8 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hike_menu_calculator.R
 import com.example.hike_menu_calculator.dataBase.App
+import com.example.hike_menu_calculator.dataBase.Equipment
 import com.example.hike_menu_calculator.dataBase.thisHike.ThisHikeProducts
 import com.example.hike_menu_calculator.databinding.FragmentThisHikeListOfProductsBinding
+import com.example.hike_menu_calculator.ui.adapters.CreateHikeEquipmentAdapter
 import com.example.hike_menu_calculator.ui.adapters.ThisHikeProductsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,6 +27,10 @@ class ThisHikeListOfProductsFragment : Fragment() {
     private var _binding: FragmentThisHikeListOfProductsBinding? = null
 
     private val binding get() = _binding!!
+
+    private var adapter: ThisHikeProductsAdapter? = null
+
+    private var listEquipment = listOf<Equipment>()
 
     private val viewModel: ThisHikeListOfProductsViewModel by viewModels {
         object : ViewModelProvider.Factory {
@@ -49,21 +55,9 @@ class ThisHikeListOfProductsFragment : Fragment() {
         job = lifecycleScope.launch {
             viewModel.getAllProductsFlow().collect {
                 val listProducts = it
-                val nameParticipant = mutableListOf<String>()
+                var nameParticipant = listOf<String>()
                 runBlocking(Dispatchers.IO) {
-                    val item = viewModel.getAllProductsParticipant()
-                    listProducts.forEach { itemProduct ->
-                        item.forEach { itemProductParticipant ->
-                            if (itemProduct.id == itemProductParticipant.productsId) {
-                                val participantList = viewModel.getAllPartisipant()
-                                participantList.forEach { itemParticipant ->
-                                    if (itemProductParticipant.participantId == itemParticipant.id) {
-                                        nameParticipant.add(itemParticipant.firstName + " " + itemParticipant.lastName)
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    nameParticipant = viewModel.getNameParticipant(listProducts)
                 }
                 val typeListAdapter = listProducts.let {
                     ThisHikeProductsAdapter(it, nameParticipant) { onItemClick(it) }

@@ -26,6 +26,8 @@
         android:layout_marginTop="8dp"
         android:text="Name products"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCollected"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +36,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="28dp"
         android:text="Name Participants"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCollected"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textViewWeightOnePerson"
@@ -47,6 +52,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Weight OnePerson"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCollected"
+        app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
 
@@ -55,11 +62,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="80dp"
         android:text="Weight All"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCollected"
+        app:layout_constraintHorizontal_bias="0.005"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
-
 
     <TextView
         android:id="@+id/textViewWeightPackage"
@@ -68,6 +76,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:text="Weight Package"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCollected"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
 
@@ -76,8 +86,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="60dp"
         android:text="Weight remains"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCollected"
+        app:layout_constraintHorizontal_bias="0.006"
         app:layout_constraintStart_toEndOf="@+id/imageViewProducts"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameProducts" />
+
+    <TextView
+        android:id="@+id/textViewComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:text="Нажмите сюда, чтобы оставить комментарий к продукту."
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeightAll" />
+
+    <ImageButton
+
+        android:id="@+id/buttonCollected"
+        android:layout_width="56dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/white"
+        android:text="Собрано"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_done_24" />
+
+    <ImageButton
+        android:id="@+id/imageButtonHandOver"
+        android:layout_width="57dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCollected"
+        app:srcCompat="@drawable/baseline_forward_24" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

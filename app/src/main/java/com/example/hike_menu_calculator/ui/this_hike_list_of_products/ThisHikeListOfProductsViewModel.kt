@@ -12,11 +12,22 @@ class ThisHikeListOfProductsViewModel(private val hikeDao: HikeDao) : ViewModel(
     suspend fun getAllProductsFlow(): Flow<List<ThisHikeProducts>> {
         return ThisHikeUseCase(hikeDao).getAllThisHikeProductsFlow()
     }
-    suspend fun getAllPartisipant(): List<ThisHikeParticipants> {
-        return ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
-    }
-    suspend fun getAllProductsParticipant(): List<ThisHikeProductsParticipants> {
-        return ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants()
-    }
 
+    suspend fun getNameParticipant (listProducts: List<ThisHikeProducts>): List<String> {
+        val nameParticipant = mutableListOf<String>()
+        val item = ThisHikeUseCase(hikeDao).getAllListThisHikeProductsParticipants()
+        listProducts.forEach { itemProduct ->
+            item.forEach { itemProductParticipant ->
+                if (itemProduct.id == itemProductParticipant.productsId) {
+                    val participantList = ThisHikeUseCase(hikeDao).getAllListThisHikeParticipants()
+                    participantList.forEach { itemParticipant ->
+                        if (itemProductParticipant.participantId == itemParticipant.id) {
+                            nameParticipant.add(itemParticipant.firstName + " " + itemParticipant.lastName)
+                        }
+                    }
+                }
+            }
+        }
+        return nameParticipant
+    }
 }
