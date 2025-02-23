@@ -163,9 +163,20 @@
             android:id="@+id/enterWeightOfPersonalItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Вес личных вещей"
             android:inputType="phone"
-            android:textColor="@color/black"
-            android:hint="Вес личных вещей" />
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="394dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:text="Кнопка удалить, уберет текущего участника, а кнопка сохранить - сохранит нового, после чего можно сразу сохранять еще одного, не покидая экран"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputWeightOfPersonalItems"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

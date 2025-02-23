@@ -93,6 +93,9 @@
         <action
             android:id="@+id/action_thisHikeListOfProductsFragment_to_passOnOneThingFragment"
             app:destination="@id/passOnOneThingFragment" />
+        <action
+            android:id="@+id/action_thisHikeListOfProductsFragment_to_addCommentFragment"
+            app:destination="@id/addCommentFragment" />
     </fragment>
     <fragment
         android:id="@+id/thisHikeListOfParticipantsFragment"
@@ -359,5 +362,14 @@
         android:name="com.example.hike_menu_calculator.ui.archive_viewing_backpack.ArchiveViewingABackpackFragment"
         android:label="Просмотр рюкзака"
         tools:layout="@layout/fragment_archive_viewing_a_backpack" />
+    <fragment
+        android:id="@+id/addCommentFragment"
+        android:name="com.example.hike_menu_calculator.ui.add_comment.AddCommentFragment"
+        android:label="Добавить комметарий"
+        tools:layout="@layout/fragment_add_comment" >
+        <action
+            android:id="@+id/action_addCommentFragment_to_thisHikeListOfProductsFragment"
+            app:destination="@id/thisHikeListOfProductsFragment" />
+    </fragment>
 
 </navigation>

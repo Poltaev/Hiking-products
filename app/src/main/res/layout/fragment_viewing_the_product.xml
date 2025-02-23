@@ -129,4 +129,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="394dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:text="Кнопка удалить, уберет текущий продукт, а кнопка сохранить - сохранит новый, после чего можно сразу сохранять еще один, не покидая экран"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputWeightPackage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

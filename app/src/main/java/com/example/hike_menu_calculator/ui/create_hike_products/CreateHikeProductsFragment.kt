@@ -59,6 +59,7 @@ class CreateHikeProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buttonFurther.isEnabled = false
         job = lifecycleScope.launch(Dispatchers.Main) {
             val listProducts = async(Dispatchers.IO) { viewModel.getAllProductsList() }
             listProduct = listProducts.await()
@@ -75,6 +76,7 @@ class CreateHikeProductsFragment : Fragment() {
                 )
                 toast.show()
                 binding.buttonCreateAHike.isEnabled = false
+                binding.buttonFurther.isEnabled = true
             }
 
             binding.buttonFurther.setOnClickListener {

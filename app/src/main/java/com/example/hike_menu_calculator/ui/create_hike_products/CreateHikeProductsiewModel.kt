@@ -483,7 +483,7 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                     "nameAll",
                     0,
                     false,
-                    ""
+                    "Нажмите сюда, чтобы оставить комментарий к продукту."
                 )
             }
         }

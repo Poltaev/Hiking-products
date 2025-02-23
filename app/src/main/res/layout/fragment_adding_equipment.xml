@@ -98,4 +98,13 @@
             android:hint="Вес" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="394dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:text="Кнопка удалить, уберет текущее сняряжение, а кнопка сохранить - сохранит новое, после чего можно сразу сохранять еще одно, не покидая экран"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutWeight" />
 </androidx.constraintlayout.widget.ConstraintLayout>

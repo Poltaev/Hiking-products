@@ -132,7 +132,7 @@ class ViewingTheProductFragment : Fragment() {
             }
             val toast = Toast.makeText(
                 requireContext().applicationContext,
-                "Продукт добавлен",
+                "Продукт добавлен, можно добавлять следующий",
                 Toast.LENGTH_SHORT
             )
             toast.show()

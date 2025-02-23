@@ -73,9 +73,9 @@
         android:id="@+id/textView8"
         android:layout_width="279dp"
         android:layout_height="46dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginBottom="4dp"
-        android:text="После нажатия на акнопку далее, старый поход будет удален"
+        android:text="После нажатия на кнопку далее, старый поход будет удален"
         app:layout_constraintBottom_toTopOf="@+id/buttonFurther"
         app:layout_constraintEnd_toEndOf="parent" />
 

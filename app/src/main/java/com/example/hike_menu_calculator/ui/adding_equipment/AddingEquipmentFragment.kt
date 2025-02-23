@@ -117,7 +117,7 @@ class AddingEquipmentFragment : Fragment() {
             }
             val toast = Toast.makeText(
                 requireContext().applicationContext,
-                "Снаряжение добавлено",
+                "Снаряжение добавлено, можно добавлять следующее",
                 Toast.LENGTH_SHORT
             )
             toast.show()

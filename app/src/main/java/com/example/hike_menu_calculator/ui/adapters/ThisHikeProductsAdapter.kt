@@ -2,6 +2,8 @@ package com.example.hike_menu_calculator.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hike_menu_calculator.R
@@ -9,9 +11,11 @@ import com.example.hike_menu_calculator.dataBase.thisHike.ThisHikeProducts
 import com.example.hike_menu_calculator.databinding.ThisHikeProductsInformationItemBinding
 
 class ThisHikeProductsAdapter(
-    private val data: List<ThisHikeProducts>,
+    var data: List<ThisHikeProducts>,
     private val dataNameParticipant: List<String>,
-    private val onClick: (ThisHikeProducts) -> Unit
+    private val onClick: (ThisHikeProducts) -> Unit,
+    private val onClickCollected: (ThisHikeProducts) -> Unit,
+    private val onClickHandOver: (ThisHikeProducts) -> Unit
 ) :
     RecyclerView.Adapter<ThisHikeProductsViewHolder>() {
 
@@ -21,7 +25,8 @@ class ThisHikeProductsAdapter(
         viewType: Int,
     ): ThisHikeProductsViewHolder {
 
-        val binding = ThisHikeProductsInformationItemBinding.inflate(LayoutInflater.from(parent.context))
+        val binding =
+            ThisHikeProductsInformationItemBinding.inflate(LayoutInflater.from(parent.context))
         return ThisHikeProductsViewHolder(binding)
     }
 
@@ -42,18 +47,41 @@ class ThisHikeProductsAdapter(
                 textViewNameParticipants.text = "Несет: " + item1
             }
             if (item != null) {
-                textViewWeightPackage.text = "Вес упаковки: " + item.packageWeight.toString() + " г."
+                textViewWeightPackage.text =
+                    "Вес упаковки: " + item.packageWeight.toString() + " г."
             }
             if (item != null) {
-                textViewWeightOnePerson.text = "Вес порции: " + item.weightForPerson.toString() + " г."
+                textViewWeightOnePerson.text =
+                    "Вес порции: " + item.weightForPerson.toString() + " г."
             }
             if (item != null) {
                 textViewWeightAll.text = "Общий вес: " + item.weightOnTheHike.toString() + " г."
             }
             if (item != null) {
-                textViewWeightOneMeal.text = "1 прием пищи: " + item.theWeightOfOneMeal.toString() + " г."
+                textViewWeightOneMeal.text =
+                    "1 прием пищи: " + item.theWeightOfOneMeal.toString() + " г."
             }
-
+            if (item != null) {
+                textViewComment.text =
+                    item.comment
+            }
+            if (item != null) {
+                if (item.fullyAssembled) {
+                    buttonCollected.setBackgroundColor(
+                        ContextCompat.getColor(
+                            holder.binding.buttonCollected.context,
+                            R.color.transparent_green_bright
+                        )
+                    )
+                } else {
+                    buttonCollected.setBackgroundColor(
+                        ContextCompat.getColor(
+                            holder.binding.buttonCollected.context,
+                            R.color.transparent_red
+                        )
+                    )
+                }
+            }
             item?.let {
                 Glide
                     .with(imageViewProducts.context)
@@ -64,6 +92,16 @@ class ThisHikeProductsAdapter(
         holder.binding.root.setOnClickListener {
             item?.let {
                 onClick(item)
+            }
+        }
+        holder.binding.buttonCollected.setOnClickListener {
+            item?.let {
+                onClickCollected(item)
+            }
+        }
+        holder.binding.imageButtonHandOver.setOnClickListener {
+            item?.let {
+                onClickHandOver(item)
             }
         }
     }

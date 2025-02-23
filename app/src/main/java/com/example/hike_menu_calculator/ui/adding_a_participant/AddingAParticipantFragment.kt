@@ -147,7 +147,7 @@ class AddingAParticipantFragment : Fragment() {
             }
             val toast = Toast.makeText(
                 requireContext().applicationContext,
-                "Участник добавлен",
+                "Участник добавлен, можно добавлять следующего",
                 Toast.LENGTH_SHORT
             )
             toast.show()
