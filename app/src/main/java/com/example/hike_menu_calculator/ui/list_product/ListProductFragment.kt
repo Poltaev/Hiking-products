@@ -134,7 +134,7 @@ class ListProductFragment : Fragment() {
                     toast.show()
                 }
                 findNavController().navigate(
-                    R.id.action_listProductFragment_to_food_list
+                    R.id.action_listProductFragment_to_selectionFoodListFragment
                 )
             }
 

@@ -29,21 +29,12 @@
 
     <fragment
         android:id="@+id/food_list"
-        android:name="com.example.hike_menu_calculator.ui.type_food_list.FoodListFragment"
+        android:name="com.example.hike_menu_calculator.ui.food_list.FoodListFragment"
         android:label="@string/all_products"
         tools:layout="@layout/fragment_type_food_list" >
         <action
-            android:id="@+id/action_food_list_to_addingAProductFragment"
-            app:destination="@id/addingATypeListProductFragment" />
-        <action
-            android:id="@+id/action_type_food_list_to_listProductFragment"
-            app:destination="@id/listProductFragment" />
-        <action
-            android:id="@+id/action_type_food_list_to_viewingTheProductFragment"
-            app:destination="@id/viewingTheProductFragment" />
-        <action
-            android:id="@+id/action_food_list_to_listAllProductsFragment"
-            app:destination="@id/listAllProductsFragment" />
+            android:id="@+id/action_food_list_to_selectionFoodListFragment"
+            app:destination="@id/selectionFoodListFragment" />
     </fragment>
 
     <fragment
@@ -125,28 +116,15 @@
         android:id="@+id/addingATypeListProductFragment"
         android:name="com.example.hike_menu_calculator.ui.adding_a_type_list_product.AddingATypeListProductFragment"
         android:label="Добавить новый тип продуктов"
-        tools:layout="@layout/fragment_adding_a__type_list_product" >
-        <action
-            android:id="@+id/action_addingAProductFragment_to_food_list"
-            app:destination="@id/food_list" />
-        <action
-            android:id="@+id/action_addingATypeListProductFragment_to_type_food_list"
-            app:destination="@id/food_list" />
-    </fragment>
+        tools:layout="@layout/fragment_adding_a__type_list_product" />
     <fragment
         android:id="@+id/viewingTheProductFragment"
         android:name="com.example.hike_menu_calculator.ui.viewing_the_product.ViewingTheProductFragment"
         android:label="Добавить продукт"
         tools:layout="@layout/fragment_viewing_the_product" >
         <action
-            android:id="@+id/action_viewingTheProductFragment_to_food_list"
-            app:destination="@id/food_list" />
-        <action
             android:id="@+id/action_viewingTheProductFragment_to_listProductFragment"
             app:destination="@id/listProductFragment" />
-        <action
-            android:id="@+id/action_viewingTheProductFragment_to_type_food_list"
-            app:destination="@id/food_list" />
         <action
             android:id="@+id/action_viewingTheProductFragment_to_listAllProductsFragment"
             app:destination="@id/listAllProductsFragment" />
@@ -226,17 +204,14 @@
             android:id="@+id/action_listProductFragment_to_viewingTheProductFragment"
             app:destination="@id/viewingTheProductFragment" />
         <action
-            android:id="@+id/action_listProductFragment_to_type_food_list"
-            app:destination="@id/food_list" />
-        <action
             android:id="@+id/action_listProductFragment_to_addingATypeListProductFragment"
             app:destination="@id/addingATypeListProductFragment" />
         <action
-            android:id="@+id/action_listProductFragment_to_food_list"
-            app:destination="@id/food_list" />
-        <action
             android:id="@+id/action_listProductFragment_to_addProductsInListFragment"
             app:destination="@id/addProductsInListFragment" />
+        <action
+            android:id="@+id/action_listProductFragment_to_selectionFoodListFragment"
+            app:destination="@id/selectionFoodListFragment" />
     </fragment>
     <fragment
         android:id="@+id/listAllProductsFragment"
@@ -370,6 +345,24 @@
         <action
             android:id="@+id/action_addCommentFragment_to_thisHikeListOfProductsFragment"
             app:destination="@id/thisHikeListOfProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionFoodListFragment"
+        android:name="com.example.hike_menu_calculator.ui.selection_food_list.SelectionFoodListFragment"
+        android:label="Списки продуктов в приемах пищи"
+        tools:layout="@layout/fragment_selection_food_list" >
+        <action
+            android:id="@+id/action_selectionFoodListFragment_to_addingATypeListProductFragment"
+            app:destination="@id/addingATypeListProductFragment" />
+        <action
+            android:id="@+id/action_selectionFoodListFragment_to_listProductFragment"
+            app:destination="@id/listProductFragment" />
+        <action
+            android:id="@+id/action_selectionFoodListFragment_to_viewingTheProductFragment"
+            app:destination="@id/viewingTheProductFragment" />
+        <action
+            android:id="@+id/action_selectionFoodListFragment_to_listAllProductsFragment"
+            app:destination="@id/listAllProductsFragment" />
     </fragment>
 
 </navigation>

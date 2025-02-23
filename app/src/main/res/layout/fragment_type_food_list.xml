@@ -4,64 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.type_food_list.FoodListFragment">
+    tools:context=".ui.food_list.FoodListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTypeListProducts"
-        android:layout_width="413dp"
-        android:layout_height="490dp"
+        android:id="@+id/recyclerViewListProduct"
+        android:layout_width="359dp"
+        android:layout_height="605dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/buttonAddFood"
-        android:layout_width="108dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/teal_200"
-        android:text="Добавить продукт"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonAllFood"
-        android:layout_width="108dp"
-        android:layout_height="69dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/teal_200"
-        android:text="Все продукты"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAddList"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddFood" />
-
-    <Button
-        android:id="@+id/buttonAddList"
-        android:layout_width="99dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/teal_200"
-        android:text="Добавить список"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-         />
-
-    <TextView
-        android:id="@+id/textViewSetting"
-        android:layout_width="match_parent"
+        android:id="@+id/buttonListProduct"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:text="Для изменения списка продукта нажмите на нужный списоки вы перейдете на экран изменений. При составлении похода программа возьмет продукты из списков и по очереди добавит их в меню похода."
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddFood"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="Добавить новое меню"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewTypeListProducts" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

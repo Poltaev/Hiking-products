@@ -1,4 +1,4 @@
-package com.example.hike_menu_calculator.ui.type_food_list
+package com.example.hike_menu_calculator.ui.food_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.hike_menu_calculator.R
 import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.products.ListTypeOfProducts
+import com.example.hike_menu_calculator.dataBase.products.ProductStorage
 import com.example.hike_menu_calculator.databinding.FragmentTypeFoodListBinding
+import com.example.hike_menu_calculator.ui.adapters.ListStorageProductsAdapter
 import com.example.hike_menu_calculator.ui.adapters.ListTypeProductsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -50,39 +52,23 @@ class FoodListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         job = lifecycleScope.launch {
-            viewModel.getAllTypeListFlow().collect {
+            viewModel.getAllStorageListFlow().collect {
                 val listTypeList = it
                 val typeListAdapter = listTypeList.let {
-                    ListTypeProductsAdapter(it) { onItemClick(it) }
+                    ListStorageProductsAdapter(it) { onItemClick(it) }
                 }
                 launch(Dispatchers.Main) {
-                    binding.recyclerViewTypeListProducts.adapter = typeListAdapter
+                    binding.recyclerViewListProduct.adapter = typeListAdapter
                 }
 
             }
         }
-        binding.buttonAddList.setOnClickListener {
-            val bundle = Bundle().apply {
-                putInt("listTypeId", 9999)
-            }
-            findNavController().navigate(
-                R.id.action_food_list_to_addingAProductFragment,
-                bundle
-            )
-        }
-        binding.buttonAddFood.setOnClickListener {
-            val bundle = Bundle().apply {
-                putInt("productsId", 9999)
-            }
-            findNavController().navigate(
-                R.id.action_type_food_list_to_viewingTheProductFragment,
-                bundle
-            )
-        }
-        binding.buttonAllFood.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_food_list_to_listAllProductsFragment
-            )
+
+
+        binding.buttonListProduct.setOnClickListener {
+//            findNavController().navigate(
+//                R.id.action_food_list_to_listAllProductsFragment
+//            )
         }
     }
 
@@ -96,12 +82,12 @@ class FoodListFragment : Fragment() {
         _binding = null
     }
 
-    private fun onItemClick(item: ListTypeOfProducts) {
+    private fun onItemClick(item: ProductStorage) {
         val bundle = Bundle().apply {
-            item.id.let { putInt("listTypeId", it) }
+            item.id.let { putInt("storageId", it) }
         }
         findNavController().navigate(
-            R.id.action_type_food_list_to_listProductFragment,
+            R.id.action_food_list_to_selectionFoodListFragment,
             bundle
         )
     }
