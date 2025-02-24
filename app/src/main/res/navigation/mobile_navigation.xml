@@ -367,7 +367,7 @@
     <fragment
         android:id="@+id/createHikeMenuFragment"
         android:name="com.example.hike_menu_calculator.ui.create_hike_menu.CreateHikeMenuFragment"
-        android:label="fragment_create_hike_menu"
+        android:label="Выбор меню"
         tools:layout="@layout/fragment_create_hike_menu" >
         <action
             android:id="@+id/action_createHikeMenuFragment_to_createHikeProductsInListFragment"
