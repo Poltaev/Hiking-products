@@ -66,7 +66,7 @@ class CreateHikeEquipmentFragment : Fragment() {
         binding.buttonFurther.setOnClickListener {
             viewModel.addEquipmentToBackpack()
             findNavController().navigate(
-                R.id.action_createHikeEquipmentFragment_to_createHikeProductsInListFragment
+                R.id.action_createHikeEquipmentFragment_to_createHikeMenuFragment
             )
         }
 

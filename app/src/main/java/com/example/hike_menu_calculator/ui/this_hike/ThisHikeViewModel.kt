@@ -43,9 +43,9 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
                     2,
-                    "Костровое",
+                    "Джетбойл Fire Maple X2",
                     "Photo",
-                    575,
+                    650,
                     false,
                     false,
                     "nameAll",
@@ -54,7 +54,7 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
                     3,
-                    "Топор",
+                    "Топор fiskars x7",
                     "Photo",
                     685,
                     false,
@@ -63,33 +63,33 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     0,
                     true
                 )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    3,
-                    "Конек",
-                    "Photo",
-                    545,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    4,
-                    "Спальник спарка",
-                    "Photo",
-                    1780,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    3,
+//                    "Конек",
+//                    "Photo",
+//                    545,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    4,
+//                    "Спальник спарка",
+//                    "Photo",
+//                    1780,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
                     5,
-                    "Горелка",
+                    "Горелка Fire Maple 121",
                     "Photo",
-                    371,
+                    300,
                     false,
                     false,
                     "nameAll",
@@ -98,81 +98,81 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                 )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
                     6,
-                    "Палатка тройка",
+                    "Палатка Naturehike Canyon 2",
                     "Photo",
-                    2240,
+                    3300,
                     false,
                     false,
                     "nameAll",
                     0,
                     true
                 )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    7,
-                    "Палатка двойка",
-                    "Photo",
-                    2650,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    8,
-                    "Аппаратура для видео",
-                    "Photo",
-                    2477,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    9,
-                    "Спальник спарка один",
-                    "Photo",
-                    1780,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    10,
-                    "Кухонное",
-                    "Photo",
-                    535,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    11,
-                    "Спальник спарка второй",
-                    "Photo",
-                    1780,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
-                    12,
-                    "Женская палатка",
-                    "Photo",
-                    2450,
-                    false,
-                    false,
-                    "nameAll",
-                    0,
-                    true
-                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    7,
+//                    "Палатка двойка",
+//                    "Photo",
+//                    2650,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    8,
+//                    "Аппаратура для видео",
+//                    "Photo",
+//                    2477,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    9,
+//                    "Спальник спарка один",
+//                    "Photo",
+//                    1780,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    10,
+//                    "Кухонное",
+//                    "Photo",
+//                    535,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    11,
+//                    "Спальник спарка второй",
+//                    "Photo",
+//                    1780,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
+//                    12,
+//                    "Женская палатка",
+//                    "Photo",
+//                    2450,
+//                    false,
+//                    false,
+//                    "nameAll",
+//                    0,
+//                    true
+//                )
                 ParticipantsEquipmentUseCase(hikeDao).loadEquipment(
                     13,
                     "Гитара",
@@ -208,84 +208,84 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     true
 
                 )
-                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-                    2,
-                    "Photo",
-                    "Петр",
-                    "Петров",
-                    "Мужской",
-                    "27",
-                    24000,
-                    10000,
-                    10000,
-                    true
-
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-                    3,
-                    "Photo",
-                    "Олег",
-                    "Олегов",
-                    "Мужской",
-                    "27",
-                    23000,
-                    10000,
-                    10000,
-                    true
-
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-                    4,
-                    "Photo",
-                    "Виталий",
-                    "Витальев",
-                    "Мужской",
-                    "28",
-                    23000,
-                    10000,
-                    10000,
-                    true
-
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-                    5,
-                    "Photo",
-                    "Оксана",
-                    "Оксановна",
-                    "Женский",
-                    "22",
-                    19000,
-                    10000,
-                    10000,
-                    true
-
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-                    6,
-                    "Photo",
-                    "Анастасия",
-                    "Анастасьева",
-                    "Женский",
-                    "22",
-                    19000,
-                    10000,
-                    10000,
-                    true
-
-                )
-                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
-                    7,
-                    "Photo",
-                    "Виктория",
-                    "Ольговна",
-                    "Женский",
-                    "22",
-                    19000,
-                    10000,
-                    10000,
-                    true
-
-                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
+//                    2,
+//                    "Photo",
+//                    "Петр",
+//                    "Петров",
+//                    "Мужской",
+//                    "27",
+//                    24000,
+//                    10000,
+//                    10000,
+//                    true
+//
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
+//                    3,
+//                    "Photo",
+//                    "Олег",
+//                    "Олегов",
+//                    "Мужской",
+//                    "27",
+//                    23000,
+//                    10000,
+//                    10000,
+//                    true
+//
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
+//                    4,
+//                    "Photo",
+//                    "Виталий",
+//                    "Витальев",
+//                    "Мужской",
+//                    "28",
+//                    23000,
+//                    10000,
+//                    10000,
+//                    true
+//
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
+//                    5,
+//                    "Photo",
+//                    "Оксана",
+//                    "Оксановна",
+//                    "Женский",
+//                    "22",
+//                    19000,
+//                    10000,
+//                    10000,
+//                    true
+//
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
+//                    6,
+//                    "Photo",
+//                    "Анастасия",
+//                    "Анастасьева",
+//                    "Женский",
+//                    "22",
+//                    19000,
+//                    10000,
+//                    10000,
+//                    true
+//
+//                )
+//                ParticipantsEquipmentUseCase(hikeDao).loadParticipants(
+//                    7,
+//                    "Photo",
+//                    "Виктория",
+//                    "Ольговна",
+//                    "Женский",
+//                    "22",
+//                    19000,
+//                    10000,
+//                    10000,
+//                    true
+//
+//                )
             }
         }
     }
@@ -306,10 +306,10 @@ class ThisHikeViewModel(private val hikeDao: HikeDao) : ViewModel() {
                     3,
                     "Меню на поход пакетами каш на завтрак"
                 )
-                ProductsUseCase(hikeDao).loadProductStorage(
-                    4,
-                    "Меню на слет"
-                )
+//                ProductsUseCase(hikeDao).loadProductStorage(
+//                    4,
+//                    "Меню на слет"
+//                )
             }
         }
     }

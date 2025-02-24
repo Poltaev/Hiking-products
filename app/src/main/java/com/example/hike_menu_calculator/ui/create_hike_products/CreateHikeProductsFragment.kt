@@ -38,7 +38,7 @@ class CreateHikeProductsFragment : Fragment() {
     private var _binding: FragmentCreateHikeProductsInListBinding? = null
 
     private val binding get() = _binding!!
-
+    private var idStorage = 1
     private val viewModel: CreateHikeProductsiewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -47,7 +47,12 @@ class CreateHikeProductsFragment : Fragment() {
             }
         }
     }
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            idStorage = it.getInt("storageId")
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -61,14 +66,14 @@ class CreateHikeProductsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonFurther.isEnabled = false
         job = lifecycleScope.launch(Dispatchers.Main) {
-            val listProducts = async(Dispatchers.IO) { viewModel.getAllProductsList() }
+            val listProducts = async(Dispatchers.IO) { viewModel.productsInThisStorage(idStorage) }
             listProduct = listProducts.await()
             adapter = CreateHikeProductsAdapter(listProduct) { onItemClick(it) }
             binding.recyclerViewListProducts.adapter = adapter
         }
         lifecycleScope.launch(Dispatchers.Main) {
             binding.buttonCreateAHike.setOnClickListener {
-                viewModel.createAHikeProducts(typeMeal)
+                viewModel.createAHikeProducts(typeMeal, idStorage)
                 val toast = Toast.makeText(
                     requireContext().applicationContext,
                     "Продукты в поход добавлены",
@@ -109,7 +114,7 @@ class CreateHikeProductsFragment : Fragment() {
 
     private fun onItemClick(item: Products) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val listProducts = viewModel.getAllProductsList()
+            val listProducts = viewModel.productsInThisStorage(idStorage)
             listProducts.forEach {
                 if (item.id == it.id) {
                     if (it.weWillUseItInTheCurrentCampaign) {
@@ -141,7 +146,7 @@ class CreateHikeProductsFragment : Fragment() {
                     }
                 }
             }
-            val newListProducts = viewModel.getAllProductsList()
+            val newListProducts = viewModel.productsInThisStorage(idStorage)
             launch(Dispatchers.Main) {
                 upDateList(newListProducts)
             }

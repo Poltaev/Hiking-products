@@ -276,8 +276,8 @@
         android:label="Выбор снаряжения"
         tools:layout="@layout/fragment_create_hike_equipment" >
         <action
-            android:id="@+id/action_createHikeEquipmentFragment_to_createHikeProductsInListFragment"
-            app:destination="@id/createHikeProductsInListFragment" />
+            android:id="@+id/action_createHikeEquipmentFragment_to_createHikeMenuFragment"
+            app:destination="@id/createHikeMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/createHikeProductsInListFragment"
@@ -363,6 +363,15 @@
         <action
             android:id="@+id/action_selectionFoodListFragment_to_listAllProductsFragment"
             app:destination="@id/listAllProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createHikeMenuFragment"
+        android:name="com.example.hike_menu_calculator.ui.create_hike_menu.CreateHikeMenuFragment"
+        android:label="fragment_create_hike_menu"
+        tools:layout="@layout/fragment_create_hike_menu" >
+        <action
+            android:id="@+id/action_createHikeMenuFragment_to_createHikeProductsInListFragment"
+            app:destination="@id/createHikeProductsInListFragment" />
     </fragment>
 
 </navigation>

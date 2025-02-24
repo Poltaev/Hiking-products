@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hike_menu_calculator.dataBase.HikeDao
+import com.example.hike_menu_calculator.dataBase.products.ListTypeOfProducts
 import com.example.hike_menu_calculator.dataBase.products.Products
 import com.example.hike_menu_calculator.dataBase.thisHike.ThisHikeMealIntakeSheet
 import com.example.hike_menu_calculator.dataBase.thisHike.ThisHikeProducts
@@ -360,9 +361,9 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         return ProductsUseCase(hikeDao).getAllProductsList()
     }
 
-    fun createAHikeProducts(typeMeal: List<String>) {
+    fun createAHikeProducts(typeMeal: List<String>, idStorage: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            createThisHikeProduct()
+            createThisHikeProduct(idStorage)
             val numberOfDay = ThisHikeUseCase(hikeDao).getAllListThisHike()[0].numberOfDay
             val numberOfSnacks =
                 ThisHikeUseCase(hikeDao).getAllListThisHike()[0].numberOfSnacksInDay
@@ -376,7 +377,8 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
             idThisHikeProduct = getIdThisHikeProduct(idThisHikeProduct)
             typeMeal.forEach { typeMeal ->
                 if (typeMeal != "Перекус") {
-                    idListTypeProduct = getIdThisHikeProductList(idListTypeProduct, typeMeal)
+                    idListTypeProduct =
+                        getIdThisHikeProductList(idListTypeProduct, typeMeal, idStorage)
                     Log.i("idThisHikeProduct.size", "${idThisHikeProduct.size}")
                     if (idThisHikeProduct.size != 0) {
                         idListTypeProduct.forEach {
@@ -418,7 +420,8 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
                     }
                     idListTypeProduct.clear()
                 } else {
-                    idListTypeProduct = getIdThisHikeProductList(idListTypeProduct, typeMeal)
+                    idListTypeProduct =
+                        getIdThisHikeProductList(idListTypeProduct, typeMeal, idStorage)
                     if (idThisHikeProduct.size != 0) {
                         idListTypeProduct.forEach {
                             getIdSnack(it).forEach { item ->
@@ -469,32 +472,37 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         return counterList.size
     }
 
-    private suspend fun checkNullListProduct() {
+    private suspend fun checkNullListProduct(idStorage: Int) {
         val listProducts = ProductsUseCase(hikeDao).getAllProductsList()
-        val listCollectionProduct = ProductsUseCase(hikeDao).getAllListTypeOfProductsList()
+        val listCollectionProduct = mutableListOf<ListTypeOfProducts>()
+        ProductsUseCase(hikeDao).getAllListTypeOfProductsList().forEach {
+            if (it.idProductStorage == idStorage) {
+                listCollectionProduct.add(it)
+            }
+        }
         val listIdProductIdCollection = ProductsUseCase(hikeDao).getAllListProductsList()
         val check = 1
         val checkingProductAvailability = mutableListOf<Int>()
         val listIdProduct = mutableListOf<Int>()
         listCollectionProduct.forEach { listProduct ->
             listIdProductIdCollection.forEach { listIdProductAndList ->
-                if (listProduct.id == listIdProductAndList.listId){
+                if (listProduct.id == listIdProductAndList.listId) {
                     listIdProduct.add(listIdProductAndList.productsId)
                 }
             }
             listProducts.forEach { product ->
-                listIdProduct.forEach{ id ->
-                    if (product.id == id){
-                        if (product.weWillUseItInTheCurrentCampaign){
+                listIdProduct.forEach { id ->
+                    if (product.id == id) {
+                        if (product.weWillUseItInTheCurrentCampaign) {
                             checkingProductAvailability.add(check)
                         }
                     }
                 }
             }
-            if (checkingProductAvailability.size == 0){
+            if (checkingProductAvailability.size == 0) {
                 listProducts.forEach { product ->
-                    listIdProduct.forEach{ id ->
-                        if (product.id == id){
+                    listIdProduct.forEach { id ->
+                        if (product.id == id) {
                             ProductsUseCase(hikeDao).upDateProducts(
                                 product.id,
                                 product.name,
@@ -516,11 +524,41 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
         }
     }
 
-    private suspend fun createThisHikeProduct() {
-        runBlocking {
-            checkNullListProduct()
+     suspend fun productsInThisStorage(idStorage: Int): MutableList<Products> {
+        val listProducts = mutableListOf<Products>()
+        val listIdProducts = mutableListOf<Int>()
+        val listProductInMeal = mutableListOf<ListTypeOfProducts>()
+        ProductsUseCase(hikeDao).getAllListTypeOfProductsList().forEach {
+            if (it.idProductStorage == idStorage) {
+                listProductInMeal.add(it)
+                Log.i("idStorage", "${idStorage}")
+            }
         }
-        val listProducts = ProductsUseCase(hikeDao).getAllProductsList()
+        ProductsUseCase(hikeDao).getAllListProductsList().forEach { productIdList ->
+            listProductInMeal.forEach { listProduct ->
+                if (productIdList.listId == listProduct.id) {
+                    listIdProducts.add(productIdList.productsId)
+                }
+            }
+        }
+        ProductsUseCase(hikeDao).getAllProductsList().forEach { product ->
+            listIdProducts.forEach { id ->
+                if (product.id == id) {
+                    listProducts.add(product)
+                }
+            }
+        }
+        return listProducts
+    }
+
+    private suspend fun createThisHikeProduct(idStorage: Int) {
+        runBlocking {
+            checkNullListProduct(idStorage)
+        }
+        var listProducts = mutableListOf<Products>()
+        runBlocking {
+            listProducts = productsInThisStorage(idStorage)
+        }
         listProducts.forEach {
             if (it.weWillUseItInTheCurrentCampaign) {
                 ThisHikeUseCase(hikeDao).insertThisHikeProducts(
@@ -591,10 +629,13 @@ class CreateHikeProductsiewModel(private val hikeDao: HikeDao) : ViewModel() {
     private suspend fun getIdThisHikeProductList(
         idListTypeProduct: MutableList<Int>,
         typeMeal: String,
+        idStorage: Int
     ): MutableList<Int> {
         ProductsUseCase(hikeDao).getAllListTypeOfProductsList().forEach { item ->
-            if (item.typeOfMeal == typeMeal) {
-                idListTypeProduct.add(item.id)
+            if (item.idProductStorage == idStorage) {
+                if (item.typeOfMeal == typeMeal) {
+                    idListTypeProduct.add(item.id)
+                }
             }
         }
         return idListTypeProduct
