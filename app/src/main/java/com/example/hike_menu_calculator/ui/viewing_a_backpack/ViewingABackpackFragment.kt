@@ -62,7 +62,7 @@ class ViewingABackpackFragment : Fragment() {
                 lifecycleScope.async(Dispatchers.IO) { viewModel.getListFood(participantsId) }
             val listEquipment =
                 lifecycleScope.async(Dispatchers.IO) { viewModel.getListEquipment(participantsId) }
-            delay(100)
+            delay(200)
             binding.recyclerViewListEquipment.adapter =
                 ConcatAdapter(ThisHikeEquipmentBackpackAdapter(listEquipment.await()) {
                     onItemClickEquipment(it)
