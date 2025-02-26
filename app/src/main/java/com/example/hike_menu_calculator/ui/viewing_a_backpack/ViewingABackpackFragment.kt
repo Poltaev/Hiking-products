@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ConcatAdapter
 import com.example.hike_menu_calculator.R
 import com.example.hike_menu_calculator.dataBase.App
 import com.example.hike_menu_calculator.dataBase.thisHike.ThisHikeEquipment
@@ -20,6 +21,7 @@ import com.example.hike_menu_calculator.ui.adapters.ThisHikeProductsBackpackAdap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ViewingABackpackFragment : Fragment() {
@@ -56,17 +58,15 @@ class ViewingABackpackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         job = lifecycleScope.launch(Dispatchers.Main) {
-            val listProduct = lifecycleScope.async(Dispatchers.IO) { viewModel.getListFood(participantsId) }
-            val typeListFoodAdapter = listProduct.await().let {
-                ThisHikeProductsBackpackAdapter(it) { onItemClickProduct(it) }
-            }
-            binding.recyclerViewListEating.adapter = typeListFoodAdapter
-
-            val listEquipment = lifecycleScope.async(Dispatchers.IO) { viewModel.getListEquipment(participantsId) }
-            val typeListEquipmentAdapter = listEquipment.await().let {
-                ThisHikeEquipmentBackpackAdapter(it) { onItemClickEquipment(it) }
-            }
-            binding.recyclerViewListEquipment.adapter = typeListEquipmentAdapter
+            val listProduct =
+                lifecycleScope.async(Dispatchers.IO) { viewModel.getListFood(participantsId) }
+            val listEquipment =
+                lifecycleScope.async(Dispatchers.IO) { viewModel.getListEquipment(participantsId) }
+            delay(100)
+            binding.recyclerViewListEquipment.adapter =
+                ConcatAdapter(ThisHikeEquipmentBackpackAdapter(listEquipment.await()) {
+                    onItemClickEquipment(it)
+                }, ThisHikeProductsBackpackAdapter(listProduct.await()) { onItemClickProduct(it) })
         }
     }
 
